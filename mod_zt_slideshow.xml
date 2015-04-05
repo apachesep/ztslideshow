@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
-    <name>ZT Slideshow</name>
+    <name>MOD_ZTSLIDESHOW</name>
     <author>ZooTemplate</author>
     <creationDate>April 2, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>www.ZooTemplate.com</authorUrl>
     <version>0.0.1</version>
-    <description>description</description>
+    <description>MOD_ZTSLIDESHOW_XML_DESCRIPTION</description>
 
     <files>
-        <filename module="mod_zt_news">mod_zt_slideshow.php</filename>
+        <filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
         <folder>tmpl</folder>
 
     </files>
@@ -20,7 +20,11 @@
         <language tag="en-GB">languages/en-GB.mod_zt_slideshow.sys.ini</language>
     </languages>
 
-    <fields name="params">
-
-    </fields>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/modules/mod_zt_slideshow/formfields">
+                <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" />
+            </fieldset>
+        </fields>
+    </config>
 </extension>
