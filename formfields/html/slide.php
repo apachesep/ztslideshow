@@ -27,7 +27,24 @@ $doc = JFactory::getDocument();
 $doc->addScriptDeclaration($script);
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/scripts.js');
 ?>
-
+<script>
+    /**
+     * Default function. Usually would be overriden by the component
+     */
+    Joomla.submitbutton = function (pressbutton) {
+        zo2.modules.slideshow.hookSave();
+        if (pressbutton) {
+            document.adminForm.task.value = pressbutton;
+        }
+        if (typeof document.adminForm.onsubmit == "function") {
+            document.adminForm.onsubmit();
+        }
+        if (typeof document.adminForm.fireEvent == "function") {
+            document.adminForm.fireEvent('onsubmit');
+        }
+        document.adminForm.submit();
+    }
+</script>
 <div class="zt-slide">
     <div class="container-fluid">
         <!-- Wrapper -->
@@ -91,8 +108,6 @@ $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/scripts.js');
                         <label>Background video</label>
                         <input name="background-video" class="span12" placeholder="" type="text">
                     </div>
-
-
                 </div>
                 <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add slide</button>
             </div>
