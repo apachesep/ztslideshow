@@ -28,6 +28,80 @@ $doc->addScriptDeclaration($script);
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/scripts.js');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/admin.css');
 ?>
+<script>
+    /**
+     * Default function. Usually would be overriden by the component
+     */
+    Joomla.submitbutton = function (pressbutton) {
+        zo2.modules.slideshow.hookSave();
+        if (pressbutton) {
+            document.adminForm.task.value = pressbutton;
+        }
+        if (typeof document.adminForm.onsubmit == "function") {
+            document.adminForm.onsubmit();
+        }
+        if (typeof document.adminForm.fireEvent == "function") {
+            document.adminForm.fireEvent('onsubmit');
+        }
+        document.adminForm.submit();
+    }
+</script>
+<div class="zt-slide">
+    <div class="container-fluid">
+        <!-- Wrapper -->
+        <div class="span12 slides sortable">
+            <!-- An slide -->
+            <div class="row slide">
+                <div class="span12">
+                    <div class="row">
+                        <div class="span6">
+                            <div class="position-left">
+                                <div class="slide-image">                       
+                                    <label>Image</label>
+                                    <input name="l-image" class="span12" placeholder="Your email address" type="text">
+                                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
+                                </div>
+                                <div class="slide-embed">
+                                    <label>Embed code</label>
+                                    <input name="l-embed" class="span12" placeholder="Your email address" type="text">
+                                </div>
+                                <!-- Add more option fields here -->
+                                <label>Type</label>
+                                <select name="l-type" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>          
+                                <label>Effect</label>
+                                <select name="l-effect" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="position-right">
+                                <div class="slide-image">                       
+                                    <label>Image</label>
+                                    <input name="r-image" class="span12" placeholder="Your email address" type="text">
+                                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
+                                </div>
+                                <div class="slide-embed">
+                                    <label>Embed code</label>
+                                    <input name="r-embed" class="span12" placeholder="Your email address" type="text">
+                                </div>
+                                <!-- Add more option fields here -->
+                                <label>Type</label>
+                                <select name="r-type" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>    
+                                <label>Effect</label>
+                                <select name="r-effect" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>
+                            </div>
+                        </div>
 
 <div class="zt-slider">
     <!-- Wrapper -->
