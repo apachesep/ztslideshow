@@ -22,8 +22,18 @@ if (!class_exists('ZtSlideshowHelperHelper'))
 
         public static function imagePrepare($slide, $params)
         {
-            $slide = new JObject($slide);
-            return $slide;
+            require_once '../libraries/image.php';
+            $image = new ZtSlideshowImage($slide);
+            $image->set('params', $params);
+            return $image;
+        }
+
+        public static function embedPrepare($slide, $params)
+        {
+            require_once '../libraries/embed.php';
+            $embed = new ZtSlideshowEmbed($slide);
+            $embed->set('params', $params);
+            return $embed;
         }
 
     }

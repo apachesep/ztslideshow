@@ -23,8 +23,7 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
                 this.hookSave();
             },
             addSlide: function (el) {
-                var $parentEl = jQuery(el).parent();
-                console.log($parentEl);
+                var $parentEl = jQuery(el).parent();                
                 jQuery($parentEl[0]).clone().insertAfter('.zt-slide .slides .slide');
             },
             hookSave: function () {
@@ -93,5 +92,5 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
             </div>
         </div>
     </div>
-    <input id="slides" type="hidden" name="jform[params][slides]" />
+    <input id="slides" type="hidden" name="jform[params][slides]" value="" />
 </div>
