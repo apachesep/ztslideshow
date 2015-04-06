@@ -19,6 +19,7 @@ $script = "
                                         // Current focused
                                         input = jQuery('.select-image-focused').prev();
                                         jQuery(input).val(img);
+                                        jQuery('.select-image-focused').removeClass('select-image-focused');
 				};
 			};
 			";
