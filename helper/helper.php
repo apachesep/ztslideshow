@@ -49,7 +49,6 @@ if (!class_exists('ZtSlideshowHelperHelper'))
 
         public static function imagePrepare($slide, $params)
         {
-            require_once '/../libraries/image.php';
             $properties = $slide->getProperties();
             $properties['params'] = $params;
             $image = new ZtSlideshowImage($properties);
@@ -58,7 +57,6 @@ if (!class_exists('ZtSlideshowHelperHelper'))
 
         public static function embedPrepare($slide, $params)
         {
-            require_once '../libraries/embed.php';
             $embed = new ZtSlideshowEmbed($slide->getProperties());
             $embed->set('params', $params);
             return $embed;

@@ -1,0 +1,33 @@
+/* ==================================
+  Style For Backend Module ZT Slider
+=================================== */
+.zt-slider .slider-items {
+    padding: 20px;
+    margin-top: 40px;
+    border: 1px solid #ccc;
+}
+.zt-slider .slider-title {
+    background-color: #fff;
+    display: block;
+    float: left;
+    margin-top: -32px;
+    padding: 0 10px;
+}
+.zt-slider .slider-element {
+    margin-bottom: 10px;
+}
+.zt-slider .slide-image a,
+.zt-slider .btn-add-slider {
+    background-color: #51a351;
+    background-image: none;
+    border: medium none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #fff;
+    margin-top: 7px;
+    text-shadow: none;
+}
+.zt-slider .slide-image a:hover,
+.zt-slider .btn-add-slider:hover {
+    background-color: #ccc;
+}

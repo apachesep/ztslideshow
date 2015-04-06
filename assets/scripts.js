@@ -21,9 +21,9 @@
                 //  this.hookSave();
             },
             addSlide: function (el) {
-                var $parentEl = jQuery(el).parent();
+                var $parentEl = jQuery(el).prev();
                 console.log ($parentEl);
-                jQuery($parentEl[0]).clone().insertAfter('.zt-slide .slides .slide');
+                jQuery($parentEl[0]).clone().insertAfter('.zt-slider .slides .slide');
                 jQuery(".sortable").sortable();
             },
             hookSave: function () {
