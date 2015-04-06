@@ -32,6 +32,11 @@ $doc->addScriptDeclaration($script);
         jQuery(el).toggleClass('select-image-focused');
     }
     ;
+
+    jQuery(function () {
+        jQuery(".sortable").sortable();
+        jQuery(".sortable").disableSelection();
+    });
     /**
      * 
      * @param {type} w
@@ -48,10 +53,9 @@ $doc->addScriptDeclaration($script);
             addSlide: function (el) {
                 var $parentEl = jQuery(el).parent();
                 jQuery($parentEl[0]).clone().insertAfter('.zt-slide .slides .slide');
+                 jQuery(".sortable").sortable();
             },
             hookSave: function () {
-
-
                 zo2.modules.slideshow.generateSlidesJSON();
 
             },
@@ -108,7 +112,7 @@ $doc->addScriptDeclaration($script);
 </script>
 <div class="zt-slide">
     <div class="container-fluid">
-        <div class="span12 slides">
+        <div class="span12 slides sortable">
             <div class="row slide">
                 <div class="span12">
                     <div class="row">
@@ -160,6 +164,12 @@ $doc->addScriptDeclaration($script);
                                 </select>
                             </div>
                         </div>
+                        <label>Background color</label>
+                        <input name="background-color" class="span12" placeholder="" type="text">
+                        <label>Background image</label>
+                        <input name="background-image" class="span12" placeholder="" type="text">
+                        <label>Background video</label>
+                        <input name="background-video" class="span12" placeholder="" type="text">
                     </div>
 
 

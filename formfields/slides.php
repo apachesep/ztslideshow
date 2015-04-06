@@ -16,6 +16,7 @@ class JFormFieldSlides extends JFormField
     {
         parent::__construct($form);
         JHtml::_('behavior.modal');
+        JHtml::_('jquery.ui', array('core', 'sortable'));
     }
 
     public function getLabel()
@@ -24,7 +25,7 @@ class JFormFieldSlides extends JFormField
     }
 
     public function getInput()
-    {    
+    {
         ob_start();
         require_once __DIR__ . '/html/slide.php';
         $buffer = ob_get_contents();

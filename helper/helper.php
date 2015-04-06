@@ -14,14 +14,18 @@ if (!class_exists('ZtSlideshowHelperHelper'))
                 $properties = get_object_vars($slide);
                 $left = new JObject();
                 $right = new JObject();
+                $data = new JObject();
                 foreach ($properties as $key => $value)
                 {
                     if (substr($key, 0, 2) == 'l-')
                     {
                         $left->set(substr($key, 2), $value);
-                    } else
+                    } elseif (substr($key, 0, 2) == 'r-')
                     {
                         $right->set(substr($key, 2), $value);
+                    } else
+                    {
+                        $data->set($key, $value);
                     }
                 }
                 if ($left->get('type') == 'image')
@@ -38,6 +42,7 @@ if (!class_exists('ZtSlideshowHelperHelper'))
                 {
                     $list[$index]['right'] = self::embedPrepare($right, $params);
                 }
+                $list[$index]['params'] = $data;
             }
             return $list;
         }
