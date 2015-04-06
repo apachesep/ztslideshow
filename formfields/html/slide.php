@@ -64,8 +64,8 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
 <div class="zt-slide">
     <div class="container-fluid">
         <div class="span12 slides">
-            <div class="row slide">
-                <div class="span12">
+            <div class="row slide" id="zt-slideshow-container">
+                <div class="span12" id="zt-slideshow-element">
                     <label>Title</label>
                     <input name="title" class="span12" placeholder="Enter slide title" type="text">
 
@@ -74,7 +74,7 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
 
                     <div class="slide-image">                       
                         <label>Image</label>
-                        <input name="image" class="span12" placeholder="Your email address" type="text">
+                        <input name="image" id="zt-slideshow-image" class="span12" placeholder="Your email address" type="text">
                         <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
                     </div>
                     <div class="slide-embed">
@@ -88,8 +88,8 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
                         <option value="embed">Embed video</option>                        
                     </select>                    
                 </div>
-                <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add slide</button>
             </div>
+            <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.addSlide();">Add slide</button>
         </div>
     </div>
     <input id="slides" type="hidden" name="jform[params][slides]" value="" />
