@@ -7,7 +7,23 @@ $button->link = $link;
 $button->text = JText::_('PLG_IMAGE_BUTTON_IMAGE');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
+$script = "
+			if (typeof jInsertEditorText == 'undefined'){
+				function jInsertEditorText(text, editor) {
+					var source = text.match(/(src)=(\"[^\"]*\")/i), img;
+					text = source[2].replace(/\\\"/g, '');
+					img =  text;
+
+					console.log (img);
+                                        console.log (editor);
+                                        // Apply img value to current input
+				};
+			};
+			";
+$doc = JFactory::getDocument();
+$doc->addScriptDeclaration($script);
 ?>
+
 <script>
     /**
      * 
@@ -23,7 +39,7 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
                 this.hookSave();
             },
             addSlide: function (el) {
-                var $parentEl = jQuery(el).parent();                
+                var $parentEl = jQuery(el).parent();
                 jQuery($parentEl[0]).clone().insertAfter('.zt-slide .slides .slide');
             },
             hookSave: function () {
@@ -66,27 +82,58 @@ $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
         <div class="span12 slides">
             <div class="row slide">
                 <div class="span12">
-                    <label>Title</label>
-                    <input name="title" class="span12" placeholder="Enter slide title" type="text">
-
-                    <label>Description</label>                    
-                    <input name="description" class="span12" placeholder="Enter slide description" type="text">
-
-                    <div class="slide-image">                       
-                        <label>Image</label>
-                        <input name="image" class="span12" placeholder="Your email address" type="text">
-                        <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
+                    <div class="row">
+                        <div class="span6">
+                            <div class="position-left">
+                                <div class="slide-image">                       
+                                    <label>Image</label>
+                                    <input name="limage" class="span12" placeholder="Your email address" type="text">
+                                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
+                                </div>
+                                <div class="slide-embed">
+                                    <label>Embed code</label>
+                                    <input name="lembed" class="span12" placeholder="Your email address" type="text">
+                                </div>
+                                <!-- Add more option fields here -->
+                                <label>Type</label>
+                                <select name="ltype" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>          
+                                <label>Effect</label>
+                                <select name="leffect" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="position-right">
+                                <div class="slide-image">                       
+                                    <label>Image</label>
+                                    <input name="rimage" class="span12" placeholder="Your email address" type="text">
+                                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
+                                </div>
+                                <div class="slide-embed">
+                                    <label>Embed code</label>
+                                    <input name="rembed" class="span12" placeholder="Your email address" type="text">
+                                </div>
+                                <!-- Add more option fields here -->
+                                <label>Type</label>
+                                <select name="rtype" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>    
+                                <label>Effect</label>
+                                <select name="reffect" class="span12">
+                                    <option selected value="image">Image</option>
+                                    <option value="embed">Embed video</option>                        
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="slide-embed">
-                        <label>Embed code</label>
-                        <input name="embed" class="span12" placeholder="Your email address" type="text">
-                    </div>
-                    <!-- Add more option fields here -->
-                    <label>Subject</label>
-                    <select name="type" class="span12">
-                        <option selected value="image">Image</option>
-                        <option value="embed">Embed video</option>                        
-                    </select>                    
+
+
                 </div>
                 <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add slide</button>
             </div>
