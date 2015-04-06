@@ -7,6 +7,7 @@ $button->link = $link;
 $button->text = JText::_('PLG_IMAGE_BUTTON_IMAGE');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
+$button->onclick = 'setActive(this);';
 $script = "
 			if (typeof jInsertEditorText == 'undefined'){
 				function jInsertEditorText(text, editor) {
@@ -14,9 +15,10 @@ $script = "
 					text = source[2].replace(/\\\"/g, '');
 					img =  text;
 
-					console.log (img);
-                                        console.log (editor);
-                                        // Apply img value to current input
+					
+                                        // Current focused
+                                        input = jQuery('.select-image-focused').prev();
+                                        jQuery(input).val(img);
 				};
 			};
 			";
@@ -25,6 +27,10 @@ $doc->addScriptDeclaration($script);
 ?>
 
 <script>
+    function setActive(el) {
+        jQuery(el).toggleClass('select-image-focused');
+    }
+    ;
     /**
      * 
      * @param {type} w
