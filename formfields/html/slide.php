@@ -43,28 +43,34 @@ $doc->addScriptDeclaration($script);
         /* Short code main class */
         var _slideshow = {
             _init: function () {
-                this.hookSave();
+                //  this.hookSave();
             },
             addSlide: function (el) {
                 var $parentEl = jQuery(el).parent();
                 jQuery($parentEl[0]).clone().insertAfter('.zt-slide .slides .slide');
             },
             hookSave: function () {
-                jQuery('#toolbar-apply button').on('click', function () {
-                    zo2.modules.slideshow.generateSlidesJSON();
-                    return false;
-                    //Joomla.submitbutton('module.apply');
-                })
+
+
+                zo2.modules.slideshow.generateSlidesJSON();
+
             },
             generateSlidesJSON: function () {
                 var $slides = jQuery('.slides .slide');
                 var list = [];
                 jQuery($slides).each(function () {
-                    var slide = [];
-                    slide['title'] = jQuery(this).find('[name="title"]').val();
-                    list.push(slide);
+                    var map = {};
+                    jQuery(this).find("input").each(function () {
+                        map[jQuery(this).attr("name")] = jQuery(this).val();
+                    });
+                    jQuery(this).find("select").each(function () {
+                        map[jQuery(this).attr("name")] = jQuery(this).val();
+                    });
+                    list.push(map);
                 });
+                console.log(list);
                 var json = JSON.stringify(list);
+                console.log(json);
                 jQuery('#slides').val(json);
             }
         };
@@ -83,6 +89,22 @@ $doc->addScriptDeclaration($script);
             w.zo2.modules.slideshow._init();
         });
     })(window, jQuery);
+    /**
+     * Default function. Usually would be overriden by the component
+     */
+    Joomla.submitbutton = function (pressbutton) {
+        zo2.modules.slideshow.hookSave();
+        if (pressbutton) {
+            document.adminForm.task.value = pressbutton;
+        }
+        if (typeof document.adminForm.onsubmit == "function") {
+            document.adminForm.onsubmit();
+        }
+        if (typeof document.adminForm.fireEvent == "function") {
+            document.adminForm.fireEvent('onsubmit');
+        }
+        document.adminForm.submit();
+    }
 </script>
 <div class="zt-slide">
     <div class="container-fluid">
@@ -94,21 +116,21 @@ $doc->addScriptDeclaration($script);
                             <div class="position-left">
                                 <div class="slide-image">                       
                                     <label>Image</label>
-                                    <input name="limage" class="span12" placeholder="Your email address" type="text">
+                                    <input name="l-image" class="span12" placeholder="Your email address" type="text">
                                     <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
                                 </div>
                                 <div class="slide-embed">
                                     <label>Embed code</label>
-                                    <input name="lembed" class="span12" placeholder="Your email address" type="text">
+                                    <input name="l-embed" class="span12" placeholder="Your email address" type="text">
                                 </div>
                                 <!-- Add more option fields here -->
                                 <label>Type</label>
-                                <select name="ltype" class="span12">
+                                <select name="l-type" class="span12">
                                     <option selected value="image">Image</option>
                                     <option value="embed">Embed video</option>                        
                                 </select>          
                                 <label>Effect</label>
-                                <select name="leffect" class="span12">
+                                <select name="l-effect" class="span12">
                                     <option selected value="image">Image</option>
                                     <option value="embed">Embed video</option>                        
                                 </select> 
@@ -118,21 +140,21 @@ $doc->addScriptDeclaration($script);
                             <div class="position-right">
                                 <div class="slide-image">                       
                                     <label>Image</label>
-                                    <input name="rimage" class="span12" placeholder="Your email address" type="text">
+                                    <input name="r-image" class="span12" placeholder="Your email address" type="text">
                                     <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>                         
                                 </div>
                                 <div class="slide-embed">
                                     <label>Embed code</label>
-                                    <input name="rembed" class="span12" placeholder="Your email address" type="text">
+                                    <input name="r-embed" class="span12" placeholder="Your email address" type="text">
                                 </div>
                                 <!-- Add more option fields here -->
                                 <label>Type</label>
-                                <select name="rtype" class="span12">
+                                <select name="r-type" class="span12">
                                     <option selected value="image">Image</option>
                                     <option value="embed">Embed video</option>                        
                                 </select>    
                                 <label>Effect</label>
-                                <select name="reffect" class="span12">
+                                <select name="r-effect" class="span12">
                                     <option selected value="image">Image</option>
                                     <option value="embed">Embed video</option>                        
                                 </select>
