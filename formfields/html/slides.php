@@ -28,7 +28,7 @@ $script = "
 $doc = JFactory::getDocument();
 $doc->addScriptDeclaration($script);
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/scripts.js');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/admin.css');
+$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/back/admin.css');
 ?>
 <script>
     /**
