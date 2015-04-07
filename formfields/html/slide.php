@@ -4,7 +4,7 @@ $button = new JObject;
 $button->modal = true;
 $button->class = 'btn modal';
 $button->link = $link;
-$button->text = JText::_('PLG_IMAGE_BUTTON_IMAGE');
+$button->text = JText::_('Select image');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
 $button->onclick = 'setActive(this);';
@@ -59,19 +59,19 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/admin.c
                 <div class="span4">
                     <div class="slider-element slider-text">
                         <label>Background color</label>
-                        <input name="background-color" class="span12" placeholder="" type="text">
+                        <input name="background-color" class="span12" placeholder="Enter your background color code" type="text">
                     </div>
                 </div>
                 <div class="span4">
                     <div class="slider-element slider-text">
                         <label>Background image</label>
-                        <input name="background-image" class="span12" placeholder="" type="text">
+                        <input name="background-image" class="span12" placeholder="Enter your background image relative path" type="text">
                     </div>
                 </div>
                 <div class="span4">
                     <div class="slider-element slider-text">
                         <label>Background video</label>
-                        <input name="background-video" class="span12" placeholder="" type="text">
+                        <input name="background-video" class="span12" placeholder="Enter your background video relative path" type="text">
                     </div>
                 </div>
             </div>
@@ -98,9 +98,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/admin.c
                         </div>
                         <div class="slider-element slider-select">
                             <label>Effect</label>
-                            <select name="l-effect" class="span12">
-                                <option selected value="image">Image</option>
-                                <option value="embed">Embed video</option>
+                            <select name="l-effect" class="span12">                             
                             </select>
                         </div>
 
@@ -129,9 +127,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/admin.c
                         </div>
                         <div class="slider-element slider-select">
                             <label>Effect</label>
-                            <select name="r-effect" class="span12">
-                                <option selected value="image">Image</option>
-                                <option value="embed">Embed video</option>
+                            <select name="r-effect" class="span12">                             
                             </select>
                         </div>
                     </div>
