@@ -20,7 +20,7 @@ function setActive(el) {
         },
         _elements: {
             slides: '.slides.sortable',
-            slide: '.slides'
+            slide: '.slides .slide'
         },
         sortable: function () {
             jQuery(this._elements.slides).sortable();
@@ -31,8 +31,8 @@ function setActive(el) {
          * @param {type} el
          * @returns {undefined}
          */
-        addSlide: function (el) {
-            var $parentEl = jQuery(el).prev();
+        addSlide: function () {
+            var $parentEl = jQuery(this._elements.slide).last();
             jQuery($parentEl[0]).clone().appendTo(this._elements.slides);
             // Reload sortable list
             this.sortable();
