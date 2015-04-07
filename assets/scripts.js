@@ -37,6 +37,10 @@ function setActive(el) {
             // Reload sortable list
             this.sortable();
         },
+        removeSlide: function (el) {
+            var $parentEl = jQuery(el).parent();
+            jQuery($parentEl).remove();
+        },
         /**
          * 
          * @returns {undefined}

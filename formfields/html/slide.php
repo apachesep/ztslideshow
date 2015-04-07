@@ -14,9 +14,11 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- An slide -->
-<div class="slider-items slide">
-    <h3 class="slider-title">Slider Element</h3>
-
+<div class="slider-items slide">    
+    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.removeSlide(this);">Remove</button>
+    <h3 class="slider-title">
+        Slider Element        
+    </h3>    
     <div class="row-fluid slider-general">
         <div class="span4">
             <div class="slider-element slider-text">
@@ -44,7 +46,7 @@ defined('_JEXEC') or die('Restricted access');
                 <div class="slider-element slide-image">
                     <label>Image</label>
                     <input name="l-image" class="span12" placeholder="Choose Image" type="text" value="<?php echo $slide->get('l-image'); ?>">
-<?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element slide-embed">
                     <label>Embed code</label>
@@ -73,7 +75,7 @@ defined('_JEXEC') or die('Restricted access');
                 <div class="slider-element slide-image">
                     <label>Image</label>
                     <input name="r-image" class="span12" placeholder="Choose Image" type="text" value="<?php echo $slide->get('r-image'); ?>" >
-<?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element slide-embed">
                     <label>Embed code</label>
