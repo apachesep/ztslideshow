@@ -14,10 +14,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-require_once __DIR__ . '/bootstrap.php';
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-$slides = json_decode($params->get('slides'));
-
-$slides = ZtSlideshowHelperHelper::prepare($slides, $params);
-
-require JModuleHelper::getLayoutPath('mod_zt_slideshow', $params->get('layout', 'default'));

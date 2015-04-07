@@ -1,15 +1,19 @@
 <?php
 
 /**
- * @package    ZtSlideshow
- * @author     Viet Vu <info@crefly.com>
- * @copyright  JOOservices Ltd
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * ZT Slideshow
  * 
- * @version    0.5.0
- * @since      0.5.0
+ * @package     Joomla
+ * @subpackage  Module
+ * @version     1.0.0
+ * @author      ZooTemplate 
+ * @email       support@zootemplate.com 
+ * @link        http://www.zootemplate.com 
+ * @copyright   Copyright (c) 2015 ZooTemplate
+ * @license     GPL v2
  */
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
+
 
 /**
  * Class exists checking
