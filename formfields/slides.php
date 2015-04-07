@@ -27,7 +27,7 @@ class JFormFieldSlides extends JFormField
     public function getInput()
     {
         ob_start();
-        require_once __DIR__ . '/html/slide.php';
+        require_once __DIR__ . '/html/slides.php';
         $buffer = ob_get_contents();
         ob_end_clean();
         return $buffer;
