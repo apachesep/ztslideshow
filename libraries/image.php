@@ -11,6 +11,7 @@ if (!class_exists('ZtSlideshowImage'))
             parent::__construct($properties);
             $this->_prepare();
             $this->set('image_path', JPATH_ROOT . '/' . $this->image);
+            $this->set('image_url', rtrim(JUri::root(), '/') . '/' . $this->image);
         }
 
         private function _prepare()
@@ -37,6 +38,18 @@ if (!class_exists('ZtSlideshowImage'))
                     $this->set('resized_image_url', rtrim(JUri::root(), '/') . '/cache/ztslideshow/' . $imageFileName . '.' . $ext);
                 }
             }
+        }
+
+        public function getImage($attributes = array(), $size = '')
+        {
+            foreach ($attributes as $key => $value)
+            {
+                $htmlAttributes [] = $key . '="' . $value . '"';
+            }
+
+            $src = $size . '_image_url';
+            $html = '<img src="' . $src . '" ' . implode(' ', $htmlAttributes) . ' />';
+            return $html;
         }
 
     }
