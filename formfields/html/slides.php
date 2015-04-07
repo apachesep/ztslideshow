@@ -59,6 +59,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/back/ad
                 <?php require __DIR__ . '/slide.php'; ?>
             <?php endforeach; ?>
         <?php else : ?>
+            <?php $slide = new JObject (); ?>            
             <?php require __DIR__ . '/slide.php'; ?>
         <?php endif; ?>
     </div>
