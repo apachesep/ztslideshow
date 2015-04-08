@@ -21,6 +21,9 @@ function setActive(el) {
             this.selectType();
             this.selectPosition();
         },
+        /**
+         * 
+         */
         _elements: {
             slides: '.slides.sortable',
             slide: '.slides .slide'
@@ -30,7 +33,7 @@ function setActive(el) {
             jQuery(this._elements.slides).disableSelection();
         },
         /**
-         *
+         * Clone last slide and add to list
          * @param {type} el
          * @returns {undefined}
          */
@@ -40,37 +43,32 @@ function setActive(el) {
             // Reload sortable list
             this.sortable();
         },
-
         /**
          *
          */
-        backgroundToggle : function () {
-            var $toggle = $('.slider-toggle .toggle-background input[type="radio"]');
-            jQuery($toggle).change(function() {
-                var $valueToggle = $(this).data('toggle');
-                $(this).closest('.slider-toggle').find('.slider-element').slideUp();
-                $(this).closest('.slider-toggle').find('#'+$valueToggle).slideDown();
-            });
-
+        backgroundToggle: function (el) {
+            var $valueToggle = $(el).data('toggle');
+            $(el).closest('.slider-toggle').find('.slider-element').slideUp();
+            $(el).closest('.slider-toggle').find('#' + $valueToggle).slideDown();
         },
         /**
          *
          */
-        selectType : function () {
+        selectType: function () {
             var $type = $('.slider-select .select-type');
-            jQuery($type).change(function() {
+            jQuery($type).change(function () {
                 var $valueType = $(this).val();
                 $(this).closest('.element-position').find('.element-toggle').slideUp();
-                $(this).closest('.element-position').find('.slide-'+$valueType).slideDown();
+                $(this).closest('.element-position').find('.slide-' + $valueType).slideDown();
             });
 
         },
         /**
          *
          */
-        selectPosition : function () {
+        selectPosition: function () {
             var $type = $('.slider-position li');
-            jQuery($type).click(function() {
+            jQuery($type).click(function () {
                 $(this).closest('.slider-position').find('li').removeClass('active');
                 $(this).addClass('active');
             });

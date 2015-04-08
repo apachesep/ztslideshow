@@ -22,15 +22,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
     <div class="slider-toggle">
         <div class="toggle-background clearfix">
             <label class="radio pull-left">
-                <input type="radio" name="optionsRadios" id="background-image" data-toggle="toggle-image" value="option1" checked>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="option1" checked>
                 Background Image
             </label>
             <label class="radio pull-left">
-                <input type="radio" name="optionsRadios" id="background-color" data-toggle="toggle-color" value="option2">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="option2">
                 Background Color
             </label>
             <label class="radio pull-left">
-                <input type="radio" name="optionsRadios" id="background-video" data-toggle="toggle-video" value="option2">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="option2">
                 Background Video
             </label>
         </div>
@@ -70,7 +70,7 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                     <label>Image</label>
                     <input name="l-image" class="span12" placeholder="Choose Image" type="text"
                            value="<?php echo $slide->get('l-image'); ?>">
-                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                           <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element element-toggle slide-embed" style="display: none">
                     <label>Embed code</label>
@@ -154,7 +154,7 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                     <label>Image</label>
                     <input name="r-image" class="span12" placeholder="Choose Image" type="text"
                            value="<?php echo $slide->get('r-image'); ?>">
-                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                           <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element element-toggle slide-embed" style="display: none">
                     <label>Embed code</label>
