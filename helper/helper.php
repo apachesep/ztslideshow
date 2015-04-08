@@ -62,6 +62,18 @@ if (!class_exists('ZtSlideshowHelperHelper'))
             return $embed;
         }
 
+        public static function effectSlider()
+        {
+            $arrayEffect = 'bounce|shake|swing|tada|bounceIn|bounceInDown|bounceInLeft|bounceInRight|bounceInUp|bounceOut|bounceOutDown|bounceOutLeft|bounceOutRight|bounceOutUp|fadeIn|fadeInDown|fadeInDownBig|fadeInLeft|fadeInLeftBig|fadeInRight|fadeInRightBig';
+            $arrayList = explode('|', $arrayEffect);
+            $html = '';
+
+            foreach($arrayList as $list){
+                $html .= '<option value="'. $list .'">'. $list .'</option>';
+            }
+            return $html;
+        }
+
     }
 
 }
