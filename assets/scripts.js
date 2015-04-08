@@ -17,8 +17,6 @@ function setActive(el) {
     var _slideshow = {
         _init: function () {
             this.sortable();
-            this.backgroundToggle();
-            this.selectType();
             this.selectPosition();
         },
         /**
@@ -54,14 +52,10 @@ function setActive(el) {
         /**
          *
          */
-        selectType: function () {
-            var $type = $('.slider-select .select-type');
-            jQuery($type).change(function () {
-                var $valueType = $(this).val();
-                $(this).closest('.element-position').find('.element-toggle').slideUp();
-                $(this).closest('.element-position').find('.slide-' + $valueType).slideDown();
-            });
-
+        typeToggle: function (el) {
+            var $valueType = $(el).val();
+            $(el).closest('.element-position').find('.element-toggle').slideUp();
+            $(el).closest('.element-position').find('.slide-' + $valueType).slideDown();
         },
         /**
          *

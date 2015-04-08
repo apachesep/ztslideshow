@@ -19,6 +19,7 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
 <!-- An slide -->
 <div class="slider-items slide">
     <h3 class="slider-title">Slider Element</h3>
+    <!-- Background -->
     <div class="slider-toggle">
         <div class="toggle-background clearfix">
             <label class="radio pull-left">
@@ -57,10 +58,10 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
         <div class="span6">
             <div class="position-left element-position">
                 <h3>Position Left</h3>
-                <!-- Add more option fields here -->
+                <!-- Type -->
                 <div class="slider-element slider-select">
                     <label>Type</label>
-                    <select name="l-type" class="span12 select-type">
+                    <select onchange="zo2.modules.slideshow.typeToggle(this);" name="l-type" class="span12 select-type">
                         <option <?php echo ($slide->get('l-type') == 'image') ? 'selected' : ''; ?> value="image">Image</option>
                         <option <?php echo ($slide->get('l-type') == 'embed') ? 'selected' : ''; ?> value="embed">Embed video</option>
                         <option <?php echo ($slide->get('l-type') == 'text') ? 'selected' : ''; ?> value="text">Text</option>
