@@ -60,13 +60,9 @@ function setActive(el) {
         /**
          *
          */
-        selectPosition: function () {
-            var $type = $('.slider-position li');
-            jQuery($type).click(function () {
-                $(this).closest('.slider-position').find('li').removeClass('active');
-                $(this).addClass('active');
-            });
-
+        selectPosition: function (el) {
+            $(el).closest('.slider-position').find('li').removeClass('active');
+            $(el).addClass('active');
         },
         /**
          *
