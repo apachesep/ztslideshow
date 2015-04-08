@@ -95,6 +95,7 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                     <label>Link</label>
                     <textarea name="l-text-link" class="span12" placeholder="Fill Text Link"><?php echo $slide->get('l-text-link'); ?></textarea>
                 </div>
+
                 <div class="slider-element slider-position clearfix">
                     <label>Position</label>
                     <ul>
@@ -108,6 +109,23 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                         <li class="position-item" id="ps-bottom-center"></li>
                         <li class="position-item" id="ps-bottom-right"></li>
                     </ul>
+                </div>
+                <div class="slider-element slider-column">
+                    <label>Effect</label>
+                    <select name="l-column" class="span12 select-column">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
                 </div>
                 <div class="slider-element slider-text">
                     <label>Effect</label>
@@ -175,7 +193,24 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                         <li class="position-item" id="ps-bottom-right"></li>
                     </ul>
                 </div>
-                <div class="slider-element slider-select">
+                <div class="slider-element slider-column">
+                    <label>Effect</label>
+                    <select name="r-column" class="span12 select-column">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div class="slider-element slider-text">
                     <label>Effect</label>
                     <select name="r-effect" class="span12">
                         <?php echo ZtSlideshowHelperHelper::effectSlider(); ?>
