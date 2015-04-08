@@ -1,0 +1,93 @@
+.zt-slideshow .zt-slidershow-item{
+    min-height: 550px;
+    height: 550px;
+}
+.zt-slideshow .full-backround{
+    background-attachment: fixed;
+    background-position: left top;
+    background-size: cover;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.zt-slideshow .zt-slider-position{
+    color: #fff;
+    height: 550px;
+}
+.ps-top-left, .ps-center-left, .ps-bottom-left{
+    text-align: left;
+}
+.ps-top-center, .ps-center-middle, .ps-bottom-center{
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 80%;
+}
+.ps-top-right, .ps-center-right, .ps-bottom-right{
+    text-align: right;
+}
+.ps-center-left, .ps-center-middle, .ps-center-right{
+    height: 100%;
+    left: 0;
+    margin-top: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+}
+.ps-center-middle{
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.ps-bottom-left, .ps-bottom-center, .ps-bottom-right{
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+.ps-bottom-center{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Animation */
+.animated {
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    opacity: 0;
+}
+.zt-slidershow-item.active .animated {
+    opacity: 1;
+}
+
+/* Content Text */
+.content-text .small-title{
+    font-size: 15px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+}
+.content-text .title{
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.content-text .description{
+    font-size: 14px;
+    font-weight: 400;
+}
+.content-text .link a{
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+.content-text .link a:hover{
+    background-color: #000;
+    border-color: #000;
+}
