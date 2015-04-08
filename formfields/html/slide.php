@@ -23,15 +23,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
     <div class="slider-toggle">
         <div class="toggle-background clearfix">
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="option1" checked>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="image" checked>
                 Background Image
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="option2">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="color">
                 Background Color
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="option2">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="video">
                 Background Video
             </label>
         </div>
