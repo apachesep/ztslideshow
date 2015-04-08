@@ -145,7 +145,7 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                 <!-- Add more option fields here -->
                 <div class="slider-element slider-select">
                     <label>Type</label>
-                    <select name="r-type" class="span12 select-type">
+                    <select onchange="zo2.modules.slideshow.typeToggle(this);" name="r-type" class="span12 select-type">
                         <option <?php echo ($slide->get('l-type') == 'image') ? 'selected' : ''; ?> value="image">Image</option>
                         <option <?php echo ($slide->get('l-type') == 'embed') ? 'selected' : ''; ?> value="embed">Embed video</option>
                         <option <?php echo ($slide->get('l-type') == 'text') ? 'selected' : ''; ?> value="text">Text</option>
@@ -183,15 +183,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                 <div class="slider-element slider-position clearfix">
                     <label>Position</label>
                     <ul>
-                        <li class="position-item" id="ps-top-left"></li>
-                        <li class="position-item" id="ps-top-center"></li>
-                        <li class="position-item" id="ps-top-right"></li>
-                        <li class="position-item" id="ps-center-left"></li>
-                        <li class="position-item" id="ps-center-middle"></li>
-                        <li class="position-item" id="ps-center-right"></li>
-                        <li class="position-item" id="ps-bottom-left"></li>
-                        <li class="position-item" id="ps-bottom-center"></li>
-                        <li class="position-item" id="ps-bottom-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-middle"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-right"></li>
                     </ul>
                 </div>
                 <div class="slider-element slider-column">
