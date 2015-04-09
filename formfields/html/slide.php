@@ -15,6 +15,9 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <?php
 require_once dirname(__FILE__) . '/../../helper/helper.php';
+$valueBackgroundType = $slide->get('background-type', 'color');
+$lPosition = $slide->get('l-position', '');
+$rPosition = $slide->get('r-position', '');
 ?>
 <!-- An slide -->
 <div class="slider-items slide">
@@ -23,15 +26,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
     <div class="slider-toggle">
         <div class="toggle-background clearfix">
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="image" checked>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="image" <?php echo ($valueBackgroundType == 'image') ? 'checked' : ''; ?>>
                 Background Image
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="color">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="color" <?php echo ($valueBackgroundType == 'color') ? 'checked' : ''; ?>>
                 Background Color
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="video">
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="video" <?php echo ($valueBackgroundType == 'video') ? 'checked' : ''; ?>>
                 Background Video
             </label>
         </div>
@@ -100,15 +103,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                 <div class="slider-element slider-position clearfix">
                     <label>Position</label>
                     <ul>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-center"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-right"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-middle"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-right"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-center"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'top-left') ? 'active' : ''; ?> position-item" id="ps-top-left" data-value="top-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'top-center') ? 'active' : ''; ?> position-item" id="ps-top-center" data-value="top-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'top-right') ? 'active' : ''; ?> position-item" id="ps-top-right" data-value="top-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'center-left') ? 'active' : ''; ?> position-item" id="ps-center-left" data-value="center-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'center-middle') ? 'active' : ''; ?> position-item" id="ps-center-middle" data-value="center-middle"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'center-right') ? 'active' : ''; ?> position-item" id="ps-center-right" data-value="center-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'bottom-left') ? 'active' : ''; ?> position-item" id="ps-bottom-left" data-value="bottom-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'bottom-center') ? 'active' : ''; ?> position-item" id="ps-bottom-center" data-value="bottom-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="left <?php echo ($lPosition == 'bottom-right') ? 'active' : ''; ?> position-item" id="ps-bottom-right" data-value="bottom-right"></li>
                     </ul>
                 </div>
                 <div class="slider-element slider-column">
@@ -183,15 +186,15 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
                 <div class="slider-element slider-position clearfix">
                     <label>Position</label>
                     <ul>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-center"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-top-right"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-middle"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-center-right"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-left"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-center"></li>
-                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="position-item" id="ps-bottom-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'top-left') ? 'active' : ''; ?> position-item" id="ps-top-left" data-value="top-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'top-center') ? 'active' : ''; ?> position-item" id="ps-top-center" data-value="top-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'top-right') ? 'active' : ''; ?> position-item" id="ps-top-right" data-value="top-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'center-left') ? 'active' : ''; ?> position-item" id="ps-center-left" data-value="center-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'center-middle') ? 'active' : ''; ?> position-item" id="ps-center-middle" data-value="center-middle"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'center-right') ? 'active' : ''; ?> position-item" id="ps-center-right" data-value="center-right"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'bottom-left') ? 'active' : ''; ?> position-item" id="ps-bottom-left" data-value="bottom-left"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'bottom-center') ? 'active' : ''; ?> position-item" id="ps-bottom-center" data-value="bottom-center"></li>
+                        <li onClick="zo2.modules.slideshow.selectPosition(this);" class="right <?php echo ($rPosition == 'bottom-right') ? 'active' : ''; ?> position-item" id="ps-bottom-right" data-value="bottom-right"></li>
                     </ul>
                 </div>
                 <div class="slider-element slider-column">

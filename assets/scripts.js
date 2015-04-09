@@ -82,10 +82,13 @@ function setActive(el) {
                 jQuery(this).find("select").each(function () {
                     map[jQuery(this).attr("name")] = jQuery(this).val();
                 });
+                map['l-position'] = jQuery(this).find('.left.position-item.active').data('value');
+                map['r-position'] = jQuery(this).find('.right.position-item.active').data('value')
                 list.push(map);
             });
             var json = JSON.stringify(list);
             jQuery('#slides').val(json);
+            console.log(list);
         }
     };
     /* Check for Zo2 javascript framework */
