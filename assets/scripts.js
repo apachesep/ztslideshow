@@ -37,7 +37,12 @@ function setActive(el) {
          */
         addSlide: function () {
             var $parentEl = jQuery(this._elements.slide).last();
-            jQuery($parentEl[0]).clone().appendTo(this._elements.slides);
+            var $cloned = jQuery($parentEl[0]).clone();
+            jQuery($cloned).addClass('added');
+            jQuery($cloned).find('.chzn-done').removeClass('chzn-done');
+            jQuery($cloned).find('.chzn-container').remove();            
+            jQuery($cloned).appendTo(this._elements.slides);
+            jQuery('.added select').chosen();
             // Reload sortable list
             this.sortable();
         },
