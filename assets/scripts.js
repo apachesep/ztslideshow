@@ -91,6 +91,9 @@ function setActive(el) {
                     }
 
                 });
+                jQuery(this).find("textarea").each(function () {
+                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                });
                 jQuery(this).find("select").each(function () {
                     map[jQuery(this).attr("name")] = jQuery(this).val();
                 });
