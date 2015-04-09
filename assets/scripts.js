@@ -40,7 +40,7 @@ function setActive(el) {
             var $cloned = jQuery($parentEl[0]).clone();
             jQuery($cloned).addClass('added');
             jQuery($cloned).find('.chzn-done').removeClass('chzn-done');
-            jQuery($cloned).find('.chzn-container').remove();            
+            jQuery($cloned).find('.chzn-container').remove();
             jQuery($cloned).appendTo(this._elements.slides);
             jQuery('.added select').chosen();
             // Reload sortable list
@@ -82,7 +82,14 @@ function setActive(el) {
             jQuery($slides).each(function () {
                 var map = {};
                 jQuery(this).find("input").each(function () {
-                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                    if (jQuery(this).attr('type') == 'radio') {
+                        if (jQuery(this).is(':checked')) {
+                            map[jQuery(this).attr("name")] = jQuery(this).val();
+                        }
+                    } else {
+                        map[jQuery(this).attr("name")] = jQuery(this).val();
+                    }
+
                 });
                 jQuery(this).find("select").each(function () {
                     map[jQuery(this).attr("name")] = jQuery(this).val();

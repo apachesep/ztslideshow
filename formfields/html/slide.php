@@ -18,6 +18,8 @@ require_once dirname(__FILE__) . '/../../helper/helper.php';
 $valueBackgroundType = $slide->get('background-type', 'color');
 $lPosition = $slide->get('l-position', '');
 $rPosition = $slide->get('r-position', '');
+$lColumn = $slide->get('l-column', '');
+$rColumn = $slide->get('r-column', '');
 ?>
 <!-- An slide -->
 <div class="slider-items slide">
@@ -26,15 +28,15 @@ $rPosition = $slide->get('r-position', '');
     <div class="slider-toggle">
         <div class="toggle-background clearfix">
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="image" <?php echo ($valueBackgroundType == 'image') ? 'checked' : ''; ?>>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-image" data-toggle="toggle-image" value="image" <?php echo ($valueBackgroundType == 'image') ? 'checked="checked"' : ''; ?>>
                 Background Image
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="color" <?php echo ($valueBackgroundType == 'color') ? 'checked' : ''; ?>>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-color" data-toggle="toggle-color" value="color" <?php echo ($valueBackgroundType == 'color') ? 'checked="checked"' : ''; ?>>
                 Background Color
             </label>
             <label class="radio pull-left">
-                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="video" <?php echo ($valueBackgroundType == 'video') ? 'checked' : ''; ?>>
+                <input onchange="zo2.modules.slideshow.backgroundToggle(this);" type="radio" name="background-type" id="background-video" data-toggle="toggle-video" value="video" <?php echo ($valueBackgroundType == 'video') ? 'checked="checked"' : ''; ?>>
                 Background Video
             </label>
         </div>
@@ -117,18 +119,18 @@ $rPosition = $slide->get('r-position', '');
                 <div class="slider-element slider-column">
                     <label>Effect</label>
                     <select name="l-column" class="span12 select-column">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                        <option value="1" <?php echo ($lColumn == 1 ) ? 'selected' : ''; ?> >1</option>
+                        <option value="2" <?php echo ($lColumn == 2 ) ? 'selected' : ''; ?> >2</option>
+                        <option value="3" <?php echo ($lColumn == 3 ) ? 'selected' : ''; ?> >3</option>
+                        <option value="4" <?php echo ($lColumn == 4 ) ? 'selected' : ''; ?> >4</option>
+                        <option value="5" <?php echo ($lColumn == 5 ) ? 'selected' : ''; ?> >5</option>
+                        <option value="6" <?php echo ($lColumn == 6 ) ? 'selected' : ''; ?> >6</option>
+                        <option value="7" <?php echo ($lColumn == 7 ) ? 'selected' : ''; ?> >7</option>
+                        <option value="8" <?php echo ($lColumn == 8 ) ? 'selected' : ''; ?> >8</option>
+                        <option value="9" <?php echo ($lColumn == 9 ) ? 'selected' : ''; ?> >9</option>
+                        <option value="10" <?php echo ($lColumn == 10 ) ? 'selected' : ''; ?> >10</option>
+                        <option value="11" <?php echo ($lColumn == 11 ) ? 'selected' : ''; ?> >11</option>
+                        <option value="12" <?php echo ($lColumn == 12 ) ? 'selected' : ''; ?> >12</option>
                     </select>
                 </div>
                 <div class="slider-element slider-text">
@@ -200,18 +202,18 @@ $rPosition = $slide->get('r-position', '');
                 <div class="slider-element slider-column">
                     <label>Effect</label>
                     <select name="r-column" class="span12 select-column">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                        <option value="1" <?php echo ($rColumn == 1 ) ? 'selected' : ''; ?> >1</option>
+                        <option value="2" <?php echo ($rColumn == 2 ) ? 'selected' : ''; ?> >2</option>
+                        <option value="3" <?php echo ($rColumn == 3 ) ? 'selected' : ''; ?> >3</option>
+                        <option value="4" <?php echo ($rColumn == 4 ) ? 'selected' : ''; ?> >4</option>
+                        <option value="5" <?php echo ($rColumn == 5 ) ? 'selected' : ''; ?> >5</option>
+                        <option value="6" <?php echo ($rColumn == 6 ) ? 'selected' : ''; ?> >6</option>
+                        <option value="7" <?php echo ($rColumn == 7 ) ? 'selected' : ''; ?> >7</option>
+                        <option value="8" <?php echo ($rColumn == 8 ) ? 'selected' : ''; ?> >8</option>
+                        <option value="9" <?php echo ($rColumn == 9 ) ? 'selected' : ''; ?> >9</option>
+                        <option value="10" <?php echo ($rColumn == 10 ) ? 'selected' : ''; ?> >10</option>
+                        <option value="11" <?php echo ($rColumn == 11 ) ? 'selected' : ''; ?> >11</option>
+                        <option value="12" <?php echo ($rColumnColumn == 12 ) ? 'selected' : ''; ?> >12</option>
                     </select>
                 </div>
                 <div class="slider-element slider-text">
