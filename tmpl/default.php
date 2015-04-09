@@ -60,8 +60,18 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
     <?php endforeach; ?>
 </div>
 
+<?php echo $duration = $params->get('transition_duration'); ?>
 <script type="text/javascript">
     slider = jQuery('#<?php echo $_id; ?>').bxSlider({
+        speed: <?php echo ($params->get('transition_duration')) ? $params->get('transition_duration') : '500' ?>,
+        auto: true,
+        pause: <?php echo ($params->get('display_time')) ? $params->get('display_time') : '4000' ?>,
+        <?php if(!$params->get('pagination')) { ?>
+        pager: false,
+        <?php } ?>
+        <?php if(!$params->get('navigation')) { ?>
+        controls: false,
+        <?php } ?>
         onSliderLoad: function () {
             jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
         },

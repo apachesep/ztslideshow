@@ -22,7 +22,7 @@ $rPosition = $slide->get('r-position', '');
 <!-- An slide -->
 <div class="slider-items slide">
     <h3 class="slider-title">Slider Element</h3>
-    <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i
+    <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i onclick="zo2.modules.slideshow.deleteSlide(this)" class="fa fa-times"></i><i
             class="fa fa-arrows-alt"></i></span>
     <!-- Background -->
     <div class="slider-content">
