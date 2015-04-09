@@ -25,6 +25,18 @@
             <fieldset name="basic" addfieldpath="/modules/mod_zt_slideshow/formfields">
                 <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" />
             </fieldset>
+            <fieldset name="advanced">
+                <field name="pagination" type="list" default="0" label="Show pagination" description="">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="navigation" type="list" default="0" label="Show navigation" description="">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="display_time" type="text" default="" label="Display time" description="" size="10" />
+                <field name="transition_duration" type="text" default="" label="Transition Duration" description="" size="10" />
+            </fieldset>
         </fields>
     </config>
 </extension>
