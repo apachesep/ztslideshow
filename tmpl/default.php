@@ -28,10 +28,10 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 
 <div class="zt-slideshow" id="<?php echo $_id; ?>">
     <?php foreach ($slides as $slide) : ?>
-        <?php $params = $slide['params']; ?>
+        <?php $slideParams = $slide['params']; ?>
         <div class="zt-slidershow-item">
             <div class="full-backround"
-                 style="background-image: url('<?php echo $params->get('background-image'); ?>'); background-color: <?php echo $params->get('background-color'); ?>"></div>
+                 style="background-image: url('<?php echo $slideParams->get('background-image'); ?>'); background-color: <?php echo $slideParams->get('background-color'); ?>"></div>
             <div class="container">
                 <div class="row">
                     <?php
@@ -60,12 +60,11 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
     <?php endforeach; ?>
 </div>
 
-<?php echo $duration = $params->get('transition_duration'); ?>
 <script type="text/javascript">
     slider = jQuery('#<?php echo $_id; ?>').bxSlider({
-        speed: <?php echo ($params->get('transition_duration')) ? $params->get('transition_duration') : '500' ?>,
+        speed: <?php echo $params->get('transition_duration',500); ?>,
         auto: true,
-        pause: <?php echo ($params->get('display_time')) ? $params->get('display_time') : '4000' ?>,
+        pause: <?php echo $params->get('display_time',4000); ?>,
         <?php if(!$params->get('pagination')) { ?>
         pager: false,
         <?php } ?>
