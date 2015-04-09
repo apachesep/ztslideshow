@@ -46,6 +46,10 @@ function setActive(el) {
             // Reload sortable list
             this.sortable();
         },
+        deleteSlide: function (el) {
+            var $parentEl = jQuery(el).parent();
+            jQuery($parentEl).remove();
+        },
         /**
          *
          */
@@ -67,7 +71,7 @@ function setActive(el) {
          */
         sliderAccordion: function (el) {
             var $sliderContent = $(el).closest('.slider-accordion').next();
-            if($sliderContent.is(':visible')){
+            if ($sliderContent.is(':visible')) {
                 $sliderContent.slideUp();
                 $(el).removeClass('fa-minus').addClass('fa-plus');
             } else {
