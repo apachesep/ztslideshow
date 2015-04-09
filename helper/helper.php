@@ -62,14 +62,18 @@ if (!class_exists('ZtSlideshowHelperHelper'))
             return $embed;
         }
 
-        public static function effectSlider()
+        public static function effectSlider($selected)
         {
-            $arrayEffect = 'bounce|shake|swing|tada|bounceIn|bounceInDown|bounceInLeft|bounceInRight|bounceInUp|bounceOut|bounceOutDown|bounceOutLeft|bounceOutRight|bounceOutUp|fadeIn|fadeInDown|fadeInDownBig|fadeInLeft|fadeInLeftBig|fadeInRight|fadeInRightBig';
+            $arrayEffect = 'bounce|shake|swing|tada|bounceIn|bounceInDown|bounceInLeft|bounceInRight|bounceInUp|bounceOut|bounceOutDown|bounceOutLeft|bounceOutRight|bounceOutUp|fadeIn|fadeInDown|fadeInDownBig|fadeInLeft|fadeInLeftBig|fadeInRight|fadeInRightBig|fadeInUp|fadeInUpBig|fadeOut|fadeOutDown|fadeOutDownBig';
             $arrayList = explode('|', $arrayEffect);
             $html = '';
 
             foreach($arrayList as $list){
-                $html .= '<option value="'. $list .'">'. $list .'</option>';
+                $select = '';
+                if(strtolower($selected) == strtolower($list)){
+                    $select = 'selected="selected"';
+                }
+                $html .= '<option data-a="'.$selected.'" value="'. $list .'" '.$select.'>'. $list .'</option>';
             }
             return $html;
         }

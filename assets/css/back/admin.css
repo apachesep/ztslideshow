@@ -13,7 +13,7 @@
     margin-top: -32px;
     padding: 0 10px;
 }
-.zt-slider .slider-element {
+.zt-slider .slider-element, .toggle-background {
     margin-bottom: 10px;
 }
 .zt-slider .slide-image a,

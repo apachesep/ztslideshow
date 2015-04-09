@@ -20,7 +20,7 @@ function setActive(el) {
             this.selectPosition();
         },
         /**
-         * 
+         *
          */
         _elements: {
             slides: '.slides.sortable',
@@ -50,9 +50,9 @@ function setActive(el) {
          *
          */
         backgroundToggle: function (el) {
-            var $valueToggle = $(el).data('toggle');
+            var $valueToggle = $(el).val();
             $(el).closest('.slider-toggle').find('.slider-element').slideUp();
-            $(el).closest('.slider-toggle').find('#' + $valueToggle).slideDown();
+            $(el).closest('.slider-toggle').find('#toggle-' + $valueToggle).slideDown();
         },
         /**
          *

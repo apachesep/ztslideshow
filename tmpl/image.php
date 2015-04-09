@@ -13,5 +13,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<!--<img src="--><?php //echo $item->get('resized_image_url'); ?><!--" />-->
-<img src="http://192.168.1.65/joomla/zo2_shortcode/images/carousel/up1.jpg" />
+<p class="animated <?php echo $item->get('effect'); ?>" style="animation-delay: 0.5s; -webkit-animation-delay: 0.5s; animation-duration: 0.7s;">
+<img src="<?php echo $item->get('resized_image_url'); ?>" />
+</p>

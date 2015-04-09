@@ -30,11 +30,9 @@
     text-align: right;
 }
 .ps-center-left, .ps-center-middle, .ps-center-right{
-    height: 100%;
     left: 0;
-    margin-top: 50%;
     position: absolute;
-    top: 0;
+    top: 50%;
     transform: translateY(-50%);
 }
 .ps-center-middle{
