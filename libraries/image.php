@@ -17,6 +17,8 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('ZtSlideshowImage'))
 {
 
+    jimport('joomla.filesystem.folder');
+
     class ZtSlideshowImage extends JObject
     {
 
