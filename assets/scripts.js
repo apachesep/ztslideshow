@@ -65,6 +65,19 @@ function setActive(el) {
         /**
          *
          */
+        sliderAccordion: function (el) {
+            var $sliderContent = $(el).closest('.slider-accordion').next();
+            if($sliderContent.is(':visible')){
+                $sliderContent.slideUp();
+                $(el).removeClass('fa-minus').addClass('fa-plus');
+            } else {
+                $sliderContent.slideDown();
+                $(el).removeClass('fa-plus').addClass('fa-minus');
+            }
+        },
+        /**
+         *
+         */
         selectPosition: function (el) {
             $(el).closest('.slider-position').find('li').removeClass('active');
             $(el).addClass('active');

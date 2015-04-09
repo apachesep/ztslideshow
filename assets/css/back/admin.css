@@ -2,16 +2,26 @@
   Style For Backend Module ZT Slider
 =================================== */
 .zt-slider .slider-items {
-    padding: 20px;
-    margin-top: 40px;
+    padding: 0 20px;
+    margin-top: 15px;
     border: 1px solid #ccc;
 }
+.zt-slider .slider-content{
+    display: none;
+}
 .zt-slider .slider-title {
-    background-color: #fff;
-    display: block;
-    float: left;
-    margin-top: -32px;
-    padding: 0 10px;
+    display: inline-block;
+}
+.slider-accordion{
+    margin-top: 12px;
+}
+.slider-accordion .fa{
+    margin-left: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.slider-accordion .fa:last-child{
+    cursor: move;
 }
 .zt-slider .slider-element, .toggle-background {
     margin-bottom: 10px;
