@@ -21,7 +21,7 @@ function setActive(el) {
          */
         _elements: {
             wrapper: "#zt-slidershow-wrapper",
-            slides: "zt-slidershow-container",
+            slides: "#zt-slidershow-container",
             slide: "#zt-slidershow-element"
         },
         /**
@@ -30,7 +30,7 @@ function setActive(el) {
          * @returns {undefined}
          */
         _selectElement: function(selector){
-            $(this._elements.wrapper).find(selector);
+            return $(this._elements.wrapper).find(selector);
         },
         /*
          * Init jQuery UI sortable
@@ -55,16 +55,16 @@ function setActive(el) {
         addSlide: function () {
             /* Note: Flush sortable after you reload it */
             this.flushSortable();
+            var $sliderContainer = this._selectElement(this._elements.slides);
             var $parentEl = this._selectElement(this._elements.slide).first();
             var $cloned = $parentEl.clone();
             $cloned.addClass('added');
             $cloned.find('.chzn-done').removeClass('chzn-done');
             $cloned.find('.chzn-container').remove();
             $cloned.find('input').val('');
-            $cloned.find('select').val('');
-            $cloned.appendTo(this._elements.slides);
-            this._selectElement(this._elements.slides)
-                    .find('.added select')
+            $cloned.find('select').val('').trigger("liszt:updated");
+            $cloned.appendTo($sliderContainer);
+            $sliderContainer.find('.added select')
                     .chosen();
             /* Reload sortable list */
             this.sortable();
