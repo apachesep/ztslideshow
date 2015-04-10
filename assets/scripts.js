@@ -44,7 +44,8 @@ function setActive(el) {
             this.sortable();
         },
         deleteSlide: function (el) {
-            var $parentEl = jQuery(el).parent();
+            var $parentEl = jQuery(el).parent().parent();
+            console.log ($parentEl);
             jQuery($parentEl).remove();
         },
         /**
