@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Crex Opengraph" default="prepare">
+    <taskdef name="builder" classname="tasks.BuilderTask" />
+    <taskdef name="hash" classname="tasks.HashTask" />
+    
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+    <target name="prepare">
+        <echo msg="Preaparing the builder..." />
+	
+        <mkdir dir="./tmp/${version}" />
+        		 
+        <mkdir dir="./packages" />
+        <mkdir dir="./packages/${version}" />
+                
+        <phingcall target="build"></phingcall>
+        <phingcall target="cleanup"></phingcall>
+    </target>
+    <!-- ============================================  -->
+    <!-- Target: build                                 -->
+    <!-- ============================================  -->
+    <target name="build">
+              
+        <copy todir="./tmp/${version}">
+            <fileset defaultexcludes="false" expandsymboliclinks="true" dir="../">
+                <exclude name=".git/" />
+                <exclude name="build/" />                
+            </fileset>
+        </copy>
+        
+        <builder path="./tmp/${version}" 
+                 version="${version}"
+                 name="${name}"
+                 package="${package}"
+                 subpackage="${subpackage}"
+                 author="${author}"
+                 link="${link}"
+                 copyright="${copyright}"
+                 license="${license}"                 
+        />
+         
+        <hash path="./tmp/${version}" version="${version}"/>
+              
+        <zip destfile="./packages/${version}/${extension}_v_${version}.zip">
+            <fileset dir="./tmp/${version}/">
+                <include name="**/**" />
+            </fileset>
+        </zip>
+
+    </target>
+    
+    <target name="cleanup">
+        <delete dir="./tmp" includeemptydirs="true" verbose="true" failonerror="true" />
+    </target>
+ 
+</project>

@@ -1,5 +1,7 @@
 <?php
 
+/* {$id} */
+
 if (!class_exists('ZtSlideshowHelperHelper'))
 {
 
@@ -68,12 +70,14 @@ if (!class_exists('ZtSlideshowHelperHelper'))
             $arrayList = explode('|', $arrayEffect);
             $html = '';
 
-            foreach($arrayList as $list){
+            foreach ($arrayList as $list)
+            {
                 $select = '';
-                if(strtolower($selected) == strtolower($list)){
+                if (strtolower($selected) == strtolower($list))
+                {
                     $select = 'selected="selected"';
                 }
-                $html .= '<option data-a="'.$selected.'" value="'. $list .'" '.$select.'>'. $list .'</option>';
+                $html .= '<option data-a="' . $selected . '" value="' . $list . '" ' . $select . '>' . $list . '</option>';
             }
             return $html;
         }

@@ -1,19 +1,8 @@
 <?php
-/**
- * ZT Slideshow
- *
- * @package     Joomla
- * @subpackage  Module
- * @version     1.0.0
- * @author      ZooTemplate
- * @email       support@zootemplate.com
- * @link        http://www.zootemplate.com
- * @copyright   Copyright (c) 2015 ZooTemplate
- * @license     GPL v2
- */
-defined('_JEXEC') or die('Restricted access');
-?>
-<?php
+
+/* {$id} */
+
+
 require_once dirname(__FILE__) . '/../../helper/helper.php';
 $valueBackgroundType = $slide->get('background-type', 'color');
 $lPosition = $slide->get('l-position', '');
@@ -57,7 +46,7 @@ $rPosition = $slide->get('r-position', '');
                     <input name="background-image" class="span12"
                            placeholder="Enter your background image relative path"
                            type="text" value="<?php echo $slide->get('background-image'); ?>">
-                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                           <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element slider-text"
                      id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
@@ -94,7 +83,7 @@ $rPosition = $slide->get('r-position', '');
                         <label>Image</label>
                         <input name="l-image" class="span12" placeholder="Choose Image" type="text"
                                value="<?php echo $slide->get('l-image'); ?>">
-                        <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                               <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                     </div>
                     <div
                         class="slider-element element-toggle slide-embed" <?php echo ($slide->get('l-type') == 'embed') ? 'style="display:block"' : 'style="display: none"'; ?>>
@@ -245,7 +234,7 @@ $rPosition = $slide->get('r-position', '');
                         <label>Image</label>
                         <input name="r-image" class="span12" placeholder="Choose Image" type="text"
                                value="<?php echo $slide->get('r-image'); ?>">
-                        <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
+                               <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                     </div>
                     <div
                         class="slider-element element-toggle slide-embed" <?php echo ($slide->get('r-type') == 'embed') ? 'style="display:block"' : 'style="display:none"'; ?>>

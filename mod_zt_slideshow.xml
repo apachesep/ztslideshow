@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
-    <name>MOD_ZTSLIDESHOW</name>
+    <name>MOD_ZT_SLIDESHOW</name>
     <author>ZooTemplate</author>
     <creationDate>April 2, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>www.ZooTemplate.com</authorUrl>
     <version>0.0.1</version>
-    <description>MOD_ZTSLIDESHOW_XML_DESCRIPTION</description>
+    <description>MOD_ZT_SLIDESHOW_XML_DESCRIPTION</description>
 
     <files>
         <filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
+        <folder>assets</folder>
+        <folder>formfields</folder>
+        <folder>helper</folder>
+        <folder>languages</folder>
+        <folder>libraries</folder>
         <folder>tmpl</folder>
-
     </files>
 
     <languages>

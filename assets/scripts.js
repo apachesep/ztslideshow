@@ -2,9 +2,6 @@ function setActive(el) {
     jQuery(el).toggleClass('select-image-focused');
 }
 
-
-
-
 /**
  *
  * @param {type} w
