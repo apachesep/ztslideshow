@@ -17,15 +17,29 @@ function setActive(el) {
             this.selectPosition();
         },
         /**
-         *
+         * Selector container
          */
         _elements: {
-            slides: '.slides.sortable',
-            slide: '.slides .slide'
+            wrapper: "#zt-slidershow-wrapper",
+            slides: "zt-slidershow-container",
+            slide: "#zt-slidershow-element"
         },
+        /**
+         * Select internal elements
+         * @param {type} selector
+         * @returns {undefined}
+         */
+        _selectElement: function(selector){
+            $(this._elements.wrapper).find(selector);
+        },
+        /*
+         * Init jQuery UI sortable
+         * @returns {undefined}
+         */
         sortable: function () {
-            jQuery(this._elements.slides).sortable();
-            jQuery(this._elements.slides).disableSelection();
+            var $sliderContainer = this._selectElement(this._elements.slides);
+            $sliderContainer.sortable();
+            $sliderContainer.disableSelection();
         },
         /**
          * Clone last slide and add to list
@@ -33,13 +47,17 @@ function setActive(el) {
          * @returns {undefined}
          */
         addSlide: function () {
-            var $parentEl = jQuery(this._elements.slide).last();
-            var $cloned = jQuery($parentEl[0]).clone();
-            jQuery($cloned).addClass('added');
-            jQuery($cloned).find('.chzn-done').removeClass('chzn-done');
-            jQuery($cloned).find('.chzn-container').remove();
-            jQuery($cloned).appendTo(this._elements.slides);
-            jQuery('.added select').chosen();
+            var $parentEl = this._selectElement(this._elements.slide).first();
+            var $cloned = $parentEl.clone();
+            $cloned.addClass('added');
+            $cloned.find('.chzn-done').removeClass('chzn-done');
+            $cloned.find('.chzn-container').remove();
+            $cloned.find('input').val('');
+            $cloned.find('select').val('');
+            $cloned.appendTo(this._elements.slides);
+            this._selectElement(this._elements.slides)
+                    .find('.added select')
+                    .chosen();
             // Reload sortable list
             this.sortable();
         },
