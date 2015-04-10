@@ -10,7 +10,6 @@
     <description>MOD_ZT_SLIDESHOW_XML_DESCRIPTION</description>
 
     <files>
-
 		<filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
 		<filename>mod_zt_slideshow.xml</filename>
         <filename>bootstrap.php</filename>
