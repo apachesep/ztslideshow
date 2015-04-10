@@ -42,11 +42,19 @@ function setActive(el) {
             $sliderContainer.disableSelection();
         },
         /**
-         * Clone last slide and add to list
+         * Flush sortable elements
+         */
+        flushSortable: function(){
+            this._selectElement(this._elements.slides).sortable("destroy");
+        },
+        /**
+         * Clone the first slide and add to list
          * @param {type} el
          * @returns {undefined}
          */
         addSlide: function () {
+            /* Note: Flush sortable after you reload it */
+            this.flushSortable();
             var $parentEl = this._selectElement(this._elements.slide).first();
             var $cloned = $parentEl.clone();
             $cloned.addClass('added');
@@ -58,7 +66,7 @@ function setActive(el) {
             this._selectElement(this._elements.slides)
                     .find('.added select')
                     .chosen();
-            // Reload sortable list
+            /* Reload sortable list */
             this.sortable();
         },
         deleteSlide: function (el) {
