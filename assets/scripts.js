@@ -66,6 +66,7 @@ function setActive(el) {
             var $cloned = $parentEl.clone();
             $cloned.addClass('added');
             $cloned.find('.chzn-done').removeClass('chzn-done');
+            $cloned.find('.slider-content').css('display', 'none');
             $cloned.find('.chzn-container').remove();
             $cloned.find('input').val('');
             $cloned.find('select').val('').trigger("liszt:updated");
