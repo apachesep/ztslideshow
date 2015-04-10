@@ -13,7 +13,7 @@ function setActive(el) {
     /* Short code main class */
     var _slideshow = {
         _init: function () {
-            this.sortable();
+            this.hookSortable();
             this.selectPosition();
         },
         /**
@@ -23,6 +23,9 @@ function setActive(el) {
             wrapper: "#zt-slidershow-wrapper",
             slides: "#zt-slidershow-container",
             slide: "#zt-slidershow-element"
+        },
+        _texts: {
+            ZT_SLIDESHOW_CANT_REMOVE: "Slider need at least one slide."
         },
         /**
          * Select internal elements
@@ -36,7 +39,7 @@ function setActive(el) {
          * Init jQuery UI sortable
          * @returns {undefined}
          */
-        sortable: function () {
+        hookSortable: function () {
             var $sliderContainer = this._selectElement(this._elements.slides);
             $sliderContainer.sortable();
             $sliderContainer.disableSelection();
@@ -67,11 +70,26 @@ function setActive(el) {
             $sliderContainer.find('.added select')
                     .chosen();
             /* Reload sortable list */
-            this.sortable();
+            this.hookSortable();
         },
+        /**
+         * Delete and slide
+         * @param {type} el
+         * @returns {undefined}
+         */
         deleteSlide: function (el) {
-            var $parentEl = jQuery(el).parent();
-            jQuery($parentEl).remove();
+            if(this._selectElement(this._elements.slides)
+                    .find('div'+this._elements.slide).length <= 1){
+                        alert(this._texts.ZT_SLIDESHOW_CANT_REMOVE);
+                        return false;
+                    }
+            this.flushSortable();
+            var $parentEl = $(el).closest(this._elements.slide);
+            /* Add slide up animation */
+            $($parentEl).slideUp(function(){
+                $(this).remove();
+            });
+            this.hookSortable();
         },
         /**
          *

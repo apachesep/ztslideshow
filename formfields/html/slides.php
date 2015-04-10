@@ -53,9 +53,12 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     }
 </script>
 
-
+<!-- Wrapper -->
 <div class="zt-slider" id="zt-slidershow-wrapper">
-    <!-- Wrapper -->
+    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add
+        slide
+    </button>
+    <!-- Slider container -->
     <div class="slides sortable" id="zt-slidershow-container">
         <?php if (count($slides) > 0): ?>
             <?php foreach ($slides as $slide) : ?>
