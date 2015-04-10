@@ -22,7 +22,8 @@ function setActive(el) {
         _elements: {
             wrapper: "#zt-slidershow-wrapper",
             slides: "#zt-slidershow-container",
-            slide: "#zt-slidershow-element"
+            slide: "#zt-slidershow-element",
+            dragable: "#zt-slideshow-dragable"
         },
         _texts: {
             ZT_SLIDESHOW_CANT_REMOVE: "Slider need at least one slide."
@@ -32,7 +33,7 @@ function setActive(el) {
          * @param {type} selector
          * @returns {undefined}
          */
-        _selectElement: function(selector){
+        _selectElement: function (selector) {
             return $(this._elements.wrapper).find(selector);
         },
         /*
@@ -40,14 +41,16 @@ function setActive(el) {
          * @returns {undefined}
          */
         hookSortable: function () {
-            var $sliderContainer = this._selectElement(this._elements.slides);
-            $sliderContainer.sortable();
-            $sliderContainer.disableSelection();
+            var _self = this;
+            this._selectElement(this._elements.slides).sortable({
+                handle: _self._elements.dragable,
+                placeholder: "sortable-hightligth"
+            }).disableSelection();
         },
         /**
          * Flush sortable elements
          */
-        flushSortable: function(){
+        flushSortable: function () {
             this._selectElement(this._elements.slides).sortable("destroy");
         },
         /**
@@ -78,15 +81,15 @@ function setActive(el) {
          * @returns {undefined}
          */
         deleteSlide: function (el) {
-            if(this._selectElement(this._elements.slides)
-                    .find('div'+this._elements.slide).length <= 1){
-                        alert(this._texts.ZT_SLIDESHOW_CANT_REMOVE);
-                        return false;
-                    }
+            if (this._selectElement(this._elements.slides)
+                    .find('div' + this._elements.slide).length <= 1) {
+                alert(this._texts.ZT_SLIDESHOW_CANT_REMOVE);
+                return false;
+            }
             this.flushSortable();
             var $parentEl = $(el).closest(this._elements.slide);
             /* Add slide up animation */
-            $($parentEl).slideUp(function(){
+            $($parentEl).slideUp(function () {
                 $(this).remove();
             });
             this.hookSortable();

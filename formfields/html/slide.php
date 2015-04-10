@@ -12,7 +12,7 @@ $rPosition = $slide->get('r-position', '');
 <div class="slider-items slide" id="zt-slidershow-element">
     <h3 class="slider-title">Slider Element</h3>
     <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i onclick="zo2.modules.slideshow.deleteSlide(this)" class="fa fa-times"></i><i
-            class="fa fa-arrows-alt"></i></span>
+            class="fa fa-arrows-alt" id="zt-slideshow-dragable"></i></span>
     <!-- Background -->
     <div class="slider-content">
         <div class="slider-toggle">
