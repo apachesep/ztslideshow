@@ -6,16 +6,20 @@
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>www.ZooTemplate.com</authorUrl>
-    <version>0.0.1</version>
+    <version>2.0.0</version>
     <description>MOD_ZTSLIDESHOW_XML_DESCRIPTION</description>
 
     <files>
+        <filename module="mod_zt_slideshow">bootstrap.php</filename>
         <filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
-        <folder>tmpl</folder>
-
+        <folder>assets</folder>
+		<folder>formfields</folder>
+		<folder>helper</folder>
+		<folder>libraries</folder>
+		<folder>tmpl</folder>
     </files>
 
-    <languages>
+    <languages folder="languages">
         <language tag="en-GB">languages/en-GB.mod_zt_slideshow.ini</language>
         <language tag="en-GB">languages/en-GB.mod_zt_slideshow.sys.ini</language>
     </languages>
