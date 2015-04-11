@@ -23,6 +23,13 @@ function setActive(el) {
             slides: '.slides.sortable',
             slide: '.slides .slide'
         },
+        /**
+         * Count number of slides
+         * @returns {_jQuery.length|window.$jQuery.length|jQuery.length}
+         */
+        countSlides: function () {
+            return jQuery(this._elements.slide).length;
+        },
         sortable: function () {
             jQuery(this._elements.slides).sortable();
             jQuery(this._elements.slides).disableSelection();
@@ -44,9 +51,12 @@ function setActive(el) {
             this.sortable();
         },
         deleteSlide: function (el) {
-            var $parentEl = jQuery(el).parent().parent();
-            console.log ($parentEl);
-            jQuery($parentEl).remove();
+            // Only remove if have at least 1 slide
+            if (this.countSlides() > 1) {
+                var $parentEl = jQuery(el).parent().parent();
+                jQuery($parentEl).remove();
+            }
+
         },
         /**
          *
