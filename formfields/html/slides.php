@@ -1,5 +1,4 @@
 <?php
-
 /* {$id} */
 
 $slides = json_decode($this->value);
@@ -55,6 +54,9 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
 
 
 <div class="zt-slider">
+    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide();">Add
+        slide
+    </button>
     <!-- Wrapper -->
     <div class="slides sortable">
         <?php if (count($slides) > 0): ?>
@@ -67,7 +69,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
             <?php require __DIR__ . '/slide.php'; ?>
         <?php endif; ?>
     </div>
-    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add
+    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide();">Add
         slide
     </button>
 
