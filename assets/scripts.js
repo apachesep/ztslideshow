@@ -34,6 +34,10 @@ function setActive(el) {
             jQuery(this._elements.slides).sortable();
             jQuery(this._elements.slides).disableSelection();
         },
+        showModalSelectImage: function (el) {
+            setActive(el);
+            SqueezeBox.open(jQuery(el).attr('href'), {handler: 'iframe', size: {x: 800, y: 500}});
+        },
         /**
          * Clone last slide and add to list
          * @param {type} el
