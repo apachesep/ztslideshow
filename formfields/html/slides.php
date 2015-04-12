@@ -49,9 +49,41 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         document.adminForm.submit();
     }
 </script>
-
 <!-- Wrapper -->
 <div class="zt-slider" id="zt-slidershow-wrapper">
+    <div class="modal fade" id="zt-slidershow-modal-cannotdelete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Can not delete</h4>
+          </div>
+          <div class="modal-body">
+            <p>Slider need at least one slide.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="zt-slidershow-modal-confirm">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Delete confirm</h4>
+          </div>
+          <div class="modal-body">
+            <p>Do you want delete this modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.deleteSlide();">Yes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add
         slide
     </button>

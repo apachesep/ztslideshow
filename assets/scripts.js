@@ -16,15 +16,18 @@ function setActive(el) {
             this.hookSortable();
             this.selectPosition();
         },
+        currentActiveElement : null,
+        activeSlide: null,
         /**
          * Selector container
          */
-        currentActiveElement : null,
         _elements: {
             wrapper: "#zt-slidershow-wrapper",
             slides: "#zt-slidershow-container",
             slide: "#zt-slidershow-element",
-            dragable: "#zt-slideshow-dragable"
+            dragable: "#zt-slideshow-dragable",
+            deleteModal: "#zt-slidershow-modal-confirm",
+            canNotDeleteModal: "#zt-slidershow-modal-cannotdelete"
         },
         reinitSqueezeBox: function(){
             w.SqueezeBox.initialize({});
@@ -94,23 +97,29 @@ function setActive(el) {
             this.hookSortable();
             this.reinitSqueezeBox();
         },
-        /**
-         * Delete and slide
-         * @param {type} el
-         * @returns {undefined}
-         */
-        deleteSlide: function (el) {
+        showModalDelete: function(el){
             if (this._selectElement(this._elements.slides)
-                    .find('div' + this._elements.slide).length <= 1) {
-                alert(this._texts.ZT_SLIDESHOW_CANT_REMOVE);
+                .find('div' + this._elements.slide).length <= 1) {
+                $(this._elements.canNotDeleteModal).modal('show');
                 return false;
             }
+            $(this._elements.deleteModal).modal('show');
+            this.activeSlide = el;
+        },
+        /**
+         * Delete and slide
+         * @returns {undefined}
+         */
+        deleteSlide: function () {
+            var el = this.activeSlide;
+
             this.flushSortable();
             var $parentEl = $(el).closest(this._elements.slide);
             /* Add slide up animation */
             $($parentEl).slideUp(function () {
                 $(this).remove();
             });
+            $(this._elements.deleteModal).modal('hide');
             this.hookSortable();
         },
         /**
