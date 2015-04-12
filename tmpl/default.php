@@ -16,7 +16,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         <?php
         if ($slideParams->get('background-type') == 'image')
         {
-            $style[] = 'background-image: url(".' . $slideParams->get('background-image') . '");';
+            $style[] = 'background-image: url("' . $slideParams->get('background-image') . '");';
         }
         if ($slideParams->get('background-type') == 'color')
         {
