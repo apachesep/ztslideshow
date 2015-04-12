@@ -1,7 +1,3 @@
-function setActive(el) {
-    jQuery(el).toggleClass('select-image-focused');
-}
-
 /**
  *
  * @param {type} w
@@ -29,15 +25,21 @@ function setActive(el) {
             deleteModal: "#zt-slidershow-modal-confirm",
             canNotDeleteModal: "#zt-slidershow-modal-cannotdelete"
         },
+        /**
+         * Reinit squeezebox
+         * @returns {undefined}
+         */
         reinitSqueezeBox: function(){
             w.SqueezeBox.initialize({});
             w.SqueezeBox.assign($('a.modal').get(), {
                 parse: 'rel'
             });  
         },
-        _texts: {
-            ZT_SLIDESHOW_CANT_REMOVE: "Slider need at least one slide."
-        },
+        /**
+         * Set current active element
+         * @param {type} element
+         * @returns {undefined}
+         */
         activeElement: function(element){
             this.currentActiveElement = $(element);
         },
