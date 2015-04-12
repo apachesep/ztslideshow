@@ -166,7 +166,7 @@ function setActive(el) {
             this.generateSlidesJSON();
         },
         generateSlidesJSON: function () {
-            var $slides = $(this._elements.slide);
+            var $slides = $('div' + this._elements.slide);
             var list = [];
             $($slides).each(function () {
                 var map = {};
@@ -192,6 +192,7 @@ function setActive(el) {
             });
             var json = JSON.stringify(list);
             $('#slides').val(json);
+            console.log(json);
         }
     };
     /* Check for Zo2 javascript framework */
