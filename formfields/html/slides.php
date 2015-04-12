@@ -20,7 +20,7 @@ $script = "
 					text = source[2].replace(/\\\"/g, '');
 					img =  text;
                                         // Current focused
-                                        input = jQuery(zo2.modules.slideshow.currentActiveElement).pre();
+                                        input = jQuery(zo2.modules.slideshow.currentActiveElement).prev();
                                         jQuery(input).val(img);
 				};
 			};
