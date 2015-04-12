@@ -26,16 +26,17 @@ function setActive(el) {
             slide: "#zt-slidershow-element",
             dragable: "#zt-slideshow-dragable"
         },
-        
+        reinitSqueezeBox: function(){
+            w.SqueezeBox.initialize({});
+            w.SqueezeBox.assign($('a.modal').get(), {
+                parse: 'rel'
+            });  
+        },
         _texts: {
             ZT_SLIDESHOW_CANT_REMOVE: "Slider need at least one slide."
         },
         activeElement: function(element){
             this.currentActiveElement = $(element);
-        },
-        openModal: function(element){
-            this.activeElement(element);
-            
         },
         /**
          * Select internal elements
@@ -77,13 +78,21 @@ function setActive(el) {
             $cloned.find('.chzn-done').removeClass('chzn-done');
             $cloned.find('.slider-content').css('display', 'none');
             $cloned.find('.chzn-container').remove();
+            $cloned
+                    .find('.slider-accordion')
+                    .find('i')
+                    .first()
+                    .removeClass('fa-minus')
+                    .addClass('fa-plus');
             $cloned.find('input').val('');
             $cloned.find('select').val('').trigger("liszt:updated");
             $cloned.appendTo($sliderContainer);
             $sliderContainer.find('.added select')
                     .chosen();
+            $sliderContainer.find('.added').removeClass('added');
             /* Reload sortable list */
             this.hookSortable();
+            this.reinitSqueezeBox();
         },
         /**
          * Delete and slide

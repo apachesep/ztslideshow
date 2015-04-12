@@ -12,7 +12,7 @@ $button->link = $link;
 $button->text = JText::_('Select image');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
-$button->onclick = 'zo2.modules.slideshow.activeElement(this);';
+$button->onclick = 'zo2.modules.slideshow.activeElement(this);return false;';
 $script = "
 			if (typeof jInsertEditorText == 'undefined'){
 				function jInsertEditorText(text, editor) {
@@ -20,7 +20,7 @@ $script = "
 					text = source[2].replace(/\\\"/g, '');
 					img =  text;
                                         // Current focused
-                                        input = zo2.modules.slideshow.currentActiveElement.pre();
+                                        input = jQuery(zo2.modules.slideshow.currentActiveElement).pre();
                                         jQuery(input).val(img);
 				};
 			};
