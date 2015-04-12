@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.0" client="site" method="upgrade">
-    <name>MOD_ZT_SLIDESHOW</name>
+    <name>mod_zt_slideshow</name>
     <author>ZooTemplate</author>
     <creationDate>Apr 10, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
-    <authorEmail>support@ZooTemplate.com</authorEmail>
-    <authorUrl>www.ZooTemplate.com</authorUrl>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <authorUrl>www.zootemplate.com</authorUrl>
     <version>2.0.0</version>
     <description>MOD_ZT_SLIDESHOW_XML_DESCRIPTION</description>
 
