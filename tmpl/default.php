@@ -1,5 +1,4 @@
 <?php
-
 /* {$id} */
 
 $doc = JFactory::getDocument();
@@ -14,9 +13,22 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 <div class="zt-slideshow" id="<?php echo $_id; ?>">
     <?php foreach ($slides as $slide) : ?>
         <?php $slideParams = $slide['params']; ?>
+        <?php
+        if ($slideParams->get('background-type') == 'image')
+        {
+            $style[] = 'background-image: url(".' . $slideParams->get('background-image') . '");';
+        }
+        if ($slideParams->get('background-type') == 'color')
+        {
+            $style[] = 'background-color:' . $slideParams->get('background-color') . ';';
+        }
+        ?>
         <div class="zt-slidershow-item">
+
             <div class="full-backround"
-                 style="background-image: url('<?php echo $slideParams->get('background-image'); ?>'); background-color: <?php echo $slideParams->get('background-color'); ?>"></div>
+                 style="<?php echo implode(' ', $style); ?>">
+            </div>
+
             <div class="container">
                 <div class="row">
                     <?php
