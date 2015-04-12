@@ -12,19 +12,16 @@ $button->link = $link;
 $button->text = JText::_('Select image');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
-$button->onclick = 'setActive(this);';
+$button->onclick = 'zo2.modules.slideshow.activeElement(this);';
 $script = "
 			if (typeof jInsertEditorText == 'undefined'){
 				function jInsertEditorText(text, editor) {
 					var source = text.match(/(src)=(\"[^\"]*\")/i), img;
 					text = source[2].replace(/\\\"/g, '');
 					img =  text;
-
-
                                         // Current focused
-                                        input = jQuery('.select-image-focused').prev();
+                                        input = zo2.modules.slideshow.currentActiveElement.pre();
                                         jQuery(input).val(img);
-                                        jQuery('.select-image-focused').removeClass('select-image-focused');
 				};
 			};
 			";

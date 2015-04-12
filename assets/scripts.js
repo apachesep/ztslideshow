@@ -19,14 +19,23 @@ function setActive(el) {
         /**
          * Selector container
          */
+        currentActiveElement : null,
         _elements: {
             wrapper: "#zt-slidershow-wrapper",
             slides: "#zt-slidershow-container",
             slide: "#zt-slidershow-element",
             dragable: "#zt-slideshow-dragable"
         },
+        
         _texts: {
             ZT_SLIDESHOW_CANT_REMOVE: "Slider need at least one slide."
+        },
+        activeElement: function(element){
+            this.currentActiveElement = $(element);
+        },
+        openModal: function(element){
+            this.activeElement(element);
+            
         },
         /**
          * Select internal elements
@@ -136,36 +145,35 @@ function setActive(el) {
          * @returns {undefined}
          */
         hookSave: function () {
-            zo2.modules.slideshow.generateSlidesJSON();
+            this.generateSlidesJSON();
         },
         generateSlidesJSON: function () {
-            var $slides = jQuery(this._elements.slide);
+            var $slides = $(this._elements.slide);
             var list = [];
-            jQuery($slides).each(function () {
+            $($slides).each(function () {
                 var map = {};
-                jQuery(this).find("input").each(function () {
-                    if (jQuery(this).attr('type') == 'radio') {
-                        if (jQuery(this).is(':checked')) {
-                            map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("input").each(function () {
+                    if ($(this).attr('type') == 'radio') {
+                        if ($(this).is(':checked')) {
+                            map[$(this).attr("name")] = $(this).val();
                         }
                     } else {
-                        map[jQuery(this).attr("name")] = jQuery(this).val();
+                        map[$(this).attr("name")] = $(this).val();
                     }
 
                 });
-                jQuery(this).find("textarea").each(function () {
-                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("textarea").each(function () {
+                    map[$(this).attr("name")] = $(this).val();
                 });
-                jQuery(this).find("select").each(function () {
-                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("select").each(function () {
+                    map[$(this).attr("name")] = $(this).val();
                 });
-                map['l-position'] = jQuery(this).find('.left.position-item.active').data('value');
-                map['r-position'] = jQuery(this).find('.right.position-item.active').data('value')
+                map['l-position'] = $(this).find('.left.position-item.active').data('value');
+                map['r-position'] = $(this).find('.right.position-item.active').data('value')
                 list.push(map);
             });
             var json = JSON.stringify(list);
-            jQuery('#slides').val(json);
-            console.log(list);
+            $('#slides').val(json);
         }
     };
     /* Check for Zo2 javascript framework */
