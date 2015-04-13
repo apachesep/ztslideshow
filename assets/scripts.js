@@ -12,7 +12,7 @@
             this.hookSortable();
             this.selectPosition();
         },
-        currentActiveElement : null,
+        currentActiveElement: null,
         activeSlide: null,
         /**
          * Selector container
@@ -29,18 +29,18 @@
          * Reinit squeezebox
          * @returns {undefined}
          */
-        reinitSqueezeBox: function(){
+        reinitSqueezeBox: function () {
             w.SqueezeBox.initialize({});
             w.SqueezeBox.assign($('a.modal').get(), {
                 parse: 'rel'
-            });  
+            });
         },
         /**
          * Set current active element
          * @param {type} element
          * @returns {undefined}
          */
-        activeElement: function(element){
+        activeElement: function (element) {
             this.currentActiveElement = $(element);
         },
         /**
@@ -70,38 +70,53 @@
         },
         /**
          * Clone the first slide and add to list
-         * @param {type} el
          * @returns {undefined}
          */
         addSlide: function () {
             /* Note: Flush sortable after you reload it */
             this.flushSortable();
+            var _self = this;
             var $sliderContainer = this._selectElement(this._elements.slides);
             var $parentEl = this._selectElement(this._elements.slide).first();
             var $cloned = $parentEl.clone();
+            /* Hight light it ! */
             $cloned.addClass('added');
+            /* Clean up chosen */
             $cloned.find('.chzn-done').removeClass('chzn-done');
             $cloned.find('.slider-content').css('display', 'none');
             $cloned.find('.chzn-container').remove();
+            /* Reset position */
+            $cloned
+                    .find('div.slider-position')
+                    .find('li.active')
+                    .removeClass('active');
+            /* Reset explain */
             $cloned
                     .find('.slider-accordion')
                     .find('i')
                     .first()
                     .removeClass('fa-minus')
                     .addClass('fa-plus');
+            /* Clean up input & selector */
             $cloned.find('input').val('');
-            $cloned.find('select').val('').trigger("liszt:updated");
+            $cloned.find('select').val('image');
+            /* Add clone slide to child */
             $cloned.appendTo($sliderContainer);
+            /* Apply chosen */
             $sliderContainer.find('.added select')
                     .chosen();
+            $sliderContainer.find('.added select')
+                    .each(function () {
+                        _self.typeToggle($(this));
+                    });
             $sliderContainer.find('.added').removeClass('added');
             /* Reload sortable list */
             this.hookSortable();
             this.reinitSqueezeBox();
         },
-        showModalDelete: function(el){
+        showModalDelete: function (el) {
             if (this._selectElement(this._elements.slides)
-                .find('div' + this._elements.slide).length <= 1) {
+                    .find('div' + this._elements.slide).length <= 1) {
                 $(this._elements.canNotDeleteModal).modal('show');
                 return false;
             }
