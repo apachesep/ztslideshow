@@ -98,6 +98,7 @@
                     .removeClass('fa-minus')
                     .addClass('fa-plus');
             /* Clean up input & selector */
+            $cloned.find('textarea').val('');
             $cloned.find('input').val('');
             $cloned.find('select').val('').trigger('update');
             /* Add clone slide to child */
