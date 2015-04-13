@@ -8,10 +8,10 @@ $lPosition = $slide->get('l-position', '');
 $rPosition = $slide->get('r-position', '');
 ?>
 <!-- An slide -->
-<div class="slider-items slide">
+<div class="slider-items slide" id="zt-slidershow-element">
     <h3 class="slider-title">Slider Element</h3>
-    <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i onclick="zo2.modules.slideshow.deleteSlide(this)" class="fa fa-times"></i><i
-            class="fa fa-arrows-alt"></i></span>
+    <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i onclick="zo2.modules.slideshow.showModalDelete(this)" class="fa fa-times color-red"></i><i
+            class="fa fa-arrows-alt" id="zt-slideshow-dragable"></i></span>
     <!-- Background -->
     <div class="slider-content">
         <div class="slider-toggle">
@@ -45,13 +45,7 @@ $rPosition = $slide->get('r-position', '');
                     <input name="background-image" class="span12"
                            placeholder="Enter your background image relative path"
                            type="text" value="<?php echo $slide->get('background-image'); ?>">
-                    <a 
-                        class="btn zt-modal modal-button" 
-                        title="Select image" 
-                        href="<?php echo JUri::root(); ?>/administrator/index.php?option=com_media&amp;view=images&amp;tmpl=component" 
-                        onclick="zo2.modules.slideshow.showModalSelectImage(this);return false;" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
-                        <i class="icon-picture"></i> Select image	
-                    </a>
+                           <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-element slider-text"
                      id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
@@ -88,13 +82,7 @@ $rPosition = $slide->get('r-position', '');
                         <label>Image</label>
                         <input name="l-image" class="span12" placeholder="Choose Image" type="text"
                                value="<?php echo $slide->get('l-image'); ?>">
-                        <a 
-                            class="btn zt-modal modal-button" 
-                            title="Select image" 
-                            href="<?php echo JUri::root(); ?>/administrator/index.php?option=com_media&amp;view=images&amp;tmpl=component" 
-                            onclick="zo2.modules.slideshow.showModalSelectImage(this);return false;" rel="">
-                            <i class="icon-picture"></i> Select image	
-                        </a>
+                               <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                     </div>
                     <div
                         class="slider-element element-toggle slide-embed" <?php echo ($slide->get('l-type') == 'embed') ? 'style="display:block"' : 'style="display: none"'; ?>>

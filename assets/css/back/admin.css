@@ -77,3 +77,14 @@
 .zt-slider .slider-position ul li.active {
     background-color: #333;
 }
+
+.zt-slider .sortable-hightligth {
+  border: #feecac 1px solid;
+  background-color: #fdf7c2;
+  min-height: 40px;
+  margin-top: 10px;
+}
+
+.color-red{
+    color: red;
+}

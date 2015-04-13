@@ -1,7 +1,3 @@
-function setActive(el) {
-    jQuery(el).toggleClass('select-image-focused');
-}
-
 /**
  *
  * @param {type} w
@@ -13,54 +9,120 @@ function setActive(el) {
     /* Short code main class */
     var _slideshow = {
         _init: function () {
-            this.sortable();
+            this.hookSortable();
             this.selectPosition();
         },
+        currentActiveElement : null,
+        activeSlide: null,
         /**
-         *
+         * Selector container
          */
         _elements: {
-            slides: '.slides.sortable',
-            slide: '.slides .slide'
+            wrapper: "#zt-slidershow-wrapper",
+            slides: "#zt-slidershow-container",
+            slide: "#zt-slidershow-element",
+            dragable: "#zt-slideshow-dragable",
+            deleteModal: "#zt-slidershow-modal-confirm",
+            canNotDeleteModal: "#zt-slidershow-modal-cannotdelete"
         },
         /**
-         * Count number of slides
-         * @returns {_jQuery.length|window.$jQuery.length|jQuery.length}
+         * Reinit squeezebox
+         * @returns {undefined}
          */
-        countSlides: function () {
-            return jQuery(this._elements.slide).length;
-        },
-        sortable: function () {
-            jQuery(this._elements.slides).sortable();
-            jQuery(this._elements.slides).disableSelection();
-        },
-        showModalSelectImage: function (el) {
-            setActive(el);
-            SqueezeBox.open(jQuery(el).attr('href'), {handler: 'iframe', size: {x: 800, y: 500}});
+        reinitSqueezeBox: function(){
+            w.SqueezeBox.initialize({});
+            w.SqueezeBox.assign($('a.modal').get(), {
+                parse: 'rel'
+            });  
         },
         /**
-         * Clone last slide and add to list
+         * Set current active element
+         * @param {type} element
+         * @returns {undefined}
+         */
+        activeElement: function(element){
+            this.currentActiveElement = $(element);
+        },
+        /**
+         * Select internal elements
+         * @param {type} selector
+         * @returns {undefined}
+         */
+        _selectElement: function (selector) {
+            return $(this._elements.wrapper).find(selector);
+        },
+        /*
+         * Init jQuery UI sortable
+         * @returns {undefined}
+         */
+        hookSortable: function () {
+            var _self = this;
+            this._selectElement(this._elements.slides).sortable({
+                handle: _self._elements.dragable,
+                placeholder: "sortable-hightligth"
+            }).disableSelection();
+        },
+        /**
+         * Flush sortable elements
+         */
+        flushSortable: function () {
+            this._selectElement(this._elements.slides).sortable("destroy");
+        },
+        /**
+         * Clone the first slide and add to list
          * @param {type} el
          * @returns {undefined}
          */
         addSlide: function () {
-            var $parentEl = jQuery(this._elements.slide).last();
-            var $cloned = jQuery($parentEl[0]).clone();
-            jQuery($cloned).addClass('added');
-            jQuery($cloned).find('.chzn-done').removeClass('chzn-done');
-            jQuery($cloned).find('.chzn-container').remove();
-            jQuery($cloned).appendTo(this._elements.slides);
-            jQuery('.added select').chosen();
-            // Reload sortable list
-            this.sortable();
+            /* Note: Flush sortable after you reload it */
+            this.flushSortable();
+            var $sliderContainer = this._selectElement(this._elements.slides);
+            var $parentEl = this._selectElement(this._elements.slide).first();
+            var $cloned = $parentEl.clone();
+            $cloned.addClass('added');
+            $cloned.find('.chzn-done').removeClass('chzn-done');
+            $cloned.find('.slider-content').css('display', 'none');
+            $cloned.find('.chzn-container').remove();
+            $cloned
+                    .find('.slider-accordion')
+                    .find('i')
+                    .first()
+                    .removeClass('fa-minus')
+                    .addClass('fa-plus');
+            $cloned.find('input').val('');
+            $cloned.find('select').val('').trigger("liszt:updated");
+            $cloned.appendTo($sliderContainer);
+            $sliderContainer.find('.added select')
+                    .chosen();
+            $sliderContainer.find('.added').removeClass('added');
+            /* Reload sortable list */
+            this.hookSortable();
+            this.reinitSqueezeBox();
         },
-        deleteSlide: function (el) {
-            // Only remove if have at least 1 slide
-            if (this.countSlides() > 1) {
-                var $parentEl = jQuery(el).parent().parent();
-                jQuery($parentEl).remove();
+        showModalDelete: function(el){
+            if (this._selectElement(this._elements.slides)
+                .find('div' + this._elements.slide).length <= 1) {
+                $(this._elements.canNotDeleteModal).modal('show');
+                return false;
             }
+            $(this._elements.deleteModal).modal('show');
+            this.activeSlide = el;
+        },
+        /**
+         * Delete and slide
+         * @returns {undefined}
+         */
+        deleteSlide: function () {
+            var el = this.activeSlide;
 
+            this.flushSortable();
+            var $parentEl = $(el).closest(this._elements.slide);
+            /* Add slide up animation */
+            $($parentEl).slideUp(function () {
+                $(this).remove();
+            });
+            $(this._elements.deleteModal).modal('hide');
+            this.hookSortable();
         },
         /**
          *
@@ -103,36 +165,36 @@ function setActive(el) {
          * @returns {undefined}
          */
         hookSave: function () {
-            zo2.modules.slideshow.generateSlidesJSON();
+            this.generateSlidesJSON();
         },
         generateSlidesJSON: function () {
-            var $slides = jQuery(this._elements.slide);
+            var $slides = $('div' + this._elements.slide);
             var list = [];
-            jQuery($slides).each(function () {
+            $($slides).each(function () {
                 var map = {};
-                jQuery(this).find("input").each(function () {
-                    if (jQuery(this).attr('type') == 'radio') {
-                        if (jQuery(this).is(':checked')) {
-                            map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("input").each(function () {
+                    if ($(this).attr('type') == 'radio') {
+                        if ($(this).is(':checked')) {
+                            map[$(this).attr("name")] = $(this).val();
                         }
                     } else {
-                        map[jQuery(this).attr("name")] = jQuery(this).val();
+                        map[$(this).attr("name")] = $(this).val();
                     }
 
                 });
-                jQuery(this).find("textarea").each(function () {
-                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("textarea").each(function () {
+                    map[$(this).attr("name")] = $(this).val();
                 });
-                jQuery(this).find("select").each(function () {
-                    map[jQuery(this).attr("name")] = jQuery(this).val();
+                $(this).find("select").each(function () {
+                    map[$(this).attr("name")] = $(this).val();
                 });
-                map['l-position'] = jQuery(this).find('.left.position-item.active').data('value');
-                map['r-position'] = jQuery(this).find('.right.position-item.active').data('value')
+                map['l-position'] = $(this).find('.left.position-item.active').data('value');
+                map['r-position'] = $(this).find('.right.position-item.active').data('value')
                 list.push(map);
             });
             var json = JSON.stringify(list);
-            jQuery('#slides').val(json);
-            console.log(list);
+            $('#slides').val(json);
+            console.log(json);
         }
     };
     /* Check for Zo2 javascript framework */

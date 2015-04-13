@@ -11,19 +11,16 @@ $button->link = $link;
 $button->text = JText::_('Select image');
 $button->name = 'picture';
 $button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
-$button->onclick = 'setActive(this);';
+$button->onclick = 'zo2.modules.slideshow.activeElement(this);return false;';
 $script = "
 			if (typeof jInsertEditorText == 'undefined'){
 				function jInsertEditorText(text, editor) {
 					var source = text.match(/(src)=(\"[^\"]*\")/i), img;
 					text = source[2].replace(/\\\"/g, '');
 					img =  text;
-
-
                                         // Current focused
-                                        input = jQuery('.select-image-focused').prev();
+                                        input = jQuery(zo2.modules.slideshow.currentActiveElement).prev();
                                         jQuery(input).val(img);
-                                        jQuery('.select-image-focused').removeClass('select-image-focused');
 				};
 			};
 			";
@@ -51,10 +48,42 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         document.adminForm.submit();
     }
 </script>
-
-
-<div class="zt-slider">
-    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide();">Add
+<!-- Wrapper -->
+<div class="zt-slider" id="zt-slidershow-wrapper">
+    <div class="modal fade" id="zt-slidershow-modal-cannotdelete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Can not delete</h4>
+          </div>
+          <div class="modal-body">
+            <p>Slider need at least one slide.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="modal fade" id="zt-slidershow-modal-confirm">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Delete confirm</h4>
+          </div>
+          <div class="modal-body">
+            <p>Do you want delete this modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-primary" onclick="zo2.modules.slideshow.deleteSlide();">Yes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <button type="button" class="btn-add-slider btn btn-primary" onclick="zo2.modules.slideshow.addSlide(this);">Add
         slide
     </button>
     <!-- Wrapper -->
