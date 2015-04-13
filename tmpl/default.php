@@ -14,6 +14,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
     <?php foreach ($slides as $slide) : ?>
         <?php $slideParams = $slide['params']; ?>
         <?php
+        $style = array();
         if ($slideParams->get('background-type') == 'image')
         {
             $style[] = 'background-image: url("' . $slideParams->get('background-image') . '");';
@@ -31,28 +32,23 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 
             <div class="container">
                 <div class="row">
-                    <?php
-                    $item = $slide['left'];
-                    if ($item->get('column') != 'none')
-                    {
-                        ?>
-
+                    <!-- Left -->
+                    <?php $item = $slide['left']; ?>
+                    <?php if ($item->get('column') != 'none') : ?>
                         <div
                             class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
                                 <?php $item = $slide['left']; ?>
                                 <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
                         </div>
-                        <?php
-                    }
-                    $item = $slide['right'];
-                    if ($item->get('column') != 'none')
-                    {
-                        ?>
+                    <?php endif; ?>
+                    <!-- Right -->
+                    <?php $item = $slide['right']; ?>
+                    <?php if ($item->get('column') != 'none') : ?>
                         <div
                             class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
                             <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
                         </div>
-                    <?php } ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
