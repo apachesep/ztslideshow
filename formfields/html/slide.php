@@ -1,7 +1,6 @@
 <?php
 /* {$id} */
 
-
 require_once dirname(__FILE__) . '/../../helper/helper.php';
 $valueBackgroundType = $slide->get('background-type', 'color');
 $lPosition = $slide->get('l-position', '');
@@ -9,17 +8,20 @@ $rPosition = $slide->get('r-position', '');
 ?>
 <!-- An slide -->
 <div class="slider-items slide" id="zt-slidershow-element">
+    <!-- Header -->
     <h3 class="slider-title">Slider Element</h3>
-    <span class="pull-right slider-accordion"><i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i><i onclick="zo2.modules.slideshow.showModalDelete(this)" class="fa fa-times color-red"></i><i
-            class="fa fa-arrows-alt" id="zt-slideshow-dragable"></i></span>
+    <!-- Controls -->
+    <span class="pull-right slider-accordion">
+        <i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i>
+        <i onclick="zo2.modules.slideshow.showModalDelete(this)" class="fa fa-times color-red"></i>
+        <i class="fa fa-arrows-alt" id="zt-slideshow-dragable"></i></span>
     <!-- Background -->
     <div class="slider-content">
         <div class="slider-toggle">
+            <!-- Slide background -->
             <h3 class="pull-left">Background</h3>
-
             <div class="toggle-background clearfix">
-                <select onchange="zo2.modules.slideshow.backgroundToggle(this);" name="background-type" class="span12"
-                        tabindex="6">
+                <select onchange="zo2.modules.slideshow.backgroundToggle(this);" name="background-type" class="span12" tabindex="6">
                     <option <?php echo ($slide->get('background-type') == 'image') ? 'selected="selected"' : ''; ?>
                         value="image" data-value="toggle-image">Image
                     </option>
@@ -31,24 +33,31 @@ $rPosition = $slide->get('r-position', '');
                     </option>
                 </select>
             </div>
+            <!-- Slide background's settings -->
             <div class="toggle-background-setting clearfix">
-                <div class="slider-element slider-text"
-                     id="toggle-color" <?php echo ($slide->get('background-type') == 'color') ? 'style="display:block"' : ''; ?>>
+                <!-- Color -->
+                <div 
+                    class="slider-element slider-text"
+                    id="toggle-color" <?php echo ($slide->get('background-type') == 'color') ? 'style="display:block"' : ''; ?>>
                     <label>Background color</label>
                     <input name="background-color" class="span12" placeholder="Enter your background color code"
                            type="text"
                            value="<?php echo $slide->get('background-color'); ?>">
                 </div>
-                <div class="slider-element slider-text slide-image"
-                     id="toggle-image" <?php echo ($slide->get('background-type') == 'image') ? 'style="display:block"' : ''; ?>>
+                <!-- Image -->
+                <div 
+                    class="slider-element slider-text slide-image"
+                    id="toggle-image" <?php echo ($slide->get('background-type') == 'image') ? 'style="display:block"' : ''; ?>>
                     <label>Background image</label>
                     <input name="background-image" class="span12"
                            placeholder="Enter your background image relative path"
                            type="text" value="<?php echo $slide->get('background-image'); ?>">
                            <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
-                <div class="slider-element slider-text"
-                     id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
+                <!-- Text -->
+                <div 
+                    class="slider-element slider-text"
+                    id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
                     <label>Background video</label>
                     <input name="background-video" class="span12"
                            placeholder="Enter your background video relative path"
@@ -76,7 +85,7 @@ $rPosition = $slide->get('r-position', '');
                                 value="text">Text
                             </option>
                         </select>
-                    </div>
+                    </div>                    
                     <div
                         class="slider-element element-toggle slide-image" <?php echo ($slide->get('l-type') == 'image') ? 'style="display:block"' : 'style="display: none"'; ?>>
                         <label>Image</label>
@@ -111,13 +120,13 @@ $rPosition = $slide->get('r-position', '');
                     <div
                         class="slider-element element-toggle slide-text" <?php echo ($slide->get('l-type') == 'text') ? 'style="display:block"' : 'style="display: none"'; ?>>
                         <label>Text Link</label>
-                        <input name="l-text-link" class="span12" placeholder="Fill Text Link"
+                        <input name="l-text-link" class="span12" placeholder="Fill Text Link" type="text"
                                value="<?php echo $slide->get('l-text-link'); ?>"/>
                     </div>
                     <div
                         class="slider-element element-toggle slide-text" <?php echo ($slide->get('l-type') == 'text') ? 'style="display:block"' : 'style="display: none"'; ?>>
                         <label>Link</label>
-                        <input name="l-link" class="span12" placeholder="Fill Link"
+                        <input name="l-link" class="span12" placeholder="Fill Link" type="text"
                                value="<?php echo $slide->get('l-link'); ?>"/>
                     </div>
 
@@ -262,13 +271,13 @@ $rPosition = $slide->get('r-position', '');
                     <div
                         class="slider-element element-toggle slide-text" <?php echo ($slide->get('r-type') == 'text') ? 'style="display:block"' : 'style="display: none"'; ?>>
                         <label>Text Link</label>
-                        <input name="r-text-link" class="span12" placeholder="Fill Text Link"
+                        <input name="r-text-link" class="span12" placeholder="Fill Text Link" type="text"
                                value="<?php echo $slide->get('r-text-link'); ?>"/>
                     </div>
                     <div
                         class="slider-element element-toggle slide-text" <?php echo ($slide->get('r-type') == 'text') ? 'style="display:block"' : 'style="display: none"'; ?>>
                         <label>Link</label>
-                        <input name="r-link" class="span12" placeholder="Fill Link"
+                        <input name="r-link" class="span12" placeholder="Fill Link" type="text"
                                value="<?php echo $slide->get('r-link'); ?>"/>
                     </div>
                     <div class="slider-element slider-position clearfix">
