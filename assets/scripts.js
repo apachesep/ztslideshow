@@ -194,27 +194,20 @@
             var list = [];
             $($slides).each(function () {
                 var map = {};
-                $(this).find("input").each(function () {
-                    if (typeof ($(this).attr('name')) !== 'undefined') {
-                        if ($(this).attr('type') == 'radio') {
+                $(this).find("input, textarea, select").each(function () {
+                    var tag = $(this).prop("tagName");
+                    var name = $(this).attr('name');
+                    var type = $(this).attr('type');
+                    var value = $(this).val();
+                    if (typeof (name) !== 'undefined') {
+                        if ((type === 'radio' || type === 'checkbox') && tag === 'INPUT') {
                             if ($(this).is(':checked')) {
-                                map[$(this).attr("name")] = $(this).val();
+                                map[name] = value;
                             }
-                        } else {
-                            map[$(this).attr("name")] = $(this).val();
+                        }else{
+                            map[name] = value;
                         }
                     }
-                });
-                $(this).find("textarea").each(function () {
-                    if (typeof ($(this).attr('name')) !== 'undefined') {
-                        map[$(this).attr("name")] = $(this).val();
-                    }
-                });
-                $(this).find("select").each(function () {
-                    if (typeof ($(this).attr('name')) !== 'undefined') {
-                        map[$(this).attr("name")] = $(this).val();
-                    }
-
                 });
                 map['l-position'] = $(this).find('.left.position-item.active').data('value');
                 map['r-position'] = $(this).find('.right.position-item.active').data('value')
