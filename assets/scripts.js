@@ -195,20 +195,26 @@
             $($slides).each(function () {
                 var map = {};
                 $(this).find("input").each(function () {
-                    if ($(this).attr('type') == 'radio') {
-                        if ($(this).is(':checked')) {
+                    if (typeof ($(this).attr('name')) !== 'undefined') {
+                        if ($(this).attr('type') == 'radio') {
+                            if ($(this).is(':checked')) {
+                                map[$(this).attr("name")] = $(this).val();
+                            }
+                        } else {
                             map[$(this).attr("name")] = $(this).val();
                         }
-                    } else {
+                    }
+                });
+                $(this).find("textarea").each(function () {
+                    if (typeof ($(this).attr('name')) !== 'undefined') {
+                        map[$(this).attr("name")] = $(this).val();
+                    }
+                });
+                $(this).find("select").each(function () {
+                    if (typeof ($(this).attr('name')) !== 'undefined') {
                         map[$(this).attr("name")] = $(this).val();
                     }
 
-                });
-                $(this).find("textarea").each(function () {
-                    map[$(this).attr("name")] = $(this).val();
-                });
-                $(this).find("select").each(function () {
-                    map[$(this).attr("name")] = $(this).val();
                 });
                 map['l-position'] = $(this).find('.left.position-item.active').data('value');
                 map['r-position'] = $(this).find('.right.position-item.active').data('value')
