@@ -99,7 +99,7 @@
                     .addClass('fa-plus');
             /* Clean up input & selector */
             $cloned.find('input').val('');
-            $cloned.find('select').val('image');
+            $cloned.find('select').val('').trigger('update');
             /* Add clone slide to child */
             $cloned.appendTo($sliderContainer);
             /* Apply chosen */
@@ -107,7 +107,13 @@
                     .chosen();
             $sliderContainer.find('.added select')
                     .each(function () {
-                        _self.typeToggle($(this));
+                        var name = $(this).attr('name');
+                        if (name === 'r-type' || name === 'l-type') {
+                            _self.typeToggle($(this));
+                        }
+                        if (name === 'background-type') {
+                            _self.backgroundToggle($(this));
+                        }
                     });
             $sliderContainer.find('.added').removeClass('added');
             /* Reload sortable list */
@@ -151,9 +157,9 @@
          *
          */
         typeToggle: function (el) {
-            var $valueType = $(el).val();
+            var valueType = $(el).val();
             $(el).closest('.element-position').find('.element-toggle').slideUp();
-            $(el).closest('.element-position').find('.slide-' + $valueType).slideDown();
+            $(el).closest('.element-position').find('.slide-' + valueType).slideDown();
         },
         /**
          *
