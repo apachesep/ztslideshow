@@ -12,6 +12,10 @@
 .zt-slider .slider-title {
     display: inline-block;
 }
+.toggle-background input[type="radio"]{
+    margin-top: 0;
+    outline: none;
+}
 .slider-accordion{
     margin-top: 12px;
 }
