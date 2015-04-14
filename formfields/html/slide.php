@@ -66,7 +66,7 @@ $rPosition = $slide->get('r-position', '');
             <div
                 class="slider-element slider-text slide-image-color span4"
                 id="toggle-image" <?php echo ($slide->get('background-type') == 'image') ? 'style="display:block"' : ''; ?>>
-                <label>Background image</label>
+                <label>Background Color</label>
                 <input name="background-image-color" class="span12"
                        placeholder="Enter your background image color"
                        type="text" value="<?php echo $slide->get('background-image-color'); ?>">
