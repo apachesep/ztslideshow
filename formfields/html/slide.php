@@ -22,14 +22,14 @@ $rPosition = $slide->get('r-position', '');
     <h3>Background</h3>
     <div class="toggle-background clearfix">
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default">
-                <input type="radio" id="background-image" name="background-option" value="1" /> Background Image
+            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'image') ? ' btn-success' : ''; ?>">
+                <input type="radio" id="background-image" name="background-option" value="image" <?php echo ($slide->get('background-type') == 'image') ? 'checked="true"' : ''; ?>/> Background Image
             </label>
-            <label class="btn btn-default">
-                <input type="radio" id="background-video" name="background-option" value="2" /> Background Video
+            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'video') ? ' btn-success' : ''; ?>">
+                <input type="radio" id="background-video" name="background-option" value="video" <?php echo ($slide->get('background-type') == 'video') ? 'checked="true"' : ''; ?>/> Background Video
             </label>
-            <label class="btn btn-default">
-                <input type="radio" id="background-color" name="background-option" value="3" /> Background Color
+            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'color') ? ' btn-success' : ''; ?>">
+                <input type="radio" id="background-color" name="background-option" value="color" <?php echo ($slide->get('background-type') == 'color') ? 'checked="true"' : ''; ?>/> Background Color
             </label>
         </div>
     </div>
