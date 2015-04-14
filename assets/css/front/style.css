@@ -3,9 +3,9 @@
     height: 550px;
 }
 .zt-slideshow .full-backround{
-    background-attachment: fixed;
-    background-position: left top;
+    background-position: center top;
     background-size: cover;
+    background-repeat: no-repeat;
     display: block;
     height: 100%;
     left: 0;
