@@ -11,6 +11,8 @@
         _init: function () {
             this.hookSortable();
             this.selectPosition();
+            /* Remove conflict between bootstrap & ztslideshow */
+            $('input[checked="checked"]').attr('checked', true);
         },
         currentActiveElement: null,
         activeSlide: null,
@@ -99,7 +101,7 @@
                     .addClass('fa-plus');
             /* Clean up input & selector */
             $cloned.find('textarea').val('');
-            $cloned.find('input').val('');
+            $cloned.find('input[type="text"]').val('');
             $cloned.find('select').val('').trigger('update');
             /* Add clone slide to child */
             $cloned.appendTo($sliderContainer);
@@ -111,9 +113,6 @@
                         var name = $(this).attr('name');
                         if (name === 'r-type' || name === 'l-type') {
                             _self.typeToggle($(this));
-                        }
-                        if (name === 'background-type') {
-                            _self.backgroundToggle($(this));
                         }
                     });
             $sliderContainer.find('.added').removeClass('added');
@@ -151,6 +150,8 @@
          */
         backgroundToggle: function (el) {
             var $valueToggle = $(el).val();
+            $(el).closest('.btn-group').find('label.btn-success').removeClass('btn-success');
+            $(el).parent().addClass('btn-success');
             $(el).closest('.slider-toggle').find('.slider-element').slideUp();
             $(el).closest('.slider-toggle').find('#toggle-' + $valueToggle).slideDown();
         },
