@@ -27,10 +27,6 @@ $rPosition = $slide->get('r-position', '');
                     class="btn btn-default<?php echo ($slide->get('background-type') == 'image') ? ' btn-success' : ''; ?>">
                 Background Image
             </button>
-            <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="video"
-                    class="btn btn-default<?php echo ($slide->get('background-type') == 'video') ? ' btn-success' : ''; ?>">
-                Background Video
-            </button>
             <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="color"
                     class="btn btn-default<?php echo ($slide->get('background-type') == 'color') ? ' btn-success' : ''; ?>">
                 Background Color
@@ -70,31 +66,6 @@ $rPosition = $slide->get('r-position', '');
                     <input name="background-image-color" class="span12"
                            placeholder="Enter your background image color"
                            type="text" value="<?php echo $slide->get('background-image-color'); ?>">
-                </div>
-            </div>
-        </div>
-        <!-- Text -->
-        <div class="row-fluid">
-            <div class="slider-element"
-                 id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
-                <div class="slider-text slide-image slider-video-mp4 span4">
-                    <label>Background video Image</label>
-                    <input name="background-video-image" class="span12"
-                           placeholder="Enter your background video Image relative path"
-                           type="text" value="<?php echo $slide->get('background-video-image'); ?>">
-                    <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
-                </div>
-                <div class="slider-text slider-video-mp4 span4">
-                    <label>Link Video Mp4</label>
-                    <input name="background-video-mp4" class="span12"
-                           placeholder="Enter your background video Mp4 relative path"
-                           type="text" value="<?php echo $slide->get('background-video-mp4'); ?>">
-                </div>
-                <div class="slider-text slider-video-webm span4">
-                    <label>Link Video Webm</label>
-                    <input name="background-video-webm" class="span12"
-                           placeholder="Enter your background video Webm relative path"
-                           type="text" value="<?php echo $slide->get('background-video-webm'); ?>">
                 </div>
             </div>
         </div>

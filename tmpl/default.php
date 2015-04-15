@@ -32,24 +32,12 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         }
         ?>
         <div class="zt-slidershow-item">
-            <?php if($slideParams->get('background-type') == 'video') { ?>
-                <div class="full-background-wrap">
-                    <div class="full-background">
-                        <video autoplay  poster="<?php echo $slideParams->get('background-video-image'); ?>" id="bgvid" loop>
-                            <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-                            <source src="<?php echo $slideParams->get('background-video-webm') ?>" type="video/webm">
-                            <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
 
-            <?php } else { ?>
                 <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
                     <div class="full-background"
                          style="<?php echo $style; ?>">
                     </div>
                 </div>
-            <?php } ?>
 
             <div class="container">
                 <div class="row">
