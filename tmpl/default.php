@@ -13,21 +13,27 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 <div class="zt-slideshow" id="<?php echo $_id; ?>">
     <?php foreach ($slides as $slide) : ?>
         <?php $slideParams = $slide['params']; ?>
+
         <?php
-        $style = array();
-        if ($slideParams->get('background-type') == 'image')
-        {
-            $style[] = 'background-image: url("' . $slideParams->get('background-image') . '");';
+        $style = $styleColor = '';
+        if ($slideParams->get('background-type') == 'image') {
+            $style .= 'background-image: url("' . $slideParams->get('background-image') . '");';
+            if($slideParams->get('background-opacity')){
+                $style .= ' opacity: '. $slideParams->get('background-opacity') .';';
+            }
+            if($slideParams->get('background-image-color')){
+                $styleColor .= 'background-color: '. $slideParams->get('background-image-color') .';';
+            }
         }
-        if ($slideParams->get('background-type') == 'color')
-        {
-            $style[] = 'background-color:' . $slideParams->get('background-color') . ';';
+        if ($slideParams->get('background-type') == 'color') {
+            $style .= 'background-color:' . $slideParams->get('background-color') . ';';
         }
         ?>
         <div class="zt-slidershow-item">
-
-            <div class="full-backround"
-                 style="<?php echo implode(' ', $style); ?>">
+            <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
+                <div class="full-background"
+                     style="<?php echo $style; ?>">
+                </div>
             </div>
 
             <div class="container">
@@ -37,8 +43,8 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                     <?php if ($item->get('column') != 'none') : ?>
                         <div
                             class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                                <?php $item = $slide['left']; ?>
-                                <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                            <?php $item = $slide['left']; ?>
+                            <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
                         </div>
                     <?php endif; ?>
                     <!-- Right -->
@@ -57,29 +63,29 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 
 <script type="text/javascript">
     slider = jQuery('#<?php echo $_id; ?>').bxSlider({
-    speed: <?php echo $params->get('transition_duration', 500); ?>,
-            auto: true,
-            pause: <?php echo $params->get('display_time', 4000); ?>,
-<?php
-if (!$params->get('pagination'))
-{
-    ?>
+        speed: <?php echo $params->get('transition_duration', 500); ?>,
+        auto: true,
+        pause: <?php echo $params->get('display_time', 4000); ?>,
+        <?php
+        if (!$params->get('pagination'))
+        {
+            ?>
         pager: false,
-<?php } ?>
-<?php
-if (!$params->get('navigation'))
-{
-    ?>
+        <?php } ?>
+        <?php
+        if (!$params->get('navigation'))
+        {
+            ?>
         controls: false,
-<?php } ?>
-    onSliderLoad: function () {
-    jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
-    },
-            onSlideAfter: function () {
+        <?php } ?>
+        onSliderLoad: function () {
+            jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
+        },
+        onSlideAfter: function () {
             jQuery("#<?php echo $_id; ?> div").removeClass('active');
-                    current = slider.getCurrentSlide();
-                    jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
-            }
+            current = slider.getCurrentSlide();
+            jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
+        }
     });
 
 </script>
