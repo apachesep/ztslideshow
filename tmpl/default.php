@@ -35,10 +35,10 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             <?php if($slideParams->get('background-type') == 'video') { ?>
                 <div class="full-background-wrap">
                     <div class="full-background">
-                        <video autoplay  poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" loop>
+                        <video autoplay  poster="<?php echo $slideParams->get('background-video-image'); ?>" id="bgvid" loop>
                             <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-                            <source src="//demosthenes.info/assets/videos/polina.webm" type="video/webm">
-                            <source src="<?php echo $slideParams->get('background-video') ?>" type="video/mp4">
+                            <source src="<?php echo $slideParams->get('background-video-webm') ?>" type="video/webm">
+                            <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
                         </video>
                     </div>
                 </div>
