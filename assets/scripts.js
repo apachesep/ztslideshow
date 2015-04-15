@@ -150,8 +150,13 @@
          */
         backgroundToggle: function (el) {
             var $valueToggle = $(el).val();
-            $(el).closest('.btn-group').find('label.btn-success').removeClass('btn-success');
-            $(el).parent().addClass('btn-success');
+            var $btnGroup = $(el).closest('.btn-group');
+            $btnGroup
+                    .find('.btn-success')
+                    .removeClass('btn-success');
+            $btnGroup.find('.active')
+                    .removeClass('active');
+            $(el).addClass('btn-success');
             $(el).closest('.slider-toggle').find('.slider-element').slideUp();
             $(el).closest('.slider-toggle').find('#toggle-' + $valueToggle).slideDown();
         },
@@ -210,6 +215,10 @@
                         }
                     }
                 });
+                map['background-type'] = $(this)
+                        .find('div.toggle-background')
+                        .find('button.btn-success')
+                        .val();
                 map['l-position'] = $(this).find('.left.position-item.active').data('value');
                 map['r-position'] = $(this).find('.right.position-item.active').data('value')
                 list.push(map);

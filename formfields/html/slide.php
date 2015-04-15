@@ -20,18 +20,11 @@ $rPosition = $slide->get('r-position', '');
 <div class="slider-toggle">
     <!-- Slide background -->
     <h3>Background</h3>
-    <?php echo ($slide->get('background-type')); ?>
     <div class="toggle-background clearfix">
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'image') ? ' btn-success' : ''; ?>">
-                <input type="radio" onchange="zo2.modules.slideshow.backgroundToggle(this);" id="background-image" name="background-type" value="image"<?php echo ($slide->get('background-type') == 'image') ? ' checked="checked"' : ''; ?>/> Background Image
-            </label>
-            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'video') ? ' btn-success' : ''; ?>">
-                <input type="radio" onchange="zo2.modules.slideshow.backgroundToggle(this);" id="background-video" name="background-type" value="video"<?php echo ($slide->get('background-type') == 'video') ? ' checked="checked"' : ''; ?>/> Background Video
-            </label>
-            <label class="btn btn-default<?php echo ($slide->get('background-type') == 'color') ? ' btn-success' : ''; ?>">
-                <input type="radio" onchange="zo2.modules.slideshow.backgroundToggle(this);" id="background-color" name="background-type" value="color"<?php echo ($slide->get('background-type') == 'color') ? ' checked="checked"' : ''; ?>/> Background Color
-            </label>
+          <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="image" class="btn btn-default<?php echo ($slide->get('background-type') == 'image') ? ' btn-success' : ''; ?>">Background Image</button>
+          <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="video" class="btn btn-default<?php echo ($slide->get('background-type') == 'video') ? ' btn-success' : ''; ?>">Background Video</button>
+          <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="color" class="btn btn-default<?php echo ($slide->get('background-type') == 'color') ? ' btn-success' : ''; ?>">Background Color</button>
         </div>
     </div>
     <!-- Slide background's settings -->
