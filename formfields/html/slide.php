@@ -166,7 +166,7 @@ $rPosition = $slide->get('r-position', '');
         </div>
 
         <div class="slider-element slider-position clearfix">
-            <label>Position</label>
+            <label>Alignment</label>
             <ul>
                 <li onClick="zo2.modules.slideshow.selectPosition(this);"
                     class="left <?php echo ($lPosition == 'top-left') ? 'active' : ''; ?> position-item"
@@ -316,7 +316,7 @@ $rPosition = $slide->get('r-position', '');
                    value="<?php echo $slide->get('r-link'); ?>"/>
         </div>
         <div class="slider-element slider-position clearfix">
-            <label>Position</label>
+            <label>Alignment</label>
             <ul>
                 <li onClick="zo2.modules.slideshow.selectPosition(this);"
                     class="right <?php echo ($rPosition == 'top-left') ? 'active' : ''; ?> position-item"

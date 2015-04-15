@@ -74,7 +74,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
             <h4 class="modal-title">Delete confirm</h4>
           </div>
           <div class="modal-body">
-            <p>Do you want delete this modal.</p>
+            <p>Do you want delete this slide.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
