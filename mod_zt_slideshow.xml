@@ -10,8 +10,8 @@
     <description>MOD_ZT_SLIDESHOW_XML_DESCRIPTION</description>
 
     <files>
-		<filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
-		<filename>mod_zt_slideshow.xml</filename>
+        <filename module="mod_zt_slideshow">mod_zt_slideshow.php</filename>
+        <filename>mod_zt_slideshow.xml</filename>
         <filename>bootstrap.php</filename>
         <folder>assets</folder>
         <folder>formfields</folder>
@@ -31,15 +31,19 @@
                 <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" />
             </fieldset>
             <fieldset name="advanced">
-                <field name="pagination" type="list" default="0" label="Show pagination" description="">
+                <field name="pagination" type="list" default="1" label="Show pagination" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="navigation" type="list" default="0" label="Show navigation" description="">
+                <field name="navigation" type="list" default="1" label="Show navigation" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="display_time" type="text" default="" label="Display time" description="" size="10" />
+                <field name="display_time" type="text" default="1" label="Display time" description="" size="10" />
+                <field name="effects" type="list" default="" label="Effects" description="" multiple="true">
+                    <option value="0">Option 1</option>
+                    <option value="1">Option 2</option>
+                </field>
                 <field name="transition_duration" type="text" default="" label="Transition Duration" description="" size="10" />
             </fieldset>
         </fields>
