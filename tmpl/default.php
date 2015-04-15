@@ -4,6 +4,8 @@
 $doc = JFactory::getDocument();
 //    $doc->addScriptDeclaration($script);
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
+$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/js/index.js');
+$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/css/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
@@ -30,11 +32,24 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         }
         ?>
         <div class="zt-slidershow-item">
-            <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
-                <div class="full-background"
-                     style="<?php echo $style; ?>">
+            <?php if($slideParams->get('background-type') == 'video') { ?>
+                <div class="full-background-wrap">
+                    <div class="full-background">
+                        <video autoplay  poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/polina.jpg" id="bgvid" loop>
+                            <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+                            <source src="//demosthenes.info/assets/videos/polina.webm" type="video/webm">
+                            <source src="<?php echo $slideParams->get('background-video') ?>" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
-            </div>
+
+            <?php } else { ?>
+                <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
+                    <div class="full-background"
+                         style="<?php echo $style; ?>">
+                    </div>
+                </div>
+            <?php } ?>
 
             <div class="container">
                 <div class="row">

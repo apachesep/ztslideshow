@@ -41,7 +41,7 @@ if (!class_exists('ZtSlideshowEmbed'))
             }
             if ($this->get('source') == 'youtube')
             {
-                $htmlAttributes [] = 'width="560"';
+                $htmlAttributes [] = 'width="500"';
                 $htmlAttributes [] = 'height="315"';
                 $htmlAttributes [] = 'src="//www.youtube.com/embed/' . $this->get('id') . '"';
                 $html = '<iframe ' . implode(' ', $htmlAttributes) . ' frameborder="0" allowfullscreen></iframe>';
