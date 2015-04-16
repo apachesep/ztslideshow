@@ -60,13 +60,7 @@ $rPosition = $slide->get('r-position', '');
                     <input name="background-opacity" class="span12"
                            placeholder="Enter your background Opacity"
                            type="text" value="<?php echo $slide->get('background-opacity'); ?>">
-                </div>
-                <div class="slider-text slide-image-color span4">
-                    <label>Background Color</label>
-                    <input name="background-image-color" class="span12"
-                           placeholder="Enter your background image color"
-                           type="text" value="<?php echo $slide->get('background-image-color'); ?>">
-                </div>
+                </div>                
             </div>
         </div>
     </div>
