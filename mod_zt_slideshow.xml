@@ -2,7 +2,7 @@
 <extension type="module" version="3.0" client="site" method="upgrade">
     <name>mod_zt_slideshow</name>
     <author>ZooTemplate</author>
-    <creationDate>Apr 10, 2015</creationDate>
+    <creationDate>Apr 16, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>www.zootemplate.com</authorUrl>
