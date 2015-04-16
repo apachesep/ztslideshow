@@ -23,9 +23,9 @@
             <?php echo ($item->get('text-des')) ? $item->get('text-des') : ''; ?></p>
     <?php endif; ?>
     <?php if ($item->get('link') != '' && $item->get('text-link') != '') : ?>
-        <p class="zt-readmore animated <?php echo ($item->get('effect')) ? $item->get('effect') : ''; ?>"
+        <p class="animated <?php echo ($item->get('effect')) ? $item->get('effect') : ''; ?>"
            style="animation-delay: 1s; -webkit-animation-delay: 1s;">
-            <a href="<?php echo ($item->get('link')) ? $item->get('link') : ''; ?>"><?php echo ($item->get('text-link')) ? $item->get('text-link') : ''; ?></a>
+            <a class="zt-readmore" href="<?php echo ($item->get('link')) ? $item->get('link') : ''; ?>"><?php echo ($item->get('text-link')) ? $item->get('text-link') : ''; ?></a>
         </p>
     <?php endif; ?>
 </div>
