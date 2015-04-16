@@ -84,7 +84,7 @@
                 var $currentElement = $(this);
                 $currentElement
                         .find('> .slider-title')
-                        .html('Slide Element ' + ($currentElement.index() + 1));
+                        .html('Slider ' + ($currentElement.index() + 1));
             });
         },
         /**
