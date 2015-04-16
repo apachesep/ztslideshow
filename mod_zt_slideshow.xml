@@ -53,6 +53,8 @@
                     <option value="0">Option 1</option>
                     <option value="1">Option 2</option>
                 </field>
+                <field name="width" type="text" default="" label="Width" description="" size="10" />    
+                <field name="height" type="text" default="" label="Height" description="" size="10" />    
             </fieldset>
         </fields>
     </config>
