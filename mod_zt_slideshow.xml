@@ -49,6 +49,10 @@
                     <option value="1">Option 2</option>
                 </field>
                 <field name="transition_duration" type="text" default="" label="Transition Duration" description="" size="10" />
+                <field name="loader_icon" type="list" default="" label="Loader icon" description="" multiple="true">
+                    <option value="0">Option 1</option>
+                    <option value="1">Option 2</option>
+                </field>
             </fieldset>
         </fields>
     </config>
