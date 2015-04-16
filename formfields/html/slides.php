@@ -96,7 +96,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
                 <?php require __DIR__ . '/slide.php'; ?>
             <?php endforeach; ?>
         <?php else : ?>
-            <?php $slide = new JObject (); ?>
+            <?php $slide = new JObject (); $slideCount = 1; ?>
             <?php require __DIR__ . '/slide.php'; ?>
         <?php endif; ?>
     </div>
