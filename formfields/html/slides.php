@@ -89,7 +89,9 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     <!-- Wrapper -->
     <div class="slides sortable" id="zt-slidershow-container">
         <?php if (count($slides) > 0): ?>
+        <?php $slideCount = 0; ?>
             <?php foreach ($slides as $slide) : ?>
+                <?php $slideCount++; ?>
                 <?php $slide = new JObject($slide); ?>
                 <?php require __DIR__ . '/slide.php'; ?>
             <?php endforeach; ?>

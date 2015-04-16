@@ -59,9 +59,13 @@
          */
         hookSortable: function () {
             var _self = this;
+
             this._selectElement(this._elements.slides).sortable({
                 handle: _self._elements.dragable,
-                placeholder: "sortable-hightligth"
+                placeholder: "sortable-hightligth",
+                stop: function (event, ui) {
+                    _self.updateOrdering();
+                }
             }).disableSelection();
         },
         /**
@@ -69,6 +73,19 @@
          */
         flushSortable: function () {
             this._selectElement(this._elements.slides).sortable("destroy");
+        },
+        /**
+         * Update ordering
+         * @returns {undefined}
+         */
+        updateOrdering: function () {
+            var $slides = $('div' + this._elements.slide);
+            $slides.each(function () {
+                var $currentElement = $(this);
+                $currentElement
+                        .find('> .slider-title')
+                        .html('Slide Element ' + ($currentElement.index() + 1));
+            });
         },
         /**
          * Clone the first slide and add to list
@@ -118,6 +135,7 @@
             $sliderContainer.find('.added').removeClass('added');
             /* Reload sortable list */
             this.hookSortable();
+            this.updateOrdering();
             this.reinitSqueezeBox();
         },
         showModalDelete: function (el) {
@@ -210,7 +228,7 @@
                             if ($(this).is(':checked')) {
                                 map[name] = value;
                             }
-                        }else{
+                        } else {
                             map[name] = value;
                         }
                     }

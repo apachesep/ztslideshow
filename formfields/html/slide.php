@@ -9,7 +9,7 @@ $rPosition = $slide->get('r-position', '');
 <!-- An slide -->
 <div class="slider-items slide" id="zt-slidershow-element">
 <!-- Header -->
-<h3 class="slider-title">Slider Element</h3>
+<h3 class="slider-title">Slider Element <?php echo($slideCount); ?></h3>
 <!-- Controls -->
     <span class="pull-right slider-accordion">
         <i onclick="zo2.modules.slideshow.sliderAccordion(this)" class="fa fa-plus"></i>
