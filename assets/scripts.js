@@ -66,7 +66,7 @@
                 stop: function (event, ui) {
                     _self.updateOrdering();
                 }
-            }).disableSelection();
+            });
         },
         /**
          * Flush sortable elements
