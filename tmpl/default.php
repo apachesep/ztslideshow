@@ -3,33 +3,30 @@
 
 $doc = JFactory::getDocument();
 //    $doc->addScriptDeclaration($script);
+$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/js/index.js');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/css/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
 $_id = 'zt-slider-show' . rand(12345, 98765);
 ?>
-
+<div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>">
 <div class="zt-slideshow" id="<?php echo $_id; ?>">
     <?php foreach ($slides as $slide) : ?>
         <?php $slideParams = $slide['params']; ?>
 
         <?php
         $style = $styleColor = '';
-        if ($slideParams->get('background-type') == 'image') {
-            $style .= 'background-image: url("' . $slideParams->get('background-image') . '");';
+            if($slideParams->get('background-image')) {
+                $style .= 'background-image: url("' . $slideParams->get('background-image') . '");';
+            }
             if($slideParams->get('background-opacity')){
                 $style .= ' opacity: '. $slideParams->get('background-opacity') .';';
             }
             if($slideParams->get('background-image-color')){
                 $styleColor .= 'background-color: '. $slideParams->get('background-image-color') .';';
             }
-        }
-        if ($slideParams->get('background-type') == 'color') {
-            $style .= 'background-color:' . $slideParams->get('background-color') . ';';
-        }
         ?>
         <div class="zt-slidershow-item">
 
@@ -63,11 +60,26 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         </div>
     <?php endforeach; ?>
 </div>
-
+</div>
+<style rel="stylesheet" type="text/css">
+    .zt-slideshow .zt-slidershow-item{
+        min-height: <?php echo $params->get('slider_height'); ?>;
+        height: <?php echo $params->get('slider_height'); ?>;
+    }
+    .zt-slideshow .zt-slider-position{
+        height: <?php echo $params->get('slider_height'); ?>;
+    }
+</style>
 <script type="text/javascript">
     slider = jQuery('#<?php echo $_id; ?>').bxSlider({
         speed: <?php echo $params->get('transition_duration', 500); ?>,
+        <?php if($params->get('autoplay')) { ?>
         auto: true,
+        <?php } ?>
+        <?php if($params->get('effects') != 'none') { ?>
+        useCSS: false,
+        easing: '<?php echo $params->get('effects'); ?>',
+        <?php } ?>
         pause: <?php echo $params->get('display_time', 4000); ?>,
         <?php
         if (!$params->get('pagination'))

@@ -21,29 +21,10 @@ $rPosition = $slide->get('r-position', '');
     <!-- Slide background -->
     <h3>Background</h3>
 
-    <div class="toggle-background clearfix">
-        <div class="btn-group" data-toggle="buttons">
-            <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="image"
-                    class="btn btn-default<?php echo ($slide->get('background-type') == 'image') ? ' btn-success' : ''; ?>">
-                Background Image
-            </button>
-            <button type="button" onclick="zo2.modules.slideshow.backgroundToggle(this);" value="color"
-                    class="btn btn-default<?php echo ($slide->get('background-type') == 'color') ? ' btn-success' : ''; ?>">
-                Background Color
-            </button>
-        </div>
-    </div>
+
     <!-- Slide background's settings -->
     <div class="toggle-background-setting clearfix">
-        <!-- Color -->
-        <div
-            class="slider-element slider-text"
-            id="toggle-color" <?php echo ($slide->get('background-type') == 'color') ? 'style="display:block"' : ''; ?>>
-            <label>Background color</label>
-            <input name="background-color" class="span12" placeholder="Enter your background color code"
-                   type="text"
-                   value="<?php echo $slide->get('background-color'); ?>">
-        </div>
+
         <!-- Image -->
         <div class="row-fluid">
             <div class="slider-element"
@@ -60,7 +41,13 @@ $rPosition = $slide->get('r-position', '');
                     <input name="background-opacity" class="span12"
                            placeholder="Enter your background Opacity"
                            type="text" value="<?php echo $slide->get('background-opacity'); ?>">
-                </div>                
+                </div>
+                <div class="slider-text slide-opacity span4">
+                    <label>Background Color</label>
+                    <input name="background-image-color" class="span12"
+                           placeholder="Enter your background Color"
+                           type="text" value="<?php echo $slide->get('background-image-color'); ?>">
+                </div>
             </div>
         </div>
     </div>

@@ -83,8 +83,8 @@
             $slides.each(function () {
                 var $currentElement = $(this);
                 $currentElement
-                        .find('> .slider-title')
-                        .html('Slider ' + ($currentElement.index() + 1));
+                    .find('> .slider-title')
+                    .html('Slider ' + ($currentElement.index() + 1));
             });
         },
         /**
@@ -106,16 +106,16 @@
             $cloned.find('.chzn-container').remove();
             /* Reset position */
             $cloned
-                    .find('div.slider-position')
-                    .find('li.active')
-                    .removeClass('active');
+                .find('div.slider-position')
+                .find('li.active')
+                .removeClass('active');
             /* Reset explain */
             $cloned
-                    .find('.slider-accordion')
-                    .find('i')
-                    .first()
-                    .removeClass('fa-minus')
-                    .addClass('fa-plus');
+                .find('.slider-accordion')
+                .find('i')
+                .first()
+                .removeClass('fa-minus')
+                .addClass('fa-plus');
             /* Clean up input & selector */
             $cloned.find('textarea').val('');
             $cloned.find('input[type="text"]').val('');
@@ -124,14 +124,14 @@
             $cloned.appendTo($sliderContainer);
             /* Apply chosen */
             $sliderContainer.find('.added select')
-                    .chosen();
+                .chosen();
             $sliderContainer.find('.added select')
-                    .each(function () {
-                        var name = $(this).attr('name');
-                        if (name === 'r-type' || name === 'l-type') {
-                            _self.typeToggle($(this));
-                        }
-                    });
+                .each(function () {
+                    var name = $(this).attr('name');
+                    if (name === 'r-type' || name === 'l-type') {
+                        _self.typeToggle($(this));
+                    }
+                });
             $sliderContainer.find('.added').removeClass('added');
             /* Reload sortable list */
             this.hookSortable();
@@ -170,10 +170,10 @@
             var $valueToggle = $(el).val();
             var $btnGroup = $(el).closest('.btn-group');
             $btnGroup
-                    .find('.btn-success')
-                    .removeClass('btn-success');
+                .find('.btn-success')
+                .removeClass('btn-success');
             $btnGroup.find('.active')
-                    .removeClass('active');
+                .removeClass('active');
             $(el).addClass('btn-success');
             $(el).closest('.slider-toggle').find('.slider-element').slideUp();
             $(el).closest('.slider-toggle').find('#toggle-' + $valueToggle).slideDown();
@@ -234,9 +234,9 @@
                     }
                 });
                 map['background-type'] = $(this)
-                        .find('div.toggle-background')
-                        .find('button.btn-success')
-                        .val();
+                    .find('div.toggle-background')
+                    .find('button.btn-success')
+                    .val();
                 map['l-position'] = $(this).find('.left.position-item.active').data('value');
                 map['r-position'] = $(this).find('.right.position-item.active').data('value')
                 list.push(map);

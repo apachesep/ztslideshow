@@ -31,6 +31,8 @@
                 <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" />
             </fieldset>
             <fieldset name="advanced">
+                <field name="slider_width" type="text" default="auto" label="Slider Width" description="" size="10" />
+                <field name="slider_height" type="text" default="550px" label="Slider Width" description="" size="10" />
                 <field name="pagination" type="list" default="1" label="Show pagination" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
@@ -44,17 +46,42 @@
                     <option value="1">JYES</option>
                 </field>
                 <field name="display_time" type="text" default="1" label="Display time" description="" size="10" />
-                <field name="effects" type="list" default="" label="Effects" description="" multiple="true">
-                    <option value="0">Option 1</option>
-                    <option value="1">Option 2</option>
+                <field name="effects" type="list" default="" label="Effects" description="">
+                    <option value="none">none</option>
+                    <option value="linear">linear</option>
+                    <option value="swing">swing</option>
+                    <option value="easeInQuad">easeInQuad</option>
+                    <option value="easeOutQuad">easeOutQuad</option>
+                    <option value="easeInOutQuad">easeInOutQuad</option>
+                    <option value="easeInCubic">easeInCubic</option>
+                    <option value="easeOutCubic">easeOutCubic</option>
+                    <option value="easeInOutCubic">easeInOutCubic</option>
+                    <option value="easeInQuart">easeInQuart</option>
+                    <option value="easeOutQuart">easeOutQuart</option>
+                    <option value="easeInOutQuart">easeInOutQuart</option>
+                    <option value="easeInQuint">easeInQuint</option>
+                    <option value="easeOutQuint">easeOutQuint</option>
+                    <option value="easeInOutQuint">easeInOutQuint</option>
+                    <option value="easeInExpo">easeInExpo</option>
+                    <option value="easeOutExpo">easeOutExpo</option>
+                    <option value="easeInOutExpo">easeInOutExpo</option>
+                    <option value="easeInSine">easeInSine</option>
+                    <option value="easeOutSine">easeOutSine</option>
+                    <option value="easeInOutSine">easeInOutSine</option>
+                    <option value="easeInCirc">easeInCirc</option>
+                    <option value="easeOutCirc">easeOutCirc</option>
+                    <option value="easeInOutCirc">easeInOutCirc</option>
+                    <option value="easeInElastic">easeInElastic</option>
+                    <option value="easeOutElastic">easeOutElastic</option>
+                    <option value="easeInOutElastic">easeInOutElastic</option>
+                    <option value="easeInBack">easeInBack</option>
+                    <option value="easeOutBack">easeOutBack</option>
+                    <option value="easeInOutBack">easeInOutBack</option>
+                    <option value="easeInBounce">easeInBounce</option>
+                    <option value="easeOutBounce">easeOutBounce</option>
+                    <option value="easeInOutBounce">easeInOutBounce</option>
                 </field>
                 <field name="transition_duration" type="text" default="" label="Transition Duration" description="" size="10" />
-                <field name="loader_icon" type="list" default="" label="Loader icon" description="" multiple="true">
-                    <option value="0">Option 1</option>
-                    <option value="1">Option 2</option>
-                </field>
-                <field name="width" type="text" default="" label="Width" description="" size="10" />    
-                <field name="height" type="text" default="" label="Height" description="" size="10" />    
             </fieldset>
         </fields>
     </config>
