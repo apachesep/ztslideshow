@@ -83,7 +83,7 @@
     font-size: 14px;
     font-weight: 400;
 }
-.zt-slidershow-item .content-text .link a{
+.zt-slidershow-item .content-text .zt-readmore a{
     color: #fff;
     text-transform: uppercase;
     font-weight: 500;
@@ -93,11 +93,11 @@
     transition: all 0.3s ease 0s;
     background-color: transparent;
 }
-.zt-slidershow-item .content-text .link a:hover{
+.zt-slidershow-item .content-text .zt-readmore a:hover{
     background-color: #000;
     border-color: #000;
 }
-.bx-wrapper .bx-controls-direction a{
+.zt-slideshow-wrap .bx-wrapper .bx-controls-direction a{
     height: 70px;
     margin-top: -35px;
     width: 43px;
@@ -107,15 +107,15 @@
     -ms-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
 }
-.bx-wrapper .bx-controls-direction a.bx-prev{
+.zt-slideshow-wrap .bx-wrapper .bx-controls-direction a.bx-prev{
     border-radius: 0 3px 3px 0;
     left: 0;
 }
-.bx-wrapper .bx-controls-direction a.bx-next{
+.zt-slideshow-wrap .bx-wrapper .bx-controls-direction a.bx-next{
     border-radius: 3px 0 0 3px;
     background-position: right top;
     right: 0;
 }
-.bx-wrapper .bx-controls-direction a:hover{
+.zt-slideshow-wrap .bx-wrapper .bx-controls-direction a:hover{
     background-color: #fdd200;
 }
