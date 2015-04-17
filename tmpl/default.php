@@ -30,35 +30,34 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             if ($slideParams->get('background-image-color')) {
                 $styleColor .= 'background-color: ' . $slideParams->get('background-image-color') . ';';
             }
+            echo $style;
             ?>
             <div class="zt-slidershow-item">
-                <?php if ($slideParams->get('background-video-webm') && $slideParams->get('background-video-mp4')) { ?>
-                    <div class="full-background-wrap">
-                        <div class="full-background">
-                            <video autoplay
-                                   poster="<?php echo $slideParams->get('background-image') ? $slideParams->get('background-image') : ''; ?>"
-                                   id="bgvid" loop>
-                                <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+
+                <div class="full-background-wrap">
+                    <?php if ($slideParams->get('background-image-color')) { ?>
+                        <div id="full-background-color" class="full-background"
+                             style="<?php echo $styleColor; ?>"></div>
+                    <?php } ?>
+                    <?php if ($slideParams->get('background-image')) { ?>
+                        <div id="full-background-image" class="full-background" style='<?php echo $style; ?>'></div>
+                    <?php } ?>
+                    <?php if ($slideParams->get('background-video-webm') || $slideParams->get('background-video-mp4')) { ?>
+                        <div id="full-background-video" class="full-background">
+                            <video id="bgvid" autoplay loop>
                                 <source src="<?php echo $slideParams->get('background-video-webm') ?>"
                                         type="video/webm">
                                 <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
                             </video>
+                            <?php if ($slideParams->get('button-mute')) { ?>
+                                <p id="btn-volumn">
+                                    <i class="fa fa-volume-up"></i>
+                                </p>
+                            <?php } ?>
                         </div>
-                        <?php if($slideParams->get('button-mute')) { ?>
-                        <p id="btn-volumn">
-                            <i class="fa fa-volume-up"></i>
-                        </p>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
 
-                <?php if ($slideParams->get('background-video-webm') == '' && $slideParams->get('background-video-mp4') == '') { ?>
-                    <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
-                        <div class="full-background"
-                             style="<?php echo $style; ?>">
-                        </div>
-                    </div>
-                <?php } ?>
 
                 <div class="container">
                     <div class="row">
