@@ -189,6 +189,18 @@
         /**
          *
          */
+        boxToggle: function (el) {
+            var valueType = $(el).val();
+            if(valueType == 'enable'){
+                $(el).closest('.element-position').find('.slide-enable').slideDown();
+            } else {
+                $(el).closest('.element-position').find('.slide-enable').slideUp();
+            }
+
+        },
+        /**
+         *
+         */
         sliderAccordion: function (el) {
             var $sliderContent = $(el).closest('.slider-accordion').next();
             if ($sliderContent.is(':visible')) {

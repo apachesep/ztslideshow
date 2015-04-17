@@ -28,4 +28,16 @@
             <a class="zt-readmore" href="<?php echo ($item->get('link')) ? $item->get('link') : ''; ?>"><?php echo ($item->get('text-link')) ? $item->get('text-link') : ''; ?></a>
         </p>
     <?php endif; ?>
+    <?php if($item->get('boxvideo')) { ?>
+        <p>
+            <?php if($item->get('boxtitle')) { ?>
+            <span class="box-title"><?php echo $item->get('boxtitle'); ?></span>
+            <?php } ?>
+        </p>
+        <p>
+            <?php if($item->get('boxicon')) { ?>
+                <a class="html5lightbox box-icon" href="<?php echo $item->get('boxvideo'); ?>"> <i class="<?php echo $item->get('boxicon'); ?>"></i></a>
+            <?php } ?>
+        </p>
+    <?php } ?>
 </div>

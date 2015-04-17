@@ -119,3 +119,21 @@
 .zt-slideshow-wrap .bx-wrapper .bx-controls-direction a:hover{
     background-color: #fdd200;
 }
+#html5-watermark, #html5-elem-data-box{
+    display: none !important;
+}
+.box-icon{
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 32px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    font-size: 20px;
+}
+.box-icon:hover{
+    color: #5eaf28;
+    border-color: #5eaf28;
+}

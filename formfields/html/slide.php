@@ -116,6 +116,36 @@ $rPosition = $slide->get('r-position', '');
             <input name="l-link" class="span12" placeholder="Fill Link" type="text"
                    value="<?php echo $slide->get('l-link'); ?>"/>
         </div>
+        <div class="slider-element element-toggle slide-text">
+            <label>Show Box</label>
+            <select onchange="zo2.modules.slideshow.boxToggle(this);" name="l-showbox" class="span12"
+                    tabindex="6">
+                <option <?php echo ($slide->get('l-showbox') == 'enable') ? 'selected="selected"' : ''; ?>
+                    value="enable">Enable
+                </option>
+                <option <?php echo ($slide->get('l-showbox') == 'disable') ? 'selected="selected"' : ''; ?>
+                    value="disable">Disable
+                </option>
+            </select>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('l-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>LightBox Video/Image</label>
+            <input name="l-boxvideo" class="span12" placeholder="Fill Link Video / Image" type="text"
+                   value="<?php echo $slide->get('l-boxvideo'); ?>"/>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('l-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>Custom Title Icon</label>
+            <input name="l-boxtitle" class="span12" placeholder="Fill Custom Title" type="text"
+                   value="<?php echo $slide->get('l-boxtitle'); ?>"/>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('l-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>Custom Class Icon</label>
+            <input name="l-boxicon" class="span12" placeholder="Fill Class Icon" type="text"
+                   value="<?php echo $slide->get('l-boxicon'); ?>"/>
+        </div>
 
         <div class="slider-element slider-position clearfix">
             <label>Alignment</label>
@@ -266,6 +296,36 @@ $rPosition = $slide->get('r-position', '');
             <label>Link</label>
             <input name="r-link" class="span12" placeholder="Fill Link" type="text"
                    value="<?php echo $slide->get('r-link'); ?>"/>
+        </div>
+        <div class="slider-element element-toggle slide-text">
+            <label>Show Box</label>
+            <select onchange="zo2.modules.slideshow.boxToggle(this);" name="r-showbox" class="span12"
+                    tabindex="6">
+                <option <?php echo ($slide->get('r-showbox') == 'enable') ? 'selected="selected"' : ''; ?>
+                    value="enable">Enable
+                </option>
+                <option <?php echo ($slide->get('r-showbox') == 'disable') ? 'selected="selected"' : ''; ?>
+                    value="disable">Disable
+                </option>
+            </select>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('r-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>LightBox Video/Image</label>
+            <input name="r-boxvideo" class="span12" placeholder="Fill Link Video / Image" type="text"
+                   value="<?php echo $slide->get('r-boxvideo'); ?>"/>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('r-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>Custom Title Icon</label>
+            <input name="r-boxtitle" class="span12" placeholder="Fill Custom Title" type="text"
+                   value="<?php echo $slide->get('r-boxtitle'); ?>"/>
+        </div>
+        <div
+            class="slider-element element-toggle slide-enable" <?php echo ($slide->get('r-showbox') == 'enable') ? 'style="display:block"' : 'style="display: none"'; ?>>
+            <label>Custom Class Icon</label>
+            <input name="r-boxicon" class="span12" placeholder="Fill Class Icon" type="text"
+                   value="<?php echo $slide->get('r-boxicon'); ?>"/>
         </div>
         <div class="slider-element slider-position clearfix">
             <label>Alignment</label>
