@@ -6,6 +6,7 @@ $doc = JFactory::getDocument();
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/html5lightbox/html5lightbox.js');
+$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/js/index.js');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/css/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
@@ -14,61 +15,83 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
 $_id = 'zt-slider-show' . rand(12345, 98765);
 ?>
 <div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>">
-<div class="zt-slideshow" id="<?php echo $_id; ?>">
-    <?php foreach ($slides as $slide) : ?>
-        <?php $slideParams = $slide['params']; ?>
+    <div class="zt-slideshow" id="<?php echo $_id; ?>">
+        <?php foreach ($slides as $slide) : ?>
+            <?php $slideParams = $slide['params']; ?>
 
-        <?php
-        $style = $styleColor = '';
-            if($slideParams->get('background-image')) {
+            <?php
+            $style = $styleColor = '';
+            if ($slideParams->get('background-image')) {
                 $style .= 'background-image: url("' . $slideParams->get('background-image') . '");';
             }
-            if($slideParams->get('background-opacity')){
-                $style .= ' opacity: '. $slideParams->get('background-opacity') .';';
+            if ($slideParams->get('background-opacity')) {
+                $style .= ' opacity: ' . $slideParams->get('background-opacity') . ';';
             }
-            if($slideParams->get('background-image-color')){
-                $styleColor .= 'background-color: '. $slideParams->get('background-image-color') .';';
+            if ($slideParams->get('background-image-color')) {
+                $styleColor .= 'background-color: ' . $slideParams->get('background-image-color') . ';';
             }
-        ?>
-        <div class="zt-slidershow-item">
+            ?>
+            <div class="zt-slidershow-item">
+                <?php if ($slideParams->get('background-video-webm') && $slideParams->get('background-video-mp4')) { ?>
+                    <div class="full-background-wrap">
+                        <div class="full-background">
+                            <video autoplay
+                                   poster="<?php echo $slideParams->get('background-image') ? $slideParams->get('background-image') : ''; ?>"
+                                   id="bgvid" loop>
+                                <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+                                <source src="<?php echo $slideParams->get('background-video-webm') ?>"
+                                        type="video/webm">
+                                <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
+                            </video>
+                        </div>
+                        <?php if($slideParams->get('button-mute')) { ?>
+                        <p id="btn-volumn">
+                            <i class="fa fa-volume-up"></i>
+                        </p>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
 
-                <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
-                    <div class="full-background"
-                         style="<?php echo $style; ?>">
+                <?php if ($slideParams->get('background-video-webm') == '' && $slideParams->get('background-video-mp4') == '') { ?>
+                    <div class="full-background-wrap" style="<?php echo $styleColor; ?>">
+                        <div class="full-background"
+                             style="<?php echo $style; ?>">
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <div class="container">
+                    <div class="row">
+                        <!-- Left -->
+                        <?php $item = $slide['left']; ?>
+                        <?php if ($item->get('column') != 'none') : ?>
+                            <div
+                                class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
+                                <?php $item = $slide['left']; ?>
+                                <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                            </div>
+                        <?php endif; ?>
+                        <!-- Right -->
+                        <?php $item = $slide['right']; ?>
+                        <?php if ($item->get('column') != 'none') : ?>
+                            <div
+                                class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
+                                <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-
-            <div class="container">
-                <div class="row">
-                    <!-- Left -->
-                    <?php $item = $slide['left']; ?>
-                    <?php if ($item->get('column') != 'none') : ?>
-                        <div
-                            class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                            <?php $item = $slide['left']; ?>
-                            <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
-                        </div>
-                    <?php endif; ?>
-                    <!-- Right -->
-                    <?php $item = $slide['right']; ?>
-                    <?php if ($item->get('column') != 'none') : ?>
-                        <div
-                            class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                            <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
             </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+        <?php endforeach; ?>
+    </div>
 </div>
 <style rel="stylesheet" type="text/css">
-    .zt-slideshow .zt-slidershow-item{
+    .zt-slideshow .zt-slidershow-item {
         min-height: <?php echo $params->get('slider_height'); ?>;
         height: <?php echo $params->get('slider_height'); ?>;
     }
-    .zt-slideshow .zt-slider-position{
+
+    .zt-slideshow .zt-slider-position {
         height: <?php echo $params->get('slider_height'); ?>;
     }
 </style>

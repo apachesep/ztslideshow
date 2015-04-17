@@ -50,6 +50,37 @@ $rPosition = $slide->get('r-position', '');
                 </div>
             </div>
         </div>
+        <!-- Text -->
+        <p></p>
+        <div class="row-fluid">
+            <div class="slider-element"
+                 id="toggle-video" <?php echo ($slide->get('background-type') == 'video') ? 'style="display:block"' : ''; ?>>
+                <div class="slider-text slider-video-mp4 span4">
+                    <label>Link Video Mp4</label>
+                    <input name="background-video-mp4" class="span12"
+                           placeholder="Enter your background video Mp4 relative path"
+                           type="text" value="<?php echo $slide->get('background-video-mp4'); ?>">
+                </div>
+                <div class="slider-text slider-video-webm span4">
+                    <label>Link Video Webm</label>
+                    <input name="background-video-webm" class="span12"
+                           placeholder="Enter your background video Webm relative path"
+                           type="text" value="<?php echo $slide->get('background-video-webm'); ?>">
+                </div>
+                <div class="slider-element slider-select span4">
+                    <label>Enable Botton Mute</label>
+                    <select name="button-mute" class="span12"
+                            tabindex="6">
+                        <option <?php echo ($slide->get('button-mute') == 'enable') ? 'selected="selected"' : ''; ?>
+                            value="enable">Enable
+                        </option>
+                        <option <?php echo ($slide->get('button-mute') == 'disable') ? 'selected="selected"' : ''; ?>
+                            value="disable">Disable
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row-fluid">

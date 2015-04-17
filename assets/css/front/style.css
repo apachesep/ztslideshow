@@ -137,3 +137,11 @@
     color: #5eaf28;
     border-color: #5eaf28;
 }
+#btn-volumn{
+    bottom: 0;
+    cursor: pointer;
+    font-size: 30px;
+    left: 15px;
+    position: absolute;
+    z-index: 99;
+}
