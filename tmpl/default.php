@@ -30,7 +30,6 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             if ($slideParams->get('background-image-color')) {
                 $styleColor .= 'background-color: ' . $slideParams->get('background-image-color') . ';';
             }
-            echo $style;
             ?>
             <div class="zt-slidershow-item">
 
