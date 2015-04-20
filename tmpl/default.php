@@ -47,7 +47,8 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                                         type="video/webm">
                                 <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
                             </video>
-                            <?php if ($slideParams->get('button-mute')) { ?>
+                        
+                            <?php if ($slideParams->get('button-mute') === 'enable') { ?>
                                 <p id="btn-volumn">
                                     <i class="fa fa-volume-up" onclick="muteBxSlider(this);"></i>
                                 </p>

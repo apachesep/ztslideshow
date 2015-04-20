@@ -68,7 +68,7 @@ $rPosition = $slide->get('r-position', '');
                            type="text" value="<?php echo $slide->get('background-video-webm'); ?>">
                 </div>
                 <div class="slider-element slider-select span4">
-                    <label>Enable Botton Mute</label>
+                    <label>Enable Button Mute</label>
                     <select name="button-mute" class="span12"
                             tabindex="6">
                         <option <?php echo ($slide->get('button-mute') == 'enable') ? 'selected="selected"' : ''; ?>
