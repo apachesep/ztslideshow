@@ -15,6 +15,9 @@
     position: absolute;
     width: 100%;
 }
+.zt-slideshow #full-background-image img{
+    width: 100%;
+}
 .zt-slideshow .zt-slider-position{
     color: #fff;
 }
