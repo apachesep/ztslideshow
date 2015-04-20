@@ -28,7 +28,7 @@
     <config>
         <fields name="params">
             <fieldset name="basic" addfieldpath="/modules/mod_zt_slideshow/formfields">
-                <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" />
+                <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" filter="raw"/>
             </fieldset>
             <fieldset name="advanced">
                 <field name="slider_width" type="text" default="auto" label="Slider Width" description="" size="10" />
@@ -82,6 +82,7 @@
                     <option value="easeInOutBounce">easeInOutBounce</option>
                 </field>
                 <field name="transition_duration" type="text" default="" label="Transition Duration" description="" size="10" />
+                <field name="mytextarea" type="textarea" default="default" label="Enter some html" description="" rows="10" cols="5" filter="raw"/>
             </fieldset>
         </fields>
     </config>

@@ -21,9 +21,6 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 
             <?php
             $style = $styleColor = '';
-            if ($slideParams->get('background-image')) {
-                $style .= 'background-image: url("' . $slideParams->get('background-image') . '");';
-            }
             if ($slideParams->get('background-opacity')) {
                 $style .= ' opacity: ' . $slideParams->get('background-opacity') . ';';
             }
@@ -39,11 +36,13 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                              style="<?php echo $styleColor; ?>"></div>
                     <?php } ?>
                     <?php if ($slideParams->get('background-image')) { ?>
-                        <div id="full-background-image" class="full-background" style='<?php echo $style; ?>'></div>
+                        <div id="full-background-image" class="full-background" style='<?php echo $style; ?> display: none;'>
+                            <img src="<?php echo $slideParams->get('background-image'); ?>">
+                        </div>
                     <?php } ?>
                     <?php if ($slideParams->get('background-video-webm') || $slideParams->get('background-video-mp4')) { ?>
-                        <div id="full-background-video" class="full-background">
-                            <video id="bgvid" autoplay loop>
+                    <div id="full-background-video" class="full-background" style="display: none;">
+                            <video id="bgvid">
                                 <source src="<?php echo $slideParams->get('background-video-webm') ?>"
                                         type="video/webm">
                                 <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
@@ -108,13 +107,13 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         if (!$params->get('pagination'))
         {
             ?>
-        pager: false,
+        pager: true,
         <?php } ?>
         <?php
         if (!$params->get('navigation'))
         {
             ?>
-        controls: false,
+        controls: true,
         <?php } ?>
         onSliderLoad: function () {
             jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
@@ -125,5 +124,31 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
         }
     });
-
+    var $wrapper = jQuery('.zt-slideshow-wrap .zt-slidershow-item');
+    $wrapper = $wrapper.not('.bx-clone');
+    $wrapper = $wrapper.find('.full-background-wrap');
+    $wrapper.each(function(){
+        var $color = jQuery(this).find('#full-background-color');
+        var $image = jQuery(this).find('#full-background-image img');
+        var $video = jQuery(this).find('#full-background-video video');
+        $image.load(function(){
+            jQuery(this).parent().fadeIn();
+        });
+        if($image.length > 0){
+            if($image.prop('tagName') === 'IMG'){
+                if($image[0].complete){
+                    $image.trigger('load');
+                }
+            }
+        }
+        if($video.length > 0){
+            if($video.prop('tagName') === 'VIDEO'){
+                $video[0].addEventListener('loadeddata', function(){
+                    jQuery(this).parent().fadeIn();
+                    jQuery(this).prop('loop', true);
+                    this.play();
+                });
+            }
+        }
+    });
 </script>
