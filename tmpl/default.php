@@ -49,7 +49,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                             </video>
                             <?php if ($slideParams->get('button-mute')) { ?>
                                 <p id="btn-volumn">
-                                    <i class="fa fa-volume-up"></i>
+                                    <i class="fa fa-volume-up" onclick="muteBxSlider(this);"></i>
                                 </p>
                             <?php } ?>
                         </div>
@@ -151,4 +151,17 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             }
         }
     });
+    muteBxSlider = function(el){
+        var $this = jQuery(el);
+        var $video = $this.parent().prev();
+        if($this.hasClass('fa-volume-up')){
+            $this.removeClass('fa-volume-up');
+            $this.addClass('fa-volume-off');
+            $video.prop('muted', true);
+        }else{
+            $this.removeClass('fa-volume-off');
+            $this.addClass('fa-volume-up');
+            $video.prop('muted', false);
+        }
+    };
 </script>
