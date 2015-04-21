@@ -36,7 +36,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                     <?php } ?>
                     <?php if ($slideParams->get('background-image')) { ?>
                         <div id="full-background-image" class="full-background" style='<?php echo $style; ?> display: none;'>
-                            <img src="<?php echo $slideParams->get('background-image'); ?>">
+                            <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
                         </div>
                     <?php } ?>
                     <?php if ($slideParams->get('background-video-webm') || $slideParams->get('background-video-mp4')) { ?>
@@ -93,7 +93,15 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
     }
 </style>
 <script type="text/javascript">
-    slider = jQuery('#<?php echo $_id; ?>').bxSlider({
+(function(w){
+    if(typeof(w.jQuery) === 'undefined'){
+        console.log('ERROR! jQuery was not loaded !');
+        return false;
+    }else{
+        var $ = jQuery
+    }
+    
+    var bxSliderSettings = {
         speed: <?php echo $params->get('transition_duration', 500); ?>,
         <?php if($params->get('autoplay')) { ?>
         auto: true,
@@ -116,23 +124,26 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         controls: true,
         <?php } ?>
         onSliderLoad: function () {
-            jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
+            $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
         },
         onSlideAfter: function () {
-            jQuery("#<?php echo $_id; ?> div").removeClass('active');
+            $("#<?php echo $_id; ?> div").removeClass('active');
             current = slider.getCurrentSlide();
-            jQuery("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
+            $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
         }
-    });
-    var $wrapper = jQuery('.zt-slideshow-wrap .zt-slidershow-item');
+    };
+    mySlider = $('#<?php echo $_id; ?>').bxSlider(bxSliderSettings);
+    var $wrapper = $('.zt-slideshow-wrap .zt-slidershow-item');
     $wrapper = $wrapper.not('.bx-clone');
     $wrapper = $wrapper.find('.full-background-wrap');
     $wrapper.each(function(){
-        var $color = jQuery(this).find('#full-background-color');
-        var $image = jQuery(this).find('#full-background-image img');
-        var $video = jQuery(this).find('#full-background-video video');
+        var $color = $(this).find('#full-background-color');
+        var $image = $(this).find('#full-background-image img');
+        var $video = $(this).find('#full-background-video video');
         $image.load(function(){
-            jQuery(this).parent().fadeIn();
+            var $parent = $(this).parent();
+            $parent.fadeIn();
+            $parent.css('background-image', "url('" + $(this).attr('src') + "')");
         });
         if($image.length > 0){
             if($image.prop('tagName') === 'IMG'){
@@ -151,6 +162,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             }
         }
     });
+    
     muteBxSlider = function(el){
         var $this = jQuery(el);
         var $video = $this.parent().prev();
@@ -164,4 +176,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             $video.prop('muted', false);
         }
     };
+    
+})(window);
+    
 </script>
