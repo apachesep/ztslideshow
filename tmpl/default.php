@@ -132,7 +132,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
         }
     };
-    mySlider = $('#<?php echo $_id; ?>').bxSlider(bxSliderSettings);
+    slider = $('#<?php echo $_id; ?>').bxSlider(bxSliderSettings);
     var $wrapper = $('.zt-slideshow-wrap .zt-slidershow-item');
     $wrapper = $wrapper.not('.bx-clone');
     $wrapper = $wrapper.find('.full-background-wrap');
