@@ -6,6 +6,7 @@ $doc = JFactory::getDocument();
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/html5lightbox/html5lightbox.js');
+$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/js/jquery.video.parallax.js');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/css/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
@@ -28,35 +29,28 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             }
             ?>
             <div class="zt-slidershow-item">
-
                 <div class="full-background-wrap">
-                    <?php if ($slideParams->get('background-image-color')) { ?>
-                        <div id="full-background-color" class="full-background"
-                             style="<?php echo $styleColor; ?>"></div>
-                    <?php } ?>
-                    <?php if ($slideParams->get('background-image')) { ?>
-                        <div id="full-background-image" class="full-background" style='<?php echo $style; ?> display: none;'>
-                            <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
-                        </div>
-                    <?php } ?>
                     <?php if ($slideParams->get('background-video-webm') || $slideParams->get('background-video-mp4')) { ?>
-                    <div id="full-background-video" class="full-background" style="display: none;">
-                            <video id="bgvid">
-                                <source src="<?php echo $slideParams->get('background-video-webm') ?>"
-                                        type="video/webm">
-                                <source src="<?php echo $slideParams->get('background-video-mp4') ?>" type="video/mp4">
-                            </video>
-                        
-                            <?php if ($slideParams->get('button-mute') === 'enable') { ?>
-                                <p id="btn-volumn">
-                                    <i class="fa fa-volume-up" onclick="muteBxSlider(this);"></i>
-                                </p>
-                            <?php } ?>
-                        </div>
+                    <div 
+                        id="full-background-video" 
+                        class="full-background" 
+                        style="min-height: <?php echo $params->get('slider_height'); ?>px;"
+                        data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
+                        data-video-file-webm="<?php echo $slideParams->get('background-video-mp4') ?>"
+                        data-sound="false"
+                        data-width="1288"
+                        data-height="724"
+                        data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
+                        data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
+                        data-overlay-opacity="0">
+                        <?php if ($slideParams->get('button-mute') === 'enable') { ?>
+                            <p id="btn-volumn">
+                                <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
+                            </p>
+                        <?php } ?>
+                    </div>
                     <?php } ?>
                 </div>
-
-
                 <div class="container">
                     <div class="row">
                         <!-- Left -->
@@ -115,13 +109,13 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         if (!$params->get('pagination'))
         {
             ?>
-        pager: true,
+        pager: false,
         <?php } ?>
         <?php
         if (!$params->get('navigation'))
         {
             ?>
-        controls: true,
+        controls: false,
         <?php } ?>
         onSliderLoad: function () {
             $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
@@ -133,39 +127,10 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         }
     };
     slider = $('#<?php echo $_id; ?>').bxSlider(bxSliderSettings);
-    var $wrapper = $('.zt-slideshow-wrap .zt-slidershow-item');
-    $wrapper = $wrapper.not('.bx-clone');
-    $wrapper = $wrapper.find('.full-background-wrap');
-    $wrapper.each(function(){
-        var $color = $(this).find('#full-background-color');
-        var $image = $(this).find('#full-background-image img');
-        var $video = $(this).find('#full-background-video video');
-        $image.load(function(){
-            var $parent = $(this).parent();
-            $parent.fadeIn();
-            $parent.css('background-image', "url('" + $(this).attr('src') + "')");
-        });
-        if($image.length > 0){
-            if($image.prop('tagName') === 'IMG'){
-                if($image[0].complete){
-                    $image.trigger('load');
-                }
-            }
-        }
-        if($video.length > 0){
-            if($video.prop('tagName') === 'VIDEO'){
-                $video[0].addEventListener('loadeddata', function(){
-                    jQuery(this).parent().fadeIn();
-                    jQuery(this).prop('loop', true);
-                    this.play();
-                });
-            }
-        }
-    });
-    
+    jQuery("#full-background-video").bgVideo();
     muteBxSlider = function(el){
         var $this = jQuery(el);
-        var $video = $this.parent().prev();
+        var $video = $this.closest('#full-background-video').find('video');
         if($this.hasClass('fa-volume-up')){
             $this.removeClass('fa-volume-up');
             $this.addClass('fa-volume-off');
