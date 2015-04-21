@@ -32,7 +32,7 @@
             </fieldset>
             <fieldset name="advanced">
                 <field name="slider_width" type="text" default="auto" label="Slider Width" description="" size="10" />
-                <field name="slider_height" type="text" default="550px" label="Slider Width" description="" size="10" />
+                <field name="slider_height" type="text" default="550px" label="Slider Height" description="" size="10" />
                 <field name="pagination" type="list" default="1" label="Show pagination" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
