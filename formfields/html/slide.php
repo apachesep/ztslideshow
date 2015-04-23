@@ -37,16 +37,16 @@ $rPosition = $slide->get('r-position', '');
                     <?php echo JLayoutHelper::render('joomla.editors.buttons.button', $button); ?>
                 </div>
                 <div class="slider-text slide-opacity span4">
-                    <label>Background Opacity</label>
-                    <input name="background-opacity" class="span12"
-                           placeholder="Enter your background Opacity"
-                           type="text" value="<?php echo $slide->get('background-opacity'); ?>">
-                </div>
-                <div class="slider-text slide-opacity span4">
                     <label>Background Color</label>
                     <input name="background-image-color" class="span12"
                            placeholder="Enter your background Color"
                            type="text" value="<?php echo $slide->get('background-image-color'); ?>">
+                </div>
+                <div class="slider-text slide-opacity span4">
+                    <label>Color overlay opacity</label>
+                    <input name="color-overlay-opacity" class="span12"
+                           placeholder="Enter your background Opacity"
+                           type="text" value="<?php echo $slide->get('color-overlay-opacity'); ?>">
                 </div>
             </div>
         </div>

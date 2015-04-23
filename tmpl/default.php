@@ -21,24 +21,24 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
 
             <?php
             $style = $styleColor = '';
-            if ($slideParams->get('background-opacity')) {
-                $style .= ' opacity: ' . $slideParams->get('background-opacity') . ';';
+            if ($slideParams->get('color-overlay-opacity')) {
+                $style .= 'display: none;';
             }
             if ($slideParams->get('background-image-color')) {
-                $styleColor .= 'background-color: ' . $slideParams->get('background-image-color') . ';';
+                $styleColor .= 'background-color: ' . $slideParams->get('background-image-color') . '; opacity: ' . $slideParams->get('color-overlay-opacity') . ';';
             }
             ?>
             <div class="zt-slidershow-item">
                 <div class="full-background-wrap">
                     <?php if ($slideParams->get('background-video-webm', '') == '' && $slideParams->get('background-video-mp4', '') == '') { ?>
+                        <?php if ($slideParams->get('background-image')) { ?>
+                            <div id="full-background-image" class="full-background" style='<?php echo $style; ?>'>
+                                <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
+                            </div>
+                        <?php } ?>
                         <?php if ($slideParams->get('background-image-color')) { ?>
                             <div id="full-background-color" class="full-background"
                                style="<?php echo $styleColor; ?>"></div>
-                        <?php } ?>
-                        <?php if ($slideParams->get('background-image')) { ?>
-                            <div id="full-background-image" class="full-background" style='<?php echo $style; ?> display: none;'>
-                                <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
-                            </div>
                         <?php } ?>
                     <?php } else { ?>
                         <div 
@@ -52,7 +52,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                             data-height="724"
                             data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
                             data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
-                            data-overlay-opacity="<?php echo($slideParams->get('background-opacity')!== '')? $slideParams->get('background-opacity') : ''; ?>">
+                            data-overlay-opacity="<?php echo($slideParams->get('color-overlay-opacity')!== '')? $slideParams->get('color-overlay-opacity') : ''; ?>">
                             <?php if ($slideParams->get('button-mute') === 'enable') { ?>
                                 <p id="btn-volumn">
                                     <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
