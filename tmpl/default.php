@@ -30,25 +30,35 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             ?>
             <div class="zt-slidershow-item">
                 <div class="full-background-wrap">
-                    <?php if ($slideParams->get('background-video-webm') || $slideParams->get('background-video-mp4')) { ?>
-                    <div 
-                        id="full-background-video" 
-                        class="full-background" 
-                        style="min-height: <?php echo $params->get('slider_height'); ?>px;"
-                        data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
-                        data-video-file-webm="<?php echo $slideParams->get('background-video-mp4') ?>"
-                        data-sound="false"
-                        data-width="1288"
-                        data-height="724"
-                        data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
-                        data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
-                        data-overlay-opacity="0">
-                        <?php if ($slideParams->get('button-mute') === 'enable') { ?>
-                            <p id="btn-volumn">
-                                <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
-                            </p>
+                    <?php if ($slideParams->get('background-video-webm', '') == '' && $slideParams->get('background-video-mp4', '') == '') { ?>
+                        <?php if ($slideParams->get('background-image-color')) { ?>
+                            <div id="full-background-color" class="full-background"
+                               style="<?php echo $styleColor; ?>"></div>
                         <?php } ?>
-                    </div>
+                        <?php if ($slideParams->get('background-image')) { ?>
+                            <div id="full-background-image" class="full-background" style='<?php echo $style; ?> display: none;'>
+                                <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
+                            </div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div 
+                            id="full-background-video" 
+                            class="full-background" 
+                            style="min-height: <?php echo $params->get('slider_height'); ?>px;"
+                            data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
+                            data-video-file-webm="<?php echo $slideParams->get('background-video-mp4') ?>"
+                            data-sound="false"
+                            data-width="1288"
+                            data-height="724"
+                            data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
+                            data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
+                            data-overlay-opacity="<?php echo($slideParams->get('background-opacity')!== '')? $slideParams->get('background-opacity') : ''; ?>">
+                            <?php if ($slideParams->get('button-mute') === 'enable') { ?>
+                                <p id="btn-volumn">
+                                    <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
+                                </p>
+                            <?php } ?>
+                        </div>
                     <?php } ?>
                 </div>
                 <div class="container">
@@ -141,7 +151,25 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
             $video.prop('muted', false);
         }
     };
-    
+    var $wrapper = $('.zt-slideshow-wrap .zt-slidershow-item');
+    $wrapper = $wrapper.not('.bx-clone');
+    $wrapper = $wrapper.find('.full-background-wrap');
+    $wrapper.each(function(){
+        var $color = $(this).find('#full-background-color');
+        var $image = $(this).find('#full-background-image img');
+        $image.load(function(){
+            var $parent = $(this).parent();
+            $parent.fadeIn();
+            $parent.css('background-image', "url('" + $(this).attr('src') + "')");
+        });
+        if($image.length > 0){
+            if($image.prop('tagName') === 'IMG'){
+                if($image[0].complete){
+                    $image.trigger('load');
+                }
+            }
+        }
+    });
 })(window);
     
 </script>
