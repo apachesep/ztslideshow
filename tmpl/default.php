@@ -136,7 +136,6 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         }
     };
     slider = $('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
-    jQuery("#full-background-video").bgVideo();
     muteBxSlider = function(el){
         var $this = jQuery(el);
         var $video = $this.closest('#full-background-video').find('video');
@@ -156,6 +155,8 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     $wrapper.each(function(){
         var $color = $(this).find('#full-background-color');
         var $image = $(this).find('#full-background-image img');
+        var $video = $(this).find('#full-background-video');
+        $video.bgVideo();
         $image.load(function(){
             var $parent = $(this).parent();
             console.log($parent);
