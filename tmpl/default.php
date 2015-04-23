@@ -50,7 +50,7 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                             data-sound="false"
                             data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
                             data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
-                            data-overlay-opacity="<?php echo($opactity); ?>">
+                            data-overlay-opacity="<?php echo($slideParams->get('color-overlay-opacity', '0')); ?>">
                             <?php if ($slideParams->get('button-mute') === 'enable') { ?>
                                 <p id="btn-volumn">
                                     <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
