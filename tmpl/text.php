@@ -25,12 +25,14 @@
         </p>
     <?php endif; ?>
     <?php if($item->get('boxvideo')) { ?>
-        <p>
+        <p class="animated <?php echo ($item->get('effect')) ? $item->get('effect') : ''; ?>"
+           style="animation-delay: 1.2s; -webkit-animation-delay: 1.2s;">
             <?php if($item->get('boxtitle')) { ?>
             <span class="box-title"><?php echo $item->get('boxtitle'); ?></span>
             <?php } ?>
         </p>
-        <p>
+        <p class="animated <?php echo ($item->get('effect')) ? $item->get('effect') : ''; ?>"
+           style="animation-delay: 1.5s; -webkit-animation-delay: 1.5s;">
             <?php if($item->get('boxicon')) { ?>
                 <a class="html5lightbox box-icon" href="<?php echo $item->get('boxvideo'); ?>"> <i class="<?php echo $item->get('boxicon'); ?>"></i></a>
             <?php } ?>

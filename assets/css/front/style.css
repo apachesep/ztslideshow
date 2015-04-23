@@ -20,6 +20,8 @@
 }
 .zt-slideshow .zt-slider-position{
     color: #fff;
+    position: relative;
+    z-index: 9;
 }
 .ps-top-left, .ps-center-left, .ps-bottom-left{
     text-align: left;
