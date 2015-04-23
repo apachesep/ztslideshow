@@ -24,7 +24,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         $defaultOverlay = $slideParams->get('background-image-color', 'black');
         $colorStyle = 'background-color: ' . $defaultOverlay . ';';
         $opacityStyle = 'opacity: ' . $opacity . ';';
-        $opacityStyleReverse = 'opacity' . (1 - $opacity) . ';';
+        $opacityStyleReverse = 'opacity: ' . (1 - $opacity) . ';';
         $imageURL = ($slideParams->get('background-image', '') !== '') ? JUri::root() . '/' . $slideParams->get('background-image') : '';
     ?>
     <div class="zt-slidershow-item">
