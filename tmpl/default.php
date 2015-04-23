@@ -24,8 +24,8 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         $defaultOverlay = $slideParams->get('background-image-color', 'black');
         $colorStyle = 'background-color: ' . $defaultOverlay . ';';
         $opacityStyle = 'opacity: ' . $opacity . ';';
-        $opacityStyleReverse = 'opacity: ' . (1 - $opacity) . ';';
-        $imageURL = ($slideParams->get('background-image', '') !== '') ? JUri::root() . '/' . $slideParams->get('background-image') : '';
+        $opacityStyleReverse = 'opacity: ' . $opacity . ';';
+        $imageURL = ($slideParams->get('background-image', '') !== '') ? rtrim(JUri::root(), '/') . '/' . $slideParams->get('background-image') : '';
     ?>
     <div class="zt-slidershow-item">
         <div class="full-background-wrap">
@@ -34,7 +34,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
             <!-- Background image -->
             <?php if($imageURL != ''): ?>
             <div id="full-background-image" class="full-background" style="<?php echo($unvisible . $opacityStyleReverse); ?>">
-                <img src ="<?php $imageURL ?>" style="<?php echo($unvisible); ?>">
+                <img src="<?php echo $imageURL ?>" style="<?php echo($unvisible); ?>">
             </div>
             <?php endif; ?>
             <!-- Background video -->
