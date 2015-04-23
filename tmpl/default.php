@@ -44,12 +44,10 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                         <div 
                             id="full-background-video" 
                             class="full-background" 
-                            style="min-height: <?php echo $params->get('slider_height'); ?>;"
+                            style="min-height: <?php echo $params->get('slider_height'); ?>;min-width: <?php echo $params->get('slider_width'); ?>;"
                             data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
                             data-video-file-webm="<?php echo $slideParams->get('background-video-webm') ?>"
                             data-sound="false"
-                            data-width="1288"
-                            data-height="724"
                             data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
                             data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
                             data-overlay-opacity="<?php echo($opactity); ?>">
