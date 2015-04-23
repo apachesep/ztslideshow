@@ -12,79 +12,81 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jq
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
-$_id = 'zt-slider-show' . rand(12345, 98765);
 ?>
-<div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>">
-    <div class="zt-slideshow" id="<?php echo $_id; ?>">
-        <?php foreach ($slides as $slide) : ?>
-            <?php
-            $slideParams = $slide['params']; 
-            $style = 'display: none;';
-            $styleColor = ($slideParams->get('background-image-color', '') != '') ? 'background-color: ' . $slideParams->get('background-image-color') . ';' : '';
-            $opactity = ($slideParams->get('color-overlay-opacity','') != '') ? ' opacity: ' . $slideParams->get('color-overlay-opacity', 1) . ';' : '';
-            if($slideParams->get('background-video-webm', '') == '' 
-                    && $slideParams->get('background-video-mp4', '') == ''
-                    && $slideParams->get('background-image-color', '') != '') {
-                    $opactity = ($slideParams->get('color-overlay-opacity','') != '') ? ' opacity: ' . (1 - $slideParams->get('color-overlay-opacity', 1)) . ';' : '';
-            }
-            ?>
-            <div class="zt-slidershow-item">
-                <div class="full-background-wrap">
-                    <?php if ($slideParams->get('background-video-webm', '') == '' && $slideParams->get('background-video-mp4', '') == '') { ?>
-                        <?php if ($slideParams->get('background-image-color', '') != '') { ?>
-                            <div id="full-background-color" class="full-background"
-                               style="<?php echo $styleColor; ?>"></div>
-                        <?php } ?>                    
-                        <?php if ($slideParams->get('background-image', '') != '') { ?>
-                            <div id="full-background-image" class="full-background" style='<?php echo $style . $opactity; ?>'>
-                                <img style="display: none;" src="<?php echo $slideParams->get('background-image'); ?>">
-                            </div>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <div 
-                            id="full-background-video" 
-                            class="full-background" 
-                            style="min-height: <?php echo $params->get('slider_height'); ?>;min-width: <?php echo $params->get('slider_width'); ?>;"
-                            data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
-                            data-video-file-webm="<?php echo $slideParams->get('background-video-webm') ?>"
-                            data-sound="false"
-                            data-link-image-poster="<?php echo ($slideParams->get('background-image') !== '')? $slideParams->get('background-image') : ''; ?>"
-                            data-overlay-color="<?php echo($slideParams->get('background-image-color')!== '')? $slideParams->get('background-image-color') : ''; ?>"
-                            data-overlay-opacity="<?php echo($slideParams->get('color-overlay-opacity', '0')); ?>">
-                            <?php if ($slideParams->get('button-mute') === 'enable') { ?>
-                                <p id="btn-volumn">
-                                    <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
-                                </p>
-                            <?php } ?>
-                        </div>
-                    <?php } ?>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <!-- Left -->
+<div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
+    <div class="zt-slideshow">
+    <?php
+    foreach ($slides as $slide)
+    {
+        $slideParams = $slide['params'];
+        $unvisible = 'diplay: none;';
+        $opacity = $slideParams->get('color-overlay-opacity', '0');
+        $defaultOverlay = $slideParams->get('background-image-color', 'black');
+        $colorStyle = 'background-color: ' . $defaultOverlay . ';';
+        $opacityStyle = 'opacity: ' . $opacity . ';';
+        $opacityStyleReverse = 'opacity' . (1 - $opacity) . ';';
+        $imageURL = ($slideParams->get('background-image', '') !== '') ? JUri::root() . '/' . $slideParams->get('background-image') : '';
+    ?>
+    <div class="zt-slidershow-item">
+        <div class="full-background-wrap">
+            <!-- Background color -->
+            <div id="full-background-color" class="full-background" style="<?php echo($colorStyle); ?>"></div>
+            <!-- Background image -->
+            <?php if($imageURL != ''): ?>
+            <div id="full-background-image" class="full-background" style="<?php echo($unvisible . $opacityStyleReverse); ?>">
+                <img src ="<?php $imageURL ?>" style="<?php echo($unvisible); ?>">
+            </div>
+            <?php endif; ?>
+            <!-- Background video -->
+            <?php if ($slideParams->get('background-video-mp4', '') != '' && $slideParams->get('background-video-webm', '') != ''): ?>
+            <div 
+                id="full-background-video" 
+                class="full-background" 
+                style="min-height: <?php echo $slideParams->get('slider_height'); ?>; min-width: <?php echo $slideParams->get('slider_width'); ?>;"
+                data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
+                data-video-file-webm="<?php echo $slideParams->get('background-video-webm') ?>"
+                data-sound="false"
+                <?php if($imageURL != ''):?>
+                data-link-image-poster="<?php echo ($imageURL); ?>"
+                <?php endif; ?>
+                data-overlay-color="<?php echo($defaultOverlay); ?>"
+                data-overlay-opacity="<?php echo($opacity); ?>">
+                <?php if ($slideParams->get('button-mute') === 'enable') { ?>
+                    <p id="btn-volumn">
+                        <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
+                    </p>
+                <?php } ?>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- Left -->
+                <?php $item = $slide['left']; ?>
+                <?php if ($item->get('column') != 'none') : ?>
+                    <div
+                        class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
                         <?php $item = $slide['left']; ?>
-                        <?php if ($item->get('column') != 'none') : ?>
-                            <div
-                                class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                                <?php $item = $slide['left']; ?>
-                                <?php if ( $item->get('type') ) : ?>
-                                    <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                        <!-- Right -->
-                        <?php $item = $slide['right']; ?>
-                        <?php if ($item->get('column') != 'none') : ?>
-                            <div class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                                <?php if ( $item->get('type') ) : ?>
-                                    <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
-                                <?php endif; ?>
-                            </div>
+                        <?php if ( $item->get('type') ) : ?>
+                            <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
                         <?php endif; ?>
                     </div>
-                </div>
+                <?php endif; ?>
+                <!-- Right -->
+                <?php $item = $slide['right']; ?>
+                <?php if ($item->get('column') != 'none') : ?>
+                    <div class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
+                        <?php if ( $item->get('type') ) : ?>
+                            <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
             </div>
-        <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
     </div>
 </div>
 <style rel="stylesheet" type="text/css">
@@ -106,38 +108,34 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
         var $ = jQuery
     }
     
+    var $bxSliderContainer = $('div.zt-slideshow-wrap > div.zt-slideshow')
+    
     var bxSliderSettings = {
         speed: <?php echo $params->get('transition_duration', 500); ?>,
-        <?php if($params->get('autoplay')) { ?>
+        <?php if($params->get('autoplay')): ?>
         auto: true,
-        <?php } ?>
-        <?php if($params->get('effects') != 'none') { ?>
+        <?php endif; ?>
+        <?php if($params->get('effects') != 'none'): ?>
         useCSS: false,
         easing: '<?php echo $params->get('effects'); ?>',
-        <?php } ?>
+        <?php endif; ?>
         pause: <?php echo $params->get('display_time', 4000); ?>,
-        <?php
-        if (!$params->get('pagination'))
-        {
-            ?>
+        <?php if (!$params->get('pagination')): ?>
         pager: false,
-        <?php } ?>
-        <?php
-        if (!$params->get('navigation'))
-        {
-            ?>
+        <?php endif; ?>
+        <?php if (!$params->get('navigation')): ?>
         controls: false,
-        <?php } ?>
+        <?php endif; ?>
         onSliderLoad: function () {
-            $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(0).addClass('active');
+            $bxSliderContainer.find("> div:not('.bx-clone')").eq(0).addClass('active');
         },
         onSlideAfter: function () {
-            $("#<?php echo $_id; ?> div").removeClass('active');
+            $bxSliderContainer.find('div').removeClass('active');
             current = slider.getCurrentSlide();
-            $("#<?php echo $_id; ?> > div:not('.bx-clone')").eq(current).addClass('active');
+            $bxSliderContainer.find("> div:not('.bx-clone')").eq(current).addClass('active');
         }
     };
-    slider = $('#<?php echo $_id; ?>').bxSlider(bxSliderSettings);
+    slider = $('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
     jQuery("#full-background-video").bgVideo();
     muteBxSlider = function(el){
         var $this = jQuery(el);

@@ -1,10 +1,6 @@
 <?php
 /* {$id} */
 ?>
-
-<?php
-
-?>
 <div class="content-text ps-<?php echo ($item->get('position')) ? $item->get('position') : 'none'; ?>">
     <?php if ($item->get('text-title') != '') : ?>
         <p class="small-title animated <?php echo ($item->get('effect')) ? $item->get('effect') : ''; ?>"
