@@ -45,7 +45,7 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="display_time" type="text" default="1" label="Display time" description="" size="10" />
+                <field name="display_time" type="text" default="5000" label="Display time" description="" size="10" />
                 <field name="effects" type="list" default="" label="Effects" description="">
                     <option value="none">none</option>
                     <option value="linear">linear</option>
