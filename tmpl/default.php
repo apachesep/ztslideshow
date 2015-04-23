@@ -67,15 +67,18 @@ $_id = 'zt-slider-show' . rand(12345, 98765);
                             <div
                                 class="left zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
                                 <?php $item = $slide['left']; ?>
-                                <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                                <?php if ( $item->get('type') ) : ?>
+                                    <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                                <?php endif; ?>
                             </div>
                         <?php endif; ?>
                         <!-- Right -->
                         <?php $item = $slide['right']; ?>
                         <?php if ($item->get('column') != 'none') : ?>
-                            <div
-                                class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
-                                <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                            <div class="right zt-slider-position <?php echo 'col-md-' . $item->get('column') . ' col-sm-' . $item->get('column'); ?>">
+                                <?php if ( $item->get('type') ) : ?>
+                                    <?php require __DIR__ . '/' . $item->get('type') . '.php'; ?>
+                                <?php endif; ?>
                             </div>
                         <?php endif; ?>
                     </div>
