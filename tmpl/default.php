@@ -19,7 +19,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     foreach ($slides as $slide)
     {
         $slideParams = $slide['params'];
-        $unvisible = 'diplay: none;';
+        $unvisible = 'display: none;';
         $opacity = $slideParams->get('color-overlay-opacity', '0');
         $defaultOverlay = $slideParams->get('background-image-color', 'black');
         $colorStyle = 'background-color: ' . $defaultOverlay . ';';
