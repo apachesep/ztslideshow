@@ -45,7 +45,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
                 style="min-height: <?php echo $slideParams->get('slider_height'); ?>; min-width: <?php echo $slideParams->get('slider_width'); ?>;"
                 data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
                 data-video-file-webm="<?php echo $slideParams->get('background-video-webm') ?>"
-                data-sound="false"
+                data-sound="true"
                 <?php if($imageURL != ''):?>
                 data-link-image-poster="<?php echo ($imageURL); ?>"
                 <?php endif; ?>
@@ -53,7 +53,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
                 data-overlay-opacity="<?php echo($opacity); ?>">
                 <?php if ($slideParams->get('button-mute') === 'enable') { ?>
                     <p id="btn-volumn">
-                        <i class="fa fa-volume-off" onclick="muteBxSlider(this);"></i>
+                        <i class="fa fa-volume-up" onclick="muteBxSlider(this);"></i>
                     </p>
                 <?php } ?>
             </div>

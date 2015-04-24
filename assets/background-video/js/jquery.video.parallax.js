@@ -55,10 +55,10 @@
                         r+='<source src="'+n.videofileMp4+'" type="video/mp4" />';
                         r+='<source src="'+n.videofileWebm+'" type="video/webm" />';
                         r+="bgvideo</video>";r+="</div>";
-                        if(n.videosound){
-                            r+='<a href="#" class="mute-video" style="position: absolute;z-index:50; bottom:20px;left:50%;margin-left: -10px;color:#ffffff;display:block;width: 20px;height: 20px;"><i class="fa fa-volume-up fa-fw"></i></a>'
-                        }else{
-                        }
+//                        if(n.videosound){
+//                            r+='<a href="#" class="mute-video" style="position: absolute;z-index:50; bottom:20px;left:50%;margin-left: -10px;color:#ffffff;display:block;width: 20px;height: 20px;"><i class="fa fa-volume-up fa-fw"></i></a>'
+//                        }else{
+//                        }
 
                     if(check) {
                         t.prepend(overlay);
