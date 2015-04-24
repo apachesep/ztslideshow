@@ -111,7 +111,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     var $bxSliderContainer = $('div.zt-slideshow-wrap > div.zt-slideshow')
     
     var bxSliderSettings = {
-        speed: <?php echo $params->get('transition_duration', 500); ?>,
+        speed: <?php echo $params->get('transition_duration', 1000); ?>,
         <?php if($params->get('autoplay')): ?>
         auto: true,
         <?php endif; ?>
