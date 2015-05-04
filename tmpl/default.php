@@ -13,6 +13,19 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/s
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
 ?>
+<style>
+.zt-slideshow-loading{
+  min-height: 50px;
+  background-color: red;
+  background: url(modules/mod_zt_slideshow/assets/bxslider/images/bx_loader.gif) center center no-repeat #ffffff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+</style>
 <div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
     <div class="zt-slideshow">
     <?php
@@ -28,6 +41,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         $imageURL = ($slideParams->get('background-image', '') !== '') ? rtrim(JUri::root(), '/') . '/' . $slideParams->get('background-image') : '';
     ?>
     <div class="zt-slidershow-item">
+        <div class="zt-slideshow-loading" style="<?php echo($unvisible); ?>"></div>
         <div class="full-background-wrap">
             <!-- Background color -->
             <div id="full-background-color" class="full-background" style="<?php echo($colorStyle); ?>"></div>
@@ -108,7 +122,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         var $ = jQuery
     }
     
-    var $bxSliderContainer = $('div.zt-slideshow-wrap > div.zt-slideshow')
+    var $bxSliderContainer = $('div.zt-slideshow-wrap div.zt-slideshow');
     
     var bxSliderSettings = {
         speed: <?php echo $params->get('transition_duration', 1000); ?>,
@@ -126,13 +140,23 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         <?php if (!$params->get('navigation')): ?>
         controls: false,
         <?php endif; ?>
-        onSliderLoad: function () {
-            $bxSliderContainer.find("> div:not('.bx-clone')").eq(0).addClass('active');
+        onSlideBefore: function(){
+            if(typeof(slider) !== 'undefined'){
+                var $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide());
+            }else{
+                var $current = $bxSliderContainer.find("> div:not('.bx-clone')").first();
+            }
+            $current.addClass('active');
+            $current.find('.zt-slideshow-loading').css('display', 'block');
         },
         onSlideAfter: function () {
-            $bxSliderContainer.find('div').removeClass('active');
-            current = slider.getCurrentSlide();
-            $bxSliderContainer.find("> div:not('.bx-clone')").eq(current).addClass('active');
+            var $current = $bxSliderContainer.find("> div:not('.bx-clone')").find('.active');
+            $current.removeClass('active');
+            $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide())
+            $current.addClass('active');
+            w.setTimeout(function(){
+                $current.find('.zt-slideshow-loading').fadeOut();
+            }, 500);
         }
     };
     slider = $('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
@@ -159,7 +183,6 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
         $video.bgVideo();
         $image.load(function(){
             var $parent = $(this).parent();
-            console.log($parent);
             $parent.fadeIn();
             $parent.css('background-image', "url('" + $(this).attr('src') + "')");
         });
