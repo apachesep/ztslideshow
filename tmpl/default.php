@@ -13,19 +13,6 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/s
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
 ?>
-<style>
-.zt-slideshow-loading{
-  min-height: 50px;
-  background-color: red;
-  background: url(modules/mod_zt_slideshow/assets/bxslider/images/bx_loader.gif) center center no-repeat #ffffff;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-}
-</style>
 <div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
     <div class="zt-slideshow">
     <?php

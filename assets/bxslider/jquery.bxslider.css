@@ -177,3 +177,15 @@ ul.bxslider {
   font-size: .85em;
   padding: 10px;
 }
+
+.zt-slideshow-loading{
+  min-height: 50px;
+  background-color: red;
+  background: url(images/bx_loader.gif) center center no-repeat #ffffff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
