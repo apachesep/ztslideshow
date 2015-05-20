@@ -34,9 +34,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
             <div id="full-background-color" class="full-background" style="<?php echo($colorStyle); ?>"></div>
             <!-- Background image -->
             <?php if($imageURL != ''): ?>
-            <div id="full-background-image" class="full-background" style="<?php echo($unvisible . $opacityStyleReverse); ?>">
-                <img src="<?php echo $imageURL ?>" style="<?php echo($unvisible); ?>">
-            </div>
+            <div id="full-background-image" class="full-background" style="background-image: url('<?php echo $imageURL ?>');<?php echo($opacityStyleReverse); ?>"></div>
             <?php endif; ?>
             <!-- Background video -->
             <?php if ($slideParams->get('background-video-mp4', '') != '' && $slideParams->get('background-video-webm', '') != ''): ?>
@@ -101,86 +99,63 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome
     }
 </style>
 <script type="text/javascript">
-(function(w){
-    if(typeof(w.jQuery) === 'undefined'){
-        console.log('ERROR! jQuery was not loaded !');
-        return false;
-    }else{
-        var $ = jQuery
-    }
-    
-    var $bxSliderContainer = $('div.zt-slideshow-wrap div.zt-slideshow');
-    
-    var bxSliderSettings = {
-        speed: <?php echo $params->get('transition_duration', 1000); ?>,
-        <?php if($params->get('autoplay')): ?>
-        auto: true,
-        <?php endif; ?>
-        <?php if($params->get('effects') != 'none'): ?>
-        useCSS: false,
-        easing: '<?php echo $params->get('effects'); ?>',
-        <?php endif; ?>
-        pause: <?php echo $params->get('display_time', 4000); ?>,
-        <?php if (!$params->get('pagination')): ?>
-        pager: false,
-        <?php endif; ?>
-        <?php if (!$params->get('navigation')): ?>
-        controls: false,
-        <?php endif; ?>
-        onSlideBefore: function(){
-            if(typeof(slider) !== 'undefined'){
-                var $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide());
-            }else{
-                var $current = $bxSliderContainer.find("> div:not('.bx-clone')").first();
-            }
-            $current.addClass('active');
-            $current.find('.zt-slideshow-loading').css('display', 'block');
-        },
-        onSlideAfter: function () {
-            var $current = $bxSliderContainer.find("> div:not('.bx-clone')").find('.active');
-            $current.removeClass('active');
-            $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide())
-            $current.addClass('active');
-            w.setTimeout(function(){
-                $current.find('.zt-slideshow-loading').fadeOut();
-            }, 500);
-        }
-    };
-    slider = $('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
-    muteBxSlider = function(el){
-        var $this = jQuery(el);
-        var $video = $this.closest('#full-background-video').find('video');
-        if($this.hasClass('fa-volume-up')){
-            $this.removeClass('fa-volume-up');
-            $this.addClass('fa-volume-off');
-            $video.prop('muted', true);
+var $bxSliderContainer = jQuery('div.zt-slideshow-wrap div.zt-slideshow');
+var bxSliderSettings = {
+    speed: <?php echo $params->get('transition_duration', 1000); ?>,
+    <?php if($params->get('autoplay')): ?>
+    auto: true,
+    <?php endif; ?>
+    <?php if($params->get('effects') != 'none'): ?>
+    useCSS: false,
+    easing: '<?php echo $params->get('effects'); ?>',
+    <?php endif; ?>
+    pause: <?php echo $params->get('display_time', 4000); ?>,
+    <?php if (!$params->get('pagination')): ?>
+    pager: false,
+    <?php endif; ?>
+    <?php if (!$params->get('navigation')): ?>
+    controls: false,
+    <?php endif; ?>
+    onSlideBefore: function(){
+        if(typeof(slider) !== 'undefined'){
+            var $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide());
         }else{
-            $this.removeClass('fa-volume-off');
-            $this.addClass('fa-volume-up');
-            $video.prop('muted', false);
+            var $current = $bxSliderContainer.find("> div:not('.bx-clone')").first();
         }
-    };
-    var $wrapper = $('.zt-slideshow-wrap .zt-slidershow-item');
-    $wrapper = $wrapper.not('.bx-clone');
-    $wrapper = $wrapper.find('.full-background-wrap');
-    $wrapper.each(function(){
-        var $color = $(this).find('#full-background-color');
-        var $image = $(this).find('#full-background-image img');
-        var $video = $(this).find('#full-background-video');
-        $video.bgVideo();
-        $image.load(function(){
-            var $parent = $(this).parent();
-            $parent.fadeIn();
-            $parent.css('background-image', "url('" + $(this).attr('src') + "')");
-        });
-        if($image.length > 0){
-            if($image.prop('tagName') === 'IMG'){
-                if($image[0].complete){
-                    $image.trigger('load');
-                }
-            }
-        }
-    });
-})(window);
-    
+        $current.addClass('active');
+        $current.find('.zt-slideshow-loading').css('display', 'block');
+    },
+    onSlideAfter: function () {
+        var $current = $bxSliderContainer.find("> div:not('.bx-clone')").find('.active');
+        $current.removeClass('active');
+        $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide())
+        $current.addClass('active');
+        window.setTimeout(function(){
+            $current.find('.zt-slideshow-loading').fadeOut();
+        }, 500);
+    }
+};
+slider = jQuery('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
+muteBxSlider = function(el){
+    var $this = jQuery(el);
+    var $video = $this.closest('#full-background-video').find('video');
+    if($this.hasClass('fa-volume-up')){
+        $this.removeClass('fa-volume-up');
+        $this.addClass('fa-volume-off');
+        $video.prop('muted', true);
+    }else{
+        $this.removeClass('fa-volume-off');
+        $this.addClass('fa-volume-up');
+        $video.prop('muted', false);
+    }
+};
+var $wrapper = jQuery('.zt-slideshow-wrap .zt-slidershow-item');
+$wrapper = $wrapper.not('.bx-clone');
+$wrapper = $wrapper.find('.full-background-wrap');
+$wrapper.each(function(){
+    var $color = jQuery(this).find('#full-background-color');
+    var $image = jQuery(this).find('#full-background-image img');
+    var $video = jQuery(this).find('#full-background-video');
+    $video.bgVideo();
+});
 </script>
