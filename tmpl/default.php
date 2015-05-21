@@ -116,6 +116,9 @@ var bxSliderSettings = {
     <?php if (!$params->get('navigation')): ?>
     controls: false,
     <?php endif; ?>
+    onSliderLoad: function(currentIndex){
+        $bxSliderContainer.find("> div:not('.bx-clone')").first().data('loaded', true);
+    },
     onSlideBefore: function(){
         if(typeof(slider) !== 'undefined'){
             var $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide());
@@ -123,7 +126,9 @@ var bxSliderSettings = {
             var $current = $bxSliderContainer.find("> div:not('.bx-clone')").first();
         }
         $current.addClass('active');
-        $current.find('.zt-slideshow-loading').css('display', 'block');
+        if(typeof($current.data('loaded')) === 'undefined'){
+            $current.find('.zt-slideshow-loading').css('display', 'block');
+        }        
     },
     onSlideAfter: function () {
         var $current = $bxSliderContainer.find("> div:not('.bx-clone')").find('.active');
@@ -131,7 +136,10 @@ var bxSliderSettings = {
         $current = $bxSliderContainer.find("> div:not('.bx-clone')").eq(slider.getCurrentSlide())
         $current.addClass('active');
         window.setTimeout(function(){
-            $current.find('.zt-slideshow-loading').fadeOut();
+            if(typeof($current.data('loaded')) === 'undefined'){
+                $current.find('.zt-slideshow-loading').fadeOut();
+                $current.data('loaded', true);
+            }
         }, 500);
     }
 };
