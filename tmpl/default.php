@@ -4,8 +4,10 @@
 $doc = JFactory::getDocument();
 //    $doc->addScriptDeclaration($script);
 if( $params->get('disable_mootools', 1)){
-    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
-    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
+    if(isset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']))
+            unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
+    if(isset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']))
+        unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
 }
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
