@@ -3,6 +3,10 @@
 
 $doc = JFactory::getDocument();
 //    $doc->addScriptDeclaration($script);
+if( $params->get('disable_mootools', 1)){
+    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
+    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
+}
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
 $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/html5lightbox/html5lightbox.js');
@@ -12,6 +16,7 @@ $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jq
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
 $doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
+$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script.js');
 ?>
 <div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
     <div class="zt-slideshow">
@@ -143,27 +148,4 @@ var bxSliderSettings = {
         }, 500);
     }
 };
-slider = jQuery('div.zt-slideshow-wrap > div.zt-slideshow').bxSlider(bxSliderSettings);
-muteBxSlider = function(el){
-    var $this = jQuery(el);
-    var $video = $this.closest('#full-background-video').find('video');
-    if($this.hasClass('fa-volume-up')){
-        $this.removeClass('fa-volume-up');
-        $this.addClass('fa-volume-off');
-        $video.prop('muted', true);
-    }else{
-        $this.removeClass('fa-volume-off');
-        $this.addClass('fa-volume-up');
-        $video.prop('muted', false);
-    }
-};
-var $wrapper = jQuery('.zt-slideshow-wrap .zt-slidershow-item');
-$wrapper = $wrapper.not('.bx-clone');
-$wrapper = $wrapper.find('.full-background-wrap');
-$wrapper.each(function(){
-    var $color = jQuery(this).find('#full-background-color');
-    var $image = jQuery(this).find('#full-background-image img');
-    var $video = jQuery(this).find('#full-background-video');
-    $video.bgVideo();
-});
 </script>

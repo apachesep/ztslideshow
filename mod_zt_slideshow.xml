@@ -31,6 +31,10 @@
                 <field name="slides" type="slides" label="" description="JFIELD_ACCESS_DESC" filter="raw"/>
             </fieldset>
             <fieldset name="advanced">
+                <field name="disable_mootools" type="list" default="1" label="Disable mootools" description="Mootools and bxSlider may the cause of server slowdown.">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="slider_width" type="text" default="auto" label="Slider Width" description="" size="10" />
                 <field name="slider_height" type="text" default="550px" label="Slider Height" description="" size="10" />
                 <field name="pagination" type="list" default="1" label="Show pagination" description="">
