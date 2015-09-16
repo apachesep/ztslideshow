@@ -95,16 +95,18 @@ $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script
     ?>
     </div>
 </div>
-<style rel="stylesheet" type="text/css">
-    .zt-slideshow .zt-slidershow-item {
-        min-height: <?php echo $params->get('slider_height'); ?>;
-        height: <?php echo $params->get('slider_height'); ?>;
-    }
+<?php
+$style = '.zt-slideshow .zt-slidershow-item {
+            min-height: '.$params->get('slider_height').';
+            height: '. $params->get('slider_height').';
+        }
 
-    .zt-slideshow .zt-slider-position {
-        height: <?php echo $params->get('slider_height'); ?>;
-    }
-</style>
+        .zt-slideshow .zt-slider-position {
+            height: '. $params->get('slider_height').';
+        }';
+
+$doc->addStyleDeclaration($style);
+?>
 <script type="text/javascript">
 var $bxSliderContainer = jQuery('div.zt-slideshow-wrap div.zt-slideshow');
 var bxSliderSettings = {
