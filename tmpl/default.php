@@ -41,7 +41,7 @@ $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script
             <div id="full-background-color" class="full-background" style="<?php echo($colorStyle); ?>"></div>
             <!-- Background image -->
             <?php if($imageURL != ''): ?>
-            <div id="full-background-image" class="full-background" style="background-image: url('<?php echo $imageURL ?>');<?php echo($opacityStyleReverse); ?>"></div>
+            <div class="full-background full-background-image" style="background-image: url('<?php echo $imageURL ?>');<?php echo($opacityStyleReverse); ?>"></div>
             <?php endif; ?>
             <!-- Background video -->
             <?php if ($slideParams->get('background-video-mp4', '') != '' && $slideParams->get('background-video-webm', '') != ''): ?>
