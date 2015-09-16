@@ -1,6 +1,7 @@
 ## Version 2.0.5 released Sep 16, 2015
 
-* Fix validate issue http://validator.w3.org
+* Fix duplicate ID
+* Fix style on body
 
 ## Version 2.0.4 released Jun 04, 2015
 
