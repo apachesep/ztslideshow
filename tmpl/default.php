@@ -38,16 +38,15 @@ $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script
         <div class="zt-slideshow-loading" style="<?php echo($unvisible); ?>"></div>
         <div class="full-background-wrap">
             <!-- Background color -->
-            <div id="full-background-color" class="full-background" style="<?php echo($colorStyle); ?>"></div>
+            <div class="full-background full-background-color" style="<?php echo($colorStyle); ?>"></div>
             <!-- Background image -->
             <?php if($imageURL != ''): ?>
             <div class="full-background full-background-image" style="background-image: url('<?php echo $imageURL ?>');<?php echo($opacityStyleReverse); ?>"></div>
             <?php endif; ?>
             <!-- Background video -->
             <?php if ($slideParams->get('background-video-mp4', '') != '' && $slideParams->get('background-video-webm', '') != ''): ?>
-            <div 
-                id="full-background-video" 
-                class="full-background" 
+            <div
+                class="full-background full-background-video"
                 style="min-height: <?php echo $slideParams->get('slider_height'); ?>; min-width: <?php echo $slideParams->get('slider_width'); ?>;"
                 data-video-file-mp4="<?php echo $slideParams->get('background-video-mp4') ?>"
                 data-video-file-webm="<?php echo $slideParams->get('background-video-webm') ?>"
@@ -58,7 +57,7 @@ $doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script
                 data-overlay-color="<?php echo($defaultOverlay); ?>"
                 data-overlay-opacity="<?php echo($opacity); ?>">
                 <?php if ($slideParams->get('button-mute') === 'enable') { ?>
-                    <p id="btn-volumn">
+                    <p class="btn-volumn">
                         <i class="fa fa-volume-up" onclick="muteBxSlider(this);"></i>
                     </p>
                 <?php } ?>

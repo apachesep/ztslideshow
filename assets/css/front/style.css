@@ -158,7 +158,7 @@
     color: #5eaf28;
     border-color: #5eaf28;
 }
-.zt-slideshow #btn-volumn {
+.zt-slideshow .btn-volumn {
     bottom: 0;
     cursor: pointer;
     font-size: 30px;
