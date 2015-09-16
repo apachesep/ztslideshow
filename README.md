@@ -1,3 +1,11 @@
+## Version 2.0.5 released Sep 16, 2015
+
+* Fix validate issue http://validator.w3.org
+
+## Version 2.0.4 released Jun 04, 2015
+
+* Fix mootools & bxslider conflicts
+
 ## Version 2.0.3 released May 21, 2015
 
 * Fix javascript issue between Mootools & Bootstrap 
