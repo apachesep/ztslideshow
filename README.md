@@ -1,3 +1,7 @@
+## Version 2.0.6 released Jan 30, 2016
+
+* Remove loading animation while slide switching
+
 ## Version 2.0.5 released Sep 16, 2015
 
 * Fix duplicate ID
