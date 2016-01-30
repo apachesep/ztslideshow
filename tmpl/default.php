@@ -133,10 +133,7 @@ var bxSliderSettings = {
         }else{
             var $current = $bxSliderContainer.find("> div:not('.bx-clone')").first();
         }
-        $current.addClass('active');
-        if(typeof($current.data('loaded')) === 'undefined'){
-            $current.find('.zt-slideshow-loading').css('display', 'block');
-        }        
+        $current.addClass('active');     
     },
     onSlideAfter: function () {
         var $current = $bxSliderContainer.find("> div:not('.bx-clone')").find('.active');
@@ -145,7 +142,6 @@ var bxSliderSettings = {
         $current.addClass('active');
         window.setTimeout(function(){
             if(typeof($current.data('loaded')) === 'undefined'){
-                $current.find('.zt-slideshow-loading').fadeOut();
                 $current.data('loaded', true);
             }
         }, 500);
