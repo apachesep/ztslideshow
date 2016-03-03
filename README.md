@@ -1,3 +1,7 @@
+## Version 2.0.7 released Jan 30, 2016
+
+* Remove double slash in css, js link
+
 ## Version 2.0.6 released Jan 30, 2016
 
 * Remove loading animation while slide switching
