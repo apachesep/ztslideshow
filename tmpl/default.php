@@ -4,21 +4,21 @@
 $doc = JFactory::getDocument();
 //    $doc->addScriptDeclaration($script);
 if( $params->get('disable_mootools', 1)){
-    if(isset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']))
-            unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
-    if(isset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']))
-        unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
+    if(isset($doc->_scripts[JURI::root(true) . 'media/system/js/mootools-more.js']))
+            unset($doc->_scripts[JURI::root(true) . 'media/system/js/mootools-more.js']);
+    if(isset($doc->_scripts[JURI::root(true) . 'media/system/js/mootools-core.js']))
+        unset($doc->_scripts[JURI::root(true) . 'media/system/js/mootools-core.js']);
 }
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/html5lightbox/html5lightbox.js');
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/js/jquery.video.parallax.js');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/background-video/css/style.css');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/style.css');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/css/front/animation.css');
-$doc->addStyleSheet(JUri::root() . '/modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
-$doc->addScript(JUri::root() . '/modules/mod_zt_slideshow/assets/frontend.script.js');
+$doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/bxslider/vendor/jquery.easing.1.3.js');
+$doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.min.js');
+$doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/html5lightbox/html5lightbox.js');
+$doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/background-video/js/jquery.video.parallax.js');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/background-video/css/style.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/bxslider/jquery.bxslider.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/css/front/style.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/css/front/animation.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
+$doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/frontend.script.js');
 ?>
 <div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
     <div class="zt-slideshow">
