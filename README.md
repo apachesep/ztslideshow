@@ -1,3 +1,7 @@
+## Version 2.0.8 released Apr 08, 2016
+
+* Fixed height conflict if create 2 sliders
+
 ## Version 2.0.7 released Jan 30, 2016
 
 * Remove double slash in css, js link
