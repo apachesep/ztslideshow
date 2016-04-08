@@ -20,7 +20,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/css/front/an
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_slideshow/assets/fontawesome/css/font-awesome.min.css');
 $doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/frontend.script.js');
 ?>
-<div class="zt-slideshow-wrap" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
+<div id="zt-slideshow-wrap<?php echo $module->id; ?>" class="zt-slideshow-wrap<?php echo $module->id; ?>" style="width: <?php echo $params->get('slider_width'); ?>; heigt: <?php echo $params->get('slider_height'); ?>">
     <div class="zt-slideshow">
     <?php
     foreach ($slides as $slide)
@@ -95,7 +95,7 @@ $doc->addScript(JUri::root() . 'modules/mod_zt_slideshow/assets/frontend.script.
     </div>
 </div>
 <?php
-$style = '.zt-slideshow .zt-slidershow-item {
+$style = '#zt-slideshow-wrap'.$module->id.' .zt-slideshow .zt-slidershow-item {
             min-height: '.$params->get('slider_height').';
             height: '. $params->get('slider_height').';
         }
