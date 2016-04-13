@@ -1,3 +1,7 @@
+## Version 2.0.9 released Apr 13, 2016
+
+* Fixed wrong class from v.2.0.8
+
 ## Version 2.0.8 released Apr 08, 2016
 
 * Fixed height conflict if create 2 sliders
